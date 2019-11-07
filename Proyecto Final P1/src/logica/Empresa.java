@@ -66,4 +66,41 @@ public class Empresa {
 	}
 	
 	
+	public Persona searchPersonabyCedula (String id) {
+		Persona persona = null;
+		
+		for (Persona aux : personasRegistradas) {
+			if (aux.getCedula().equalsIgnoreCase(id)) {
+				persona = aux;
+			}
+			
+		}
+		return persona;
+		
+	}
+	
+	public Evento searchEventoByID (String id) {
+		Evento event = null;
+		
+		for (Evento aux : eventos) {
+			if (aux.getId().equalsIgnoreCase(id)) {
+				event = aux;
+				
+			}
+		}
+		return event;
+	}
+	
+	public Recurso searchRecursoByTipo (String tipo) {
+		Recurso resource = null;
+		
+		for (Recurso aux : recursos) {
+			if (aux.getTipo().equalsIgnoreCase(tipo)) {
+				resource = aux;
+				
+			}
+		}
+		return resource;
+	}
+	
 }
