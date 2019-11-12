@@ -16,14 +16,14 @@ public class Comision {
 			String tipo) {
 		super();
 		this.miJurado = miJurado; //max es 4
-		
-		for(Jurado uno : miJurado)
-		{
-			if(uno.isPresidente())
-			{
-				this.presidente = presidente;
-			}
-		}
+		this.presidente = presidente;
+//		for(Jurado uno : miJurado)
+//		{
+//			if(uno.isPresidente())
+//			{
+//				this.presidente = presidente;
+//			}
+//		}
 		this.trabajosParticipantes = trabajosParticipantes;
 		this.tipo = tipo;
 		this.fechaCreacion = new Date();
