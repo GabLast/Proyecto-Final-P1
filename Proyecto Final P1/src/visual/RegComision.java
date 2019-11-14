@@ -17,6 +17,7 @@ public class RegComision extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -70,6 +71,11 @@ public class RegComision extends JDialog {
 			JLabel lblFechaDeCreacin = new JLabel("Fecha de creaci\u00F3n:");
 			lblFechaDeCreacin.setBounds(12, 148, 109, 16);
 			panel.add(lblFechaDeCreacin);
+			
+			textField_1 = new JTextField();
+			textField_1.setColumns(10);
+			textField_1.setBounds(138, 145, 166, 22);
+			panel.add(textField_1);
 		}
 		{
 			JPanel buttonPane = new JPanel();
