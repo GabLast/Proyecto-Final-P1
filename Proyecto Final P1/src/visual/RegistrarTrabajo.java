@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class RegistrarTrabajo extends JDialog {
 
@@ -40,7 +41,7 @@ public class RegistrarTrabajo extends JDialog {
 	 */
 	public RegistrarTrabajo() {
 		setTitle("Registrar trabajo");
-		setBounds(100, 100, 705, 510);
+		setBounds(100, 100, 547, 446);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -48,84 +49,81 @@ public class RegistrarTrabajo extends JDialog {
 		{
 			JPanel panelParticipante = new JPanel();
 			panelParticipante.setBorder(new TitledBorder(null, "Datos del participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panelParticipante.setBounds(31, 10, 517, 126);
+			panelParticipante.setBounds(12, 13, 505, 126);
 			contentPanel.add(panelParticipante);
 			panelParticipante.setLayout(null);
 			{
-				JLabel label = new JLabel("ID/C\u00E9dula");
-				label.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-				label.setBounds(21, 21, 102, 43);
-				panelParticipante.add(label);
+				JLabel lblIdcdula = new JLabel("ID/C\u00E9dula:");
+				lblIdcdula.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
+				lblIdcdula.setBounds(21, 13, 102, 43);
+				panelParticipante.add(lblIdcdula);
 			}
 			{
 				textField = new JTextField();
+				textField.setEditable(false);
 				textField.setColumns(10);
-				textField.setBounds(114, 33, 109, 20);
+				textField.setBounds(114, 24, 116, 20);
 				panelParticipante.add(textField);
 			}
 			{
-				JButton btnBuscar = new JButton("Buscar");
-				btnBuscar.setBounds(237, 32, 89, 23);
-				panelParticipante.add(btnBuscar);
-			}
-			{
-				JLabel lblParticipante = new JLabel("Participante");
+				JLabel lblParticipante = new JLabel("Participante:");
 				lblParticipante.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-				lblParticipante.setBounds(21, 64, 102, 43);
+				lblParticipante.setBounds(21, 69, 102, 43);
 				panelParticipante.add(lblParticipante);
 			}
 			{
 				textParticipante = new JTextField();
 				textParticipante.setEditable(false);
 				textParticipante.setColumns(10);
-				textParticipante.setBounds(114, 75, 109, 20);
+				textParticipante.setBounds(114, 80, 116, 20);
 				panelParticipante.add(textParticipante);
 			}
 		}
 		
 		JPanel panelTrabajo = new JPanel();
 		panelTrabajo.setBorder(new TitledBorder(null, "Datos del trabajo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelTrabajo.setBounds(43, 163, 505, 229);
+		panelTrabajo.setBounds(12, 152, 505, 212);
 		contentPanel.add(panelTrabajo);
 		panelTrabajo.setLayout(null);
 		
-		JLabel lblCdigo = new JLabel("C\u00F3digo");
+		JLabel lblCdigo = new JLabel("C\u00F3digo:");
 		lblCdigo.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblCdigo.setBounds(10, 28, 102, 43);
+		lblCdigo.setBounds(10, 20, 102, 43);
 		panelTrabajo.add(lblCdigo);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
-		textField_1.setBounds(77, 40, 86, 20);
+		textField_1.setBounds(77, 31, 143, 20);
 		panelTrabajo.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNombre = new JLabel("Nombre");
+		JLabel lblNombre = new JLabel("Tema:");
 		lblNombre.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblNombre.setBounds(10, 80, 102, 43);
+		lblNombre.setBounds(10, 83, 102, 43);
 		panelTrabajo.add(lblNombre);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(77, 92, 86, 20);
+		textField_2.setBounds(77, 94, 143, 20);
 		panelTrabajo.add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblrea = new JLabel("\u00C1rea");
+		JLabel lblrea = new JLabel("\u00C1rea:");
 		lblrea.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblrea.setBounds(10, 134, 59, 43);
+		lblrea.setBounds(10, 146, 59, 43);
 		panelTrabajo.add(lblrea);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(77, 146, 86, 20);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
+		comboBox.setBounds(77, 157, 143, 20);
 		panelTrabajo.add(comboBox);
 		
-		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
+		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
 		lblDescripcin.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblDescripcin.setBounds(232, 28, 102, 43);
+		lblDescripcin.setBounds(232, 20, 102, 43);
 		panelTrabajo.add(lblDescripcin);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(232, 68, 246, 109);
+		textField_3.setBounds(232, 55, 261, 122);
 		panelTrabajo.add(textField_3);
 		textField_3.setColumns(10);
 		{
