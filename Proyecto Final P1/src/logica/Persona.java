@@ -8,9 +8,10 @@ public abstract class Persona {
 	protected String direccion;
 	protected String sexo;
 	protected String gradoAcademico;
+	protected Evento evento;
 	
 	public Persona(String cedula, String nombre, String telefono, String direccion, String sexo,
-			String gradoAcademico) {
+			String gradoAcademico, Evento evento) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -18,6 +19,7 @@ public abstract class Persona {
 		this.direccion = direccion;
 		this.sexo = sexo;
 		this.gradoAcademico = gradoAcademico;
+		this.evento = evento;
 	}
 
 	public String getCedula() {
