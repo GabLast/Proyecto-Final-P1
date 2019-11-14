@@ -14,7 +14,7 @@ import javax.swing.JSpinner;
 public class RegistrarRecursos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
+	private JTextField txtNombre;
 
 	/**
 	 * Launch the application.
@@ -34,33 +34,36 @@ public class RegistrarRecursos extends JDialog {
 	 */
 	public RegistrarRecursos() {
 		setTitle("Registrar Recursos");
-		setBounds(100, 100, 254, 153);
+		setBounds(100, 100, 280, 153);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Tipo:");
-		lblNewLabel.setBounds(29, 22, 46, 14);
+		JLabel lblNewLabel = new JLabel("Nombre:");
+		lblNewLabel.setBounds(29, 22, 63, 14);
 		contentPanel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setText("");
-		textField.setBounds(67, 19, 86, 20);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		txtNombre = new JTextField();
+		txtNombre.setText("");
+		txtNombre.setBounds(87, 19, 137, 20);
+		contentPanel.add(txtNombre);
+		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(10, 47, 77, 14);
+		lblCantidad.setBounds(29, 47, 77, 14);
 		contentPanel.add(lblCantidad);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(67, 47, 86, 20);
-		contentPanel.add(spinner);
+		JSpinner spnCantidad = new JSpinner();
+		spnCantidad.setBounds(87, 44, 137, 20);
+		contentPanel.add(spnCantidad);
 		
-		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.setBounds(137, 78, 89, 23);
-		contentPanel.add(btnNewButton);
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setBounds(85, 77, 89, 23);
+		contentPanel.add(btnRegistrar);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setBounds(186, 77, 64, 23);
+		contentPanel.add(btnSalir);
 	}
-
 }

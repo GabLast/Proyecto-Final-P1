@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import logica.Empresa;
 import logica.User;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -91,6 +92,7 @@ public class Login extends JFrame {
 		setTitle("Iniciar Sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 624, 351);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -123,9 +125,15 @@ public class Login extends JFrame {
 					dispose();
 					frame.setVisible(true);
 				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "id: admin | clave: 123", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					
+				}
 			}
 		});
-		btnLogIn.setBounds(163, 215, 97, 25);
+		btnLogIn.setBounds(107, 227, 137, 25);
 		contentPane.add(btnLogIn);
 	}
 }

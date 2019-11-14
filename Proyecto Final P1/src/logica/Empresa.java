@@ -22,6 +22,7 @@ public class Empresa implements Serializable{
 		this.personasRegistradas = new ArrayList();
 		this.recursos = new ArrayList();
 		this.eventos = new ArrayList();
+		this.misUsers = new ArrayList();
 		
 	}
 	public static Empresa getInstance() 
