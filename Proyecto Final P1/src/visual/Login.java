@@ -33,34 +33,34 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				FileInputStream biblioIn;
-				FileOutputStream biblioOut;
-				ObjectInputStream biblioRead;
-				ObjectOutputStream biblioWrite;
+				FileInputStream empresaIn;
+				FileOutputStream empresaOut;
+				ObjectInputStream empresaRead;
+				ObjectOutputStream empresaWrite;
 				
 				try {
 					
-					biblioIn = new FileInputStream ("biblio.dat");
-					biblioRead = new ObjectInputStream(biblioIn);
+					empresaIn = new FileInputStream ("empresa.dat");
+					empresaRead = new ObjectInputStream(empresaIn);
 					
-					Biblioteca temp = (Biblioteca)biblioRead.readObject();
+					Empresa temp = (Empresa)empresaRead.readObject();
 					
-					Biblioteca.setBiblioteca(temp);
-					biblioIn.close();
-					biblioRead.close();
+					Empresa.setMiEmpresa(temp);
+					empresaIn.close();
+					empresaRead.close();
 				} catch (FileNotFoundException e) {
 					try {
 						
-						biblioOut = new  FileOutputStream("biblio.dat");
-						biblioWrite = new ObjectOutputStream(biblioOut);
+						empresaOut = new  FileOutputStream("empresa.dat");
+						empresaWrite = new ObjectOutputStream(empresaOut);
 						
 						User aux = new User("Administrador", "admin", "123");
-						Biblioteca.getInstance().regUser(aux);
+						Empresa.getInstance().regUser(aux);
 						
-						biblioWrite.writeObject(Biblioteca.getInstance());
+						empresaWrite.writeObject(Empresa.getInstance());
 						
-						biblioOut.close();
-						biblioWrite.close();
+						empresaOut.close();
+						empresaWrite.close();
 						
 					} catch (FileNotFoundException e1) {
 					} catch (IOException e1) {
@@ -88,7 +88,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setTitle("Logging In");
+		setTitle("Iniciar Sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 624, 351);
 		contentPane = new JPanel();
@@ -117,7 +117,7 @@ public class Login extends JFrame {
 		JButton btnLogIn = new JButton("Iniciar sesión");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Biblioteca.getInstance().confirmLogin(textField.getText(),textField_2.getText()))
+				if(Empresa.getInstance().confirmLogin(textField.getText(),textField_2.getText()))
 				{
 					Principal frame = new Principal();
 					dispose();
