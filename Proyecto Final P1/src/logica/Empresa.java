@@ -103,4 +103,23 @@ public class Empresa {
 		return resource;
 	}
 	
+	public ArrayList<Jurado> buscarJuecesPorArea(String area)
+	{
+		ArrayList<Jurado> personas = new ArrayList();
+		
+		
+		for(Persona ppl : personasRegistradas)
+		{
+			if(ppl instanceof Jurado)
+			{
+				if(((Jurado) ppl).getAreaEstudio().equalsIgnoreCase(area))
+				{
+					personas.add((Jurado)ppl);
+				}
+			}
+		}
+		
+		return personas;
+	}
+	
 }
