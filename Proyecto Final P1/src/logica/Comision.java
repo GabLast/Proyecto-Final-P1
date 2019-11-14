@@ -9,11 +9,11 @@ public class Comision {
 	private ArrayList<Jurado> miJurado;
 	private Jurado presidente;
 	private ArrayList<Trabajo> trabajosParticipantes;
-	private String tipo; //investigacion y practica
+	private String area; //investigacion y practica
 	private Date fechaCreacion;
 
 	public Comision(ArrayList<Jurado> miJurado, Jurado presidente, ArrayList<Trabajo> trabajosParticipantes,
-			String tipo) {
+			String area) {
 		super();
 		this.miJurado = miJurado; //max es 4
 		this.presidente = presidente;
@@ -25,7 +25,7 @@ public class Comision {
 //			}
 //		}
 		this.trabajosParticipantes = trabajosParticipantes;
-		this.tipo = tipo;
+		this.area = area;
 		this.fechaCreacion = new Date();
 	}
 
@@ -61,12 +61,12 @@ public class Comision {
 		this.trabajosParticipantes = trabajosParticipantes;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getArea() {
+		return area;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setArea(String tipo) {
+		this.area = tipo;
 	}
 
 	public Date getFechaCreacion() {
