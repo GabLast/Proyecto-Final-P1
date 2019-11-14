@@ -1,7 +1,10 @@
 package logica;
 
-public class Trabajo {
+import java.io.Serializable;
 
+public class Trabajo implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private Persona duenio;
 	private String id;
 	private String nombreTrabajo;

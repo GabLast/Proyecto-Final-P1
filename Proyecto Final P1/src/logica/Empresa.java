@@ -1,9 +1,15 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa {
+public class Empresa implements Serializable{
 
+	private static final long serialVersionUID = 1L;
+	private ArrayList<User> misUsers;
+	private static User loginUser;
+	private static boolean firstTime;
+	
 	private static Empresa miEmpresa = null;
 	private ArrayList<Persona> personasRegistradas;
 	private ArrayList<Recurso> recursos;
@@ -65,7 +71,47 @@ public class Empresa {
 		eventos.add(event);
 	}
 	
+	public ArrayList<User> getMisUsers() {
+		return misUsers;
+	}
+
+	public void setMisUsers(ArrayList<User> misUsers) {
+		this.misUsers = misUsers;
+	}
+
+	public static User getLoginUser() {
+		return loginUser;
+	}
+
+	public static void setLoginUser(User loginUser) {
+		Empresa.loginUser = loginUser;
+	}
+
+	public void regUser(User user) {
+		misUsers.add(user);
+
+	}
+
+	public static boolean isFirstTime() {
+		return firstTime;
+	}
+
+	public static void setFirstTime(boolean firstTime) {
+		Empresa.firstTime = firstTime;
+	}
 	
+	public boolean confirmLogin(String username, String password) {
+		boolean login = false;
+		for (User user : misUsers) {
+			if(user.getUserName().equalsIgnoreCase(username) && user.getPass().equals(password)){
+				loginUser = user;
+				login = true;
+			}
+		}
+		return login;
+	}
+
+
 	public Persona searchPersonabyCedula (String id) {
 		Persona persona = null;
 		

@@ -1,10 +1,13 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Comision {
-
+public class Comision implements Serializable{
+	
+	
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private ArrayList<Jurado> miJurado;
 	private Jurado presidente;
