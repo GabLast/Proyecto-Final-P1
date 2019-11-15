@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +19,7 @@ import logica.Evento;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
@@ -96,8 +98,9 @@ public class ListaEventos extends JDialog {
 							}
 						}
 					});
-					table_1 = new JTable();
-					scrollPane.setViewportView(table_1);
+					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					table.setModel(model);
+					scrollPane.setViewportView(table);
 				}
 			}
 		}
@@ -143,11 +146,28 @@ public class ListaEventos extends JDialog {
 	public static void loadEventos() 
 	{
 		model.setRowCount(0);
-		//Empresa.getInstance();
-		
+		Empresa miEmpresa = Empresa.getInstance();
+		//{"ID", "Nombre", "Tipo", "Fecha de la actividad", "Estado"};
 		row = new Object[model.getColumnCount()];
 		
-		
+		for (int i = 0; i < miEmpresa.getEventos().size(); i++) 
+		{
+			row[0] = miEmpresa.getEventos().get(i).getId();
+			row[1] = miEmpresa.getEventos().get(i).getNombre();
+			row[2] = miEmpresa.getEventos().get(i).getTipo();
+			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(miEmpresa.getEventos().get(i).getFecha());
+			
+			if(miEmpresa.getEventos().get(i).isEstado())
+			{
+				row[4] = "Disponible";
+			}
+			else
+			{
+				row[4] = "Finalizado";
+			}
+			
+			model.addRow(row);
+		}
 		
 		table.setModel(model);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
