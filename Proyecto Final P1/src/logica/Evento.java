@@ -21,7 +21,7 @@ public class Evento implements Serializable{
 	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String tipo, String id, Date fecha) {
 		super();
 		misComisiones = new ArrayList<>();
-		this.recursosUsados = recursosUsados; //hacer ventana para elegir recursos a usar
+		this.recursosUsados = recursosUsados;
 		this.participantes = participantes;
 		this.nombre = nombre;
 		this.id = id;

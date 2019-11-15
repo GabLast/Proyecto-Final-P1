@@ -10,18 +10,27 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import com.toedter.calendar.JCalendar;
 
 import logica.Empresa;
+import logica.Evento;
+import logica.Jurado;
+import logica.Participante;
+import logica.Persona;
+import logica.Recurso;
 
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class CreandoEvento extends JDialog {
 
@@ -29,18 +38,24 @@ public class CreandoEvento extends JDialog {
 	JButton btnCrear;
 	private JTextField txtID;
 	private JTextField txtNombre;
+	private JComboBox cbxRecurso;
+	private JComboBox cbxTipo;
+	JSpinner spnCantidad;
 	JCalendar calendar;
-	
-	JList listRecursos;
 	JList listRecursosElegidos;
 	JList listPartiElegidos;
 	JList listParticipantes;
 	
-	DefaultListModel modelRecursos;
+	DefaultComboBoxModel cbxModel;
 	DefaultListModel modelRecElegidos;
 	DefaultListModel modelPartis;
 	DefaultListModel modelPartiElegidos;
-
+	
+	ArrayList<Recurso> recursos = new ArrayList<>();
+	ArrayList<Participante> participantes = new ArrayList<>();
+	int valorRecurso;
+	String string;
+	private JTextField txtCant;
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +74,7 @@ public class CreandoEvento extends JDialog {
 	 */
 	public CreandoEvento() {
 		setTitle("Organizaci\u00F3n de un evento");
-		setBounds(100, 100, 769, 930);
+		setBounds(100, 100, 769, 947);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -113,10 +128,10 @@ public class CreandoEvento extends JDialog {
 					panel_1.add(lblTipo);
 				}
 				{
-					JComboBox comboBox = new JComboBox();
-					comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Panel", "Ponencia", "Conferencia", "Jornada", "Mesa Redonda"}));
-					comboBox.setBounds(416, 12, 268, 29);
-					panel_1.add(comboBox);
+					cbxTipo = new JComboBox();
+					cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Panel", "Ponencia", "Conferencia", "Jornada", "Mesa Redonda"}));
+					cbxTipo.setBounds(416, 12, 268, 29);
+					panel_1.add(cbxTipo);
 				}
 			}
 			{
@@ -132,6 +147,18 @@ public class CreandoEvento extends JDialog {
 					{
 						listParticipantes = new JList();
 						scrollPane.setViewportView(listParticipantes);
+						
+						modelPartis = new DefaultListModel();
+						
+						//Mostrando en jlist
+						for(Persona person : Empresa.getInstance().getPersonasRegistradas())
+						{
+							if(person instanceof Participante)
+							{
+								modelPartis.addElement(person.getNombre());
+							}
+						}
+						listParticipantes.setModel(modelPartis);
 					}
 				}
 				{
@@ -150,11 +177,73 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					JButton btnDerechaParti = new JButton(">");
+					btnDerechaParti.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							//MOVIENDO IZQUIERDA A DERECHA
+							String string = (String) listParticipantes.getSelectedValue();
+							
+							if(listParticipantes.getSelectedIndex() == -1)
+							{
+								JOptionPane.showMessageDialog(null, "Seleccione algún participante", "Notificación", JOptionPane.WARNING_MESSAGE);
+							}
+							else
+							{
+								//agregar valor a la lista derecha
+								int value = listParticipantes.getSelectedIndex();
+								modelPartiElegidos.addElement(string);
+								listPartiElegidos.setModel(modelPartiElegidos);
+									
+								Participante buscando = Empresa.getInstance().buscarParticipanteByName(listParticipantes.getSelectedValue().toString());
+								participantes.add(buscando);
+									
+								//removiendo valor de la lista de la izquierda
+								if(modelPartis.getSize() != 0)
+								{
+									modelPartis.removeElementAt(value);
+								}
+									
+								listParticipantes.setModel(modelPartis);
+							}
+						}
+					});
 					btnDerechaParti.setBounds(325, 90, 47, 31);
 					panelParticipantes.add(btnDerechaParti);
 				}
 				{
 					JButton btnIzquierdaParti = new JButton("<");
+					btnIzquierdaParti.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							String string = (String) listPartiElegidos.getSelectedValue();
+							
+							if(listPartiElegidos.getSelectedIndex() == -1)
+							{
+								JOptionPane.showMessageDialog(null, "Seleccione algún participante", "Notificación", JOptionPane.WARNING_MESSAGE);
+							}
+							else
+							{
+								//agregar valor a la lista izquierda
+								
+								int value = listPartiElegidos.getSelectedIndex();
+								
+								modelPartis.addElement(string);
+								listParticipantes.setModel(modelPartis);
+								
+
+								Participante buscando = Empresa.getInstance().buscarParticipanteByName(listParticipantes.getSelectedValue().toString());
+								participantes.remove(buscando);
+
+								//removiendo valor de la lista de la derecha
+								if(modelPartiElegidos.getSize() != 0)
+								{
+									modelPartiElegidos.removeElementAt(value);
+								}
+								
+								listPartiElegidos.setModel(modelPartiElegidos);
+							}
+						}
+					});
 					btnIzquierdaParti.setBounds(325, 170, 47, 31);
 					panelParticipantes.add(btnIzquierdaParti);
 				}
@@ -166,7 +255,7 @@ public class CreandoEvento extends JDialog {
 			}
 			{
 				JPanel panelRecursos = new JPanel();
-				panelRecursos.setBounds(17, 607, 701, 189);
+				panelRecursos.setBounds(17, 607, 701, 225);
 				panelRecursos.setBorder(new TitledBorder(null, "Registro de Recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel.add(panelRecursos);
 				panelRecursos.setLayout(null);
@@ -174,15 +263,6 @@ public class CreandoEvento extends JDialog {
 					JLabel lblRecursosDisponibles = new JLabel("Recursos disponibles:");
 					lblRecursosDisponibles.setBounds(14, 29, 219, 23);
 					panelRecursos.add(lblRecursosDisponibles);
-				}
-				{
-					JScrollPane scrollPane = new JScrollPane();
-					scrollPane.setBounds(14, 60, 298, 102);
-					panelRecursos.add(scrollPane);
-					{
-						listRecursos = new JList();
-						scrollPane.setViewportView(listRecursos);
-					}
 				}
 				{
 					JScrollPane scrollPane = new JScrollPane();
@@ -199,14 +279,112 @@ public class CreandoEvento extends JDialog {
 					panelRecursos.add(lblRecursosAUtilizar);
 				}
 				{
-					JButton btnDerechaRecursos = new JButton(">");
-					btnDerechaRecursos.setBounds(326, 71, 47, 31);
-					panelRecursos.add(btnDerechaRecursos);
+					JButton btnAgregarRec = new JButton("Agregar");						
+					btnAgregarRec.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) 
+						{
+							string = (String) cbxRecurso.getSelectedItem();
+							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
+							
+							if(cbxRecurso.getSelectedIndex() < 1)
+							{
+								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
+							}
+							else if(!buscando.verificarDisponibilidad((Integer) spnCantidad.getValue()))
+							{
+								JOptionPane.showMessageDialog(null, "No hay suficientes "+ buscando.getTipo()+ " disponibles", "Notificación", JOptionPane.WARNING_MESSAGE);
+							}
+							else
+							{
+								//agregar valor a la lista derecha
+								
+								valorRecurso = (Integer) spnCantidad.getValue();
+								modelRecElegidos.addElement(string);
+								listRecursosElegidos.setModel(modelRecElegidos);
+								
+								buscando.verificarDisponibilidad((Integer) spnCantidad.getValue());
+								recursos.add(buscando);
+								
+								cbxModel = new DefaultComboBoxModel(); 
+								for(Recurso recurso : Empresa.getInstance().getRecursos())
+								{
+									cbxModel.addElement(recurso.getTipo());
+								}
+								cbxRecurso.setModel(cbxModel);
+									
+							}
+						}
+					});
+					btnAgregarRec.setBounds(274, 71, 99, 31);
+					panelRecursos.add(btnAgregarRec);
 				}
 				{
-					JButton btnIzquierdaRecursos = new JButton("<");
-					btnIzquierdaRecursos.setBounds(326, 113, 47, 31);
-					panelRecursos.add(btnIzquierdaRecursos);
+					JButton btnRemover = new JButton("Remover recurso seleccionado");
+					btnRemover.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							String string = (String) listRecursosElegidos.getSelectedValue();
+							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
+						
+							if(listRecursosElegidos.getSelectedIndex() == -1)
+							{
+								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
+							}
+							else
+							{
+								int value = listRecursosElegidos.getSelectedIndex();
+								
+								cbxModel = new DefaultComboBoxModel(); 
+								for(Recurso recurso : Empresa.getInstance().getRecursos())
+								{
+									cbxModel.addElement(recurso.getTipo());
+								}
+								cbxRecurso.setModel(cbxModel);
+								
+								recursos.remove(buscando);
+								
+								//removiendo valor de la lista
+								if(modelRecElegidos.getSize() != 0)
+								{
+									modelRecElegidos.removeElementAt(value);
+								}
+								
+								listRecursosElegidos.setModel(modelRecElegidos);
+							}
+						}
+					});
+					btnRemover.setBounds(387, 175, 298, 31);
+					panelRecursos.add(btnRemover);
+				}
+				{
+					cbxRecurso = new JComboBox();
+					cbxRecurso.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							string = (String) cbxRecurso.getSelectedItem();
+							Recurso aux = Empresa.getInstance().searchRecursoByTipo(string);
+							txtCant.setText("x"+ aux.getCantidad());
+						}
+					});
+					cbxRecurso.setBounds(14, 71, 134, 29);
+					cbxModel = new DefaultComboBoxModel(); 
+					for(Recurso recurso : Empresa.getInstance().getRecursos())
+					{
+						cbxModel.addElement(recurso.getTipo() + " x" + recurso.getCantidad());
+					}
+					cbxRecurso.setModel(cbxModel);
+					panelRecursos.add(cbxRecurso);
+				}
+				
+				spnCantidad = new JSpinner();
+				spnCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+				spnCantidad.setBounds(208, 71, 63, 30);
+				panelRecursos.add(spnCantidad);
+				{
+					txtCant = new JTextField();
+					txtCant.setEditable(false);
+					txtCant.setColumns(10);
+					txtCant.setBounds(153, 71, 50, 29);
+					panelRecursos.add(txtCant);
 				}
 			}
 		}
@@ -218,6 +396,17 @@ public class CreandoEvento extends JDialog {
 				btnCrear = new JButton("Crear");
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1)
+						{
+							JOptionPane.showMessageDialog(null, "Digite un nombre y seleccione el tipo de evento", "Error", JOptionPane.WARNING_MESSAGE);
+						}
+						else
+						{
+							Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), cbxTipo.getSelectedItem().toString(), txtID.getText(), calendar.getDate());
+							nuevoEvento.verificarFin();
+							Empresa.getInstance().insertarEvento(nuevoEvento);
+							JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
+						}
 					}
 				});
 				btnCrear.setActionCommand("OK");

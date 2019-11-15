@@ -166,6 +166,24 @@ public class Empresa implements Serializable{
 		
 	}
 	
+	public Participante buscarParticipanteByName (String id) {
+		Participante persona = null;
+		
+		for (Persona aux : personasRegistradas) {
+			
+			if(aux instanceof Participante)
+			{
+				if (aux.getNombre().equalsIgnoreCase(id)) 
+				{
+					persona = (Participante) aux;
+					return persona;
+				}
+			}
+		}
+		return persona;
+		
+	}
+	
 	public Evento searchEventoByID (String id) {
 		Evento event = null;
 		

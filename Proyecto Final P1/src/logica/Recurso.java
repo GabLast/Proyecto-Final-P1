@@ -31,12 +31,18 @@ public class Recurso implements Serializable{
 	{
 		boolean disponible = false;
 		
-		if(cantidad >= cantidad-cantidadToUse)
+		if(cantidad >= cantidadToUse)
 		{
 			disponible = true;
 			cantidad -= cantidadToUse;
 		}
 		
 		return disponible;
+	}
+	
+
+	public void devolverRecursoTomado(int usado)
+	{
+		cantidad =+ usado;
 	}
 }
