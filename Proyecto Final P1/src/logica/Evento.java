@@ -126,6 +126,18 @@ public class Evento implements Serializable{
 		
 	}
 	
+	public Comision buscarComisionByID (String id) {
+		Comision comi = null;
+		
+		for (Comision aux : misComisiones) {
+			if (aux.getId().equalsIgnoreCase(id)) {
+				comi = aux;
+				
+			}
+		}
+		return comi;
+	}
+	
 	public Trabajo buscandoTrabajoEntreMisParticipantesByName(String id)
 	{
 		Trabajo job = null;

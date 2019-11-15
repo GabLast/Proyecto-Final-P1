@@ -38,6 +38,7 @@ public class RegComision extends JDialog {
 	private JTextField txtID;
 	private JTextField txtFechaCreacion;
 	
+	JButton btnRegistrar;
 	JComboBox cbxPresidente;
 	JComboBox cbxArea;
 	DefaultComboBoxModel cbxModel;
@@ -61,7 +62,8 @@ public class RegComision extends JDialog {
 	public static void main(String[] args) {
 		try {
 			Evento miEvento = null;
-			RegComision dialog = new RegComision(miEvento);
+			Comision aModificar = null;
+			RegComision dialog = new RegComision(miEvento, false, aModificar);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -72,8 +74,11 @@ public class RegComision extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegComision(Evento miEvento) {
-		setTitle("Formando una comisi\u00F3n");
+	public RegComision(Evento miEvento, boolean modificar, Comision aModificar) {
+		if(!modificar)
+			setTitle("Formando una comisi\u00F3n");
+		else
+			setTitle("Modificando la comision");
 		setBounds(100, 100, 571, 767);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -144,7 +149,10 @@ public class RegComision extends JDialog {
 			txtID = new JTextField();
 			txtID.setEditable(false);
 			txtID.setBounds(156, 28, 166, 22);
-			txtID.setText("COM"+miEvento.getGenIDComision());
+			if(!modificar)
+				txtID.setText("COM"+miEvento.getGenIDComision());
+			else
+				txtID.setText(aModificar.getId());
 			panel.add(txtID);
 			txtID.setColumns(10);
 			
@@ -433,39 +441,83 @@ public class RegComision extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton btnRegistrar = new JButton("Registrar");
+				btnRegistrar = new JButton("Registrar");
+				if(modificar)
+				{
+					btnRegistrar.setText("Modificar");
+				}
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
-						if(jueces.size() > 0 && trabajos.size() > 0 && cbxArea.getSelectedIndex() > 0)
+						if(!modificar)
 						{
-							Jurado presidente = null;
-							
-							for(Jurado juez : jueces)
+							if(jueces.size() > 0 && trabajos.size() > 0 && cbxArea.getSelectedIndex() > 0)
 							{
-								if((juez.getCedula()+ " " + juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
+								Jurado presidente = null;
+								
+								for(Jurado juez : jueces)
 								{
-									presidente = juez;
+									if((juez.getCedula()+ " " + juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
+									{
+										presidente = juez;
+									}
 								}
+								Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
+								miEvento.insertarComision(nuevaComision);
+								clean();
+								JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
 							}
-							Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
-							miEvento.insertarComision(nuevaComision);
-							clean();
-							JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+							else
+							{
+								if(jueces.size() < 1)
+								{
+									JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
+								}
+								else if(trabajos.size() <= 0)
+								{
+									JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
+								}
+								else
+									JOptionPane.showMessageDialog(null, "Operación Errónea. Revise los campos nuevamente.", "Error de registro", JOptionPane.WARNING_MESSAGE);
+							}
 						}
 						else
 						{
-							if(jueces.size() < 1)
+							if(aModificar != null)
 							{
-								JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
-							}
-							else if(trabajos.size() <= 0)
-							{
-								JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
+								if(jueces.size() < 1)
+								{
+									JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
+								}
+								else if(trabajos.size() <= 0)
+								{
+									JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
+								}
+								else
+								{
+									aModificar.setId(txtID.getText());
+									aModificar.setMiJurado(jueces);
+									Jurado presidente = null;
+									for(Jurado juez : jueces)
+									{
+										if((juez.getCedula()+ " " + juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
+										{
+											presidente = juez;
+										}
+									}
+									aModificar.setPresidente(presidente);
+									aModificar.setTrabajosParticipantes(trabajos);
+									aModificar.setArea(cbxArea.getSelectedItem().toString());
+									JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									ListaComisiones.loadComision(miEvento.getMisComisiones());
+								}
 							}
 							else
-								JOptionPane.showMessageDialog(null, "Operación Errónea. Revise los campos nuevamente.", "Error de registro", JOptionPane.WARNING_MESSAGE);
+							{
+								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar la comisión", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+							}
 						}
+						
 					}
 				});
 				btnRegistrar.setActionCommand("OK");

@@ -21,13 +21,6 @@ public class Comision implements Serializable{
 		this.id = id;
 		this.miJurado = miJurado; //max es 4
 		this.presidente = presidente;
-//		for(Jurado uno : miJurado)
-//		{
-//			if(uno.isPresidente())
-//			{
-//				this.presidente = presidente;
-//			}
-//		}
 		this.trabajosParticipantes = trabajosParticipantes;
 		this.area = area;
 		this.fechaCreacion = new Date();

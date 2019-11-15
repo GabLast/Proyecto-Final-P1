@@ -3,6 +3,8 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,12 +22,10 @@ import logica.Evento;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class ListaEventos extends JDialog {
+public class ListaComisiones extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private static JTable table;
@@ -33,14 +33,15 @@ public class ListaEventos extends JDialog {
 	private static DefaultTableModel model;
 	private Dimension dim;
 	String id = "";
-	private JButton btnCrear;
-	private JButton btnGestionarComisiones;
+	JButton btnModificar;
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ListaEventos dialog = new ListaEventos();
+			Evento miEvento = null;
+			ListaComisiones dialog = new ListaComisiones(miEvento);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -51,20 +52,16 @@ public class ListaEventos extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListaEventos() {
-		setBounds(100, 100, 648, 407);
-		dim = super.getToolkit().getScreenSize();
-		dim.width *= .70;
-		dim.height *= .92;
-		super.setSize(dim.width, dim.height);
-		setLocationRelativeTo(null);
+	public ListaComisiones(Evento miEvento) {
+		setTitle("Comisiones");
+		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Listado de eventos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Listado de comisiones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
@@ -80,12 +77,12 @@ public class ListaEventos extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Nombre", "Tipo", "Fecha de la actividad", "Estado"};
+					String[] header = {"ID", "Área", "Presidente", "Fecha de creación"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
 					
-					loadEventos();
+					loadComision(miEvento.getMisComisiones());
 					
 					table.addMouseListener(new MouseAdapter() {
 						@Override
@@ -93,8 +90,7 @@ public class ListaEventos extends JDialog {
 							if(table.getSelectedRow()>-1){
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
-								btnCrear.setEnabled(true);
-								btnGestionarComisiones.setEnabled(true);
+								btnModificar.setEnabled(true);
 								
 							}
 						}
@@ -110,34 +106,19 @@ public class ListaEventos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnCrear = new JButton("Crear Comisi\u00F3n");
-				btnCrear.addActionListener(new ActionListener() {
+				btnModificar = new JButton("Modificar");
+				btnModificar.setEnabled(false);
+				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Evento elEvento = Empresa.getInstance().searchEventoByID(id);
-						
-						RegComision comi = new RegComision(elEvento, false, null);
+						Comision comiModificar = miEvento.buscarComisionByID(id);
+						RegComision comi = new RegComision(miEvento, true, comiModificar);
 						comi.setModal(true);
 						comi.setVisible(true);
 					}
 				});
-				btnCrear.setActionCommand("OK");
-				buttonPane.add(btnCrear);
-				btnCrear.setEnabled(false);
-				getRootPane().setDefaultButton(btnCrear);
-			}
-			{
-				btnGestionarComisiones = new JButton("Gestionar Comisiones");
-				btnGestionarComisiones.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Evento elEvento = Empresa.getInstance().searchEventoByID(id);
-						ListaComisiones window = new ListaComisiones(elEvento);
-						window.setModal(true);
-						window.setVisible(true);
-					}
-				});
-				btnGestionarComisiones.setActionCommand("OK");
-				buttonPane.add(btnGestionarComisiones);
-				btnGestionarComisiones.setEnabled(false);
+				btnModificar.setActionCommand("OK");
+				buttonPane.add(btnModificar);
+				getRootPane().setDefaultButton(btnModificar);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
@@ -152,28 +133,19 @@ public class ListaEventos extends JDialog {
 		}
 	}
 
-	public static void loadEventos() 
+	public static void loadComision(ArrayList<Comision> comisionesEvento) 
 	{
 		model.setRowCount(0);
-		Empresa miEmpresa = Empresa.getInstance();
-		//{"ID", "Nombre", "Tipo", "Fecha de la actividad", "Estado"};
+		
+		//{"ID", "Área", "Presidente", "Fecha de creación"};
 		row = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < miEmpresa.getEventos().size(); i++) 
+		for (int i = 0; i < comisionesEvento.size(); i++) 
 		{
-			row[0] = miEmpresa.getEventos().get(i).getId();
-			row[1] = miEmpresa.getEventos().get(i).getNombre();
-			row[2] = miEmpresa.getEventos().get(i).getTipo();
-			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(miEmpresa.getEventos().get(i).getFecha());
-			
-			if(miEmpresa.getEventos().get(i).isEstado())
-			{
-				row[4] = "Disponible";
-			}
-			else
-			{
-				row[4] = "Finalizado";
-			}
+			row[0] = comisionesEvento.get(i).getId();
+			row[1] = comisionesEvento.get(i).getArea();
+			row[2] = comisionesEvento.get(i).getPresidente().getNombre();
+			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(comisionesEvento.get(i).getFechaCreacion());
 			
 			model.addRow(row);
 		}

@@ -1,7 +1,9 @@
 package logica;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Empresa implements Serializable{
 
@@ -126,7 +128,8 @@ public class Empresa implements Serializable{
 	public boolean confirmLogin(String username, String password) {
 		boolean login = false;
 		for (User user : misUsers) {
-			if(user.getUserName().equalsIgnoreCase(username) && user.getPass().equals(password)){
+			if(user.getUserName().equalsIgnoreCase(username) && user.getPass().equals(password))
+			{
 				loginUser = user;
 				login = true;
 			}

@@ -12,6 +12,7 @@ import java.io.ObjectOutputStream;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 import logica.Empresa;
 import logica.User;
@@ -21,12 +22,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_2;
+	private JTextField txtUsuario;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -91,35 +93,41 @@ public class Login extends JFrame {
 	public Login() {
 		setTitle("Iniciar Sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 624, 351);
+		setBounds(100, 100, 518, 262);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(25, 84, 56, 16);
-		contentPane.add(lblUsuario);
-		
-		JLabel lblClave = new JLabel("Clave:");
-		lblClave.setBounds(25, 141, 56, 16);
-		contentPane.add(lblClave);
-		
-		textField = new JTextField();
-		textField.setBounds(93, 81, 151, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(93, 138, 151, 22);
-		contentPane.add(textField_2);
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar sesión");
+		btnLogIn.setBounds(326, 127, 141, 31);
+		panel.add(btnLogIn);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(98, 24, 369, 29);
+		panel.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setBounds(17, 27, 69, 23);
+		panel.add(lblUsuario);
+		
+		JLabel lblClave = new JLabel("Clave:");
+		lblClave.setBounds(17, 77, 51, 23);
+		panel.add(lblClave);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(98, 74, 369, 29);
+		panel.add(passwordField);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(Empresa.getInstance().confirmLogin(textField.getText(),textField_2.getText()))
+				if(Empresa.getInstance().confirmLogin(txtUsuario.getText(),String.valueOf(passwordField.getPassword())))
 				{
 					Principal frame = new Principal();
 					dispose();
@@ -133,7 +141,5 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		btnLogIn.setBounds(107, 227, 137, 25);
-		contentPane.add(btnLogIn);
 	}
 }

@@ -65,6 +65,13 @@ public class Principal extends JFrame {
 		mnGestinDeEventos.add(mntmRegistrarEvento);
 		
 		JMenuItem mntmListarEventos = new JMenuItem("Listar Eventos");
+		mntmListarEventos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaEventos window = new ListaEventos();
+				window.setModal(true);
+				window.setVisible(true);
+			}
+		});
 		mnGestinDeEventos.add(mntmListarEventos);
 		
 		JMenu mnGestionDePersonal = new JMenu("Gestion de personal");
