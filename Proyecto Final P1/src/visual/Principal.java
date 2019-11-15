@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,10 +10,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
+	private Dimension dim;
 	
 
 	/**
@@ -38,6 +42,11 @@ public class Principal extends JFrame {
 		setTitle("Planificaci\u00F3n de eventos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		dim = super.getToolkit().getScreenSize();
+		dim.width *= .92;
+		dim.height *= .92;
+		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -46,6 +55,13 @@ public class Principal extends JFrame {
 		menuBar.add(mnGestinDeEventos);
 		
 		JMenuItem mntmRegistrarEvento = new JMenuItem("Registrar Evento");
+		mntmRegistrarEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreandoEvento window = new CreandoEvento();
+				window.setModal(true);
+				window.setVisible(true);
+			}
+		});
 		mnGestinDeEventos.add(mntmRegistrarEvento);
 		
 		JMenuItem mntmListarEventos = new JMenuItem("Listar Eventos");
@@ -64,6 +80,13 @@ public class Principal extends JFrame {
 		menuBar.add(mnGestinDeRecursos);
 		
 		JMenuItem mntmRegistrarRecurso = new JMenuItem("Registrar recurso");
+		mntmRegistrarRecurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegistrarRecursos window = new RegistrarRecursos();
+				window.setModal(true);
+				window.setVisible(true);
+			}
+		});
 		mnGestinDeRecursos.add(mntmRegistrarRecurso);
 		
 		JMenuItem mntmListarRecursos = new JMenuItem("Listar recursos");

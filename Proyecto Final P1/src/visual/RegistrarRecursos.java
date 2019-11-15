@@ -7,14 +7,23 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logica.Empresa;
+import logica.Recurso;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SpinnerNumberModel;
 
 public class RegistrarRecursos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtNombre;
+	private JSpinner spnCantidad;
 
 	/**
 	 * Launch the application.
@@ -34,36 +43,57 @@ public class RegistrarRecursos extends JDialog {
 	 */
 	public RegistrarRecursos() {
 		setTitle("Registrar Recursos");
-		setBounds(100, 100, 280, 153);
+		setBounds(100, 100, 287, 218);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
-		lblNewLabel.setBounds(29, 22, 63, 14);
+		lblNewLabel.setBounds(17, 19, 83, 17);
 		contentPanel.add(lblNewLabel);
 		
 		txtNombre = new JTextField();
 		txtNombre.setText("");
-		txtNombre.setBounds(87, 19, 137, 20);
+		txtNombre.setBounds(117, 17, 137, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(29, 47, 77, 14);
+		lblCantidad.setBounds(17, 75, 83, 17);
 		contentPanel.add(lblCantidad);
 		
 		JSpinner spnCantidad = new JSpinner();
-		spnCantidad.setBounds(87, 44, 137, 20);
+		spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spnCantidad.setBounds(117, 73, 137, 23);
 		contentPanel.add(spnCantidad);
 		
 		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(85, 77, 89, 23);
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!txtNombre.getText().isEmpty())
+				{
+					Recurso nuevoRecurso = new Recurso(txtNombre.getText(), (Integer) spnCantidad.getValue());
+					Empresa.getInstance().insertarRecurso(nuevoRecurso);
+					JOptionPane.showMessageDialog(null, "Recurso Registrado satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Digite el nombre del recurso", "Error", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
+		btnRegistrar.setBounds(27, 111, 119, 23);
 		contentPanel.add(btnRegistrar);
 		
 		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(186, 77, 64, 23);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSalir.setBounds(165, 111, 89, 23);
 		contentPanel.add(btnSalir);
 	}
 }

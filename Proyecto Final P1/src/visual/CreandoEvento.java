@@ -88,7 +88,7 @@ public class CreandoEvento extends JDialog {
 			{
 				JPanel panel_1 = new JPanel();
 				panel_1.setBounds(17, 31, 701, 306);
-				//panel_1.setBorder(new TitledBorder(null, "Información general", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel.add(panel_1);
 				panel_1.setLayout(null);
 				{
