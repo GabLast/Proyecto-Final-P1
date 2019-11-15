@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import logica.Comision;
 import logica.Empresa;
 import logica.Evento;
 import logica.Jurado;
@@ -25,7 +26,10 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class RegComision extends JDialog {
@@ -33,6 +37,10 @@ public class RegComision extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtID;
 	private JTextField txtFechaCreacion;
+	
+	JComboBox cbxPresidente;
+	JComboBox cbxArea;
+	DefaultComboBoxModel cbxModel;
 	
 	JList listJuecesDisponibles;
 	JList listJuecesSeleccionados;
@@ -46,7 +54,7 @@ public class RegComision extends JDialog {
 	
 	ArrayList<Jurado> jueces = new ArrayList();
 	ArrayList<Trabajo> trabajos = new ArrayList();
-
+	Vector posiblesPresidentes;
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +75,7 @@ public class RegComision extends JDialog {
 	public RegComision(Evento miEvento) {
 		setTitle("Formando una comisi\u00F3n");
 		setBounds(100, 100, 571, 767);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -87,9 +96,7 @@ public class RegComision extends JDialog {
 				panel.add(lblTipo);
 			}
 			
-			JComboBox cbxArea = new JComboBox();
-			
-			jListJuecesSelectModel = new DefaultListModel();
+			cbxArea = new JComboBox();
 			
 			cbxArea.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -137,6 +144,7 @@ public class RegComision extends JDialog {
 			txtID = new JTextField();
 			txtID.setEditable(false);
 			txtID.setBounds(156, 28, 166, 22);
+			txtID.setText("COM"+miEvento.getGenIDComision());
 			panel.add(txtID);
 			txtID.setColumns(10);
 			
@@ -147,6 +155,7 @@ public class RegComision extends JDialog {
 			txtFechaCreacion = new JTextField();
 			txtFechaCreacion.setEditable(false);
 			txtFechaCreacion.setColumns(10);
+			txtFechaCreacion.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 			txtFechaCreacion.setBounds(156, 119, 166, 22);
 			
 			panel.add(txtFechaCreacion);
@@ -181,26 +190,52 @@ public class RegComision extends JDialog {
 					}
 					else
 					{
-						//agregar valor a la lista derecha
-						int value = listJuecesDisponibles.getSelectedIndex();
-						jListJuecesSelectModel.addElement(string);
-						listJuecesSeleccionados.setModel(jListJuecesSelectModel);
-						
-//						System.out.println("Moviendo a la derecha:");
-//						System.out.println("1"+list_ViewingQuesos.getSelectedValue());
-//						System.out.println("2"+list_ViewingQuesos.getName());
-//						System.out.println("3"+list_ViewingQuesos.getSelectedValue().toString());
-						
-						Jurado buscando = Empresa.getInstance().buscarJuezByID(listJuecesDisponibles.getSelectedValue().toString());
-						jueces.add(buscando);
-						
-						//removiendo valor de la lista de la izquierda
-						if(jListJuecesDispModel.getSize() != 0)
+						if(jueces.size() < 4)
 						{
-							jListJuecesDispModel.removeElementAt(value);
+							//agregar valor a la lista derecha
+							int value = listJuecesDisponibles.getSelectedIndex();
+							jListJuecesSelectModel.addElement(string);
+							listJuecesSeleccionados.setModel(jListJuecesSelectModel);
+							
+//							System.out.println("Moviendo a la derecha:");
+//							System.out.println("1"+list_ViewingQuesos.getSelectedValue());
+//							System.out.println("2"+list_ViewingQuesos.getName());
+//							System.out.println("3"+list_ViewingQuesos.getSelectedValue().toString());
+							
+							Jurado buscando = Empresa.getInstance().buscarJuezByID(listJuecesDisponibles.getSelectedValue().toString());
+							jueces.add(buscando);
+							
+							cbxModel = new DefaultComboBoxModel(); 
+							for(Jurado juez : jueces)
+							{
+								cbxModel.addElement(juez.getCedula()+ " " + juez.getNombre());
+							}
+							
+							
+//							posiblesPresidentes = new Vector();
+//							for(Jurado juez : jueces)
+//							{
+//								posiblesPresidentes.add(juez.getCedula());
+//							}
+//							
+//							cbxModel = new DefaultComboBoxModel(posiblesPresidentes); 
+							
+							cbxPresidente.setModel(cbxModel);
+							
+							
+							//removiendo valor de la lista de la izquierda
+							if(jListJuecesDispModel.getSize() != 0)
+							{
+								jListJuecesDispModel.removeElementAt(value);
+							}
+							
+							listJuecesDisponibles.setModel(jListJuecesDispModel);
 						}
-						
-						listJuecesDisponibles.setModel(jListJuecesDispModel);
+						else
+						{
+							JOptionPane.showMessageDialog(null, "Solo se permiten 4 jueces", "Notificación", JOptionPane.WARNING_MESSAGE);
+						}
+
 					}
 				}
 			});
@@ -235,6 +270,22 @@ public class RegComision extends JDialog {
 						Jurado buscando = Empresa.getInstance().buscarJuezByID(listJuecesDisponibles.getSelectedValue().toString());
 						jueces.remove(buscando);
 						
+						cbxModel = new DefaultComboBoxModel(); 
+						for(Jurado juez : jueces)
+						{
+							cbxModel.addElement(juez.getCedula()+ " " + juez.getNombre());
+						}
+						
+//						posiblesPresidentes = new Vector();
+//						for(Jurado juez : jueces)
+//						{
+//							posiblesPresidentes.add(juez.getCedula());
+//						}
+//						
+//						cbxModel = new DefaultComboBoxModel(posiblesPresidentes);
+						cbxPresidente.setModel(cbxModel);
+						//cbxPresidente.setModel(new DefaultComboBoxModel(new String[] {"."}));
+						
 						//removiendo valor de la lista de la derecha
 						if(jListJuecesSelectModel.getSize() != 0)
 						{
@@ -259,10 +310,10 @@ public class RegComision extends JDialog {
 			lblPresidente.setBounds(17, 213, 94, 16);
 			panelJurado.add(lblPresidente);
 			
-			JComboBox cbxPresidente = new JComboBox();
-			cbxPresidente.setBounds(128, 210, 166, 22);
+			cbxPresidente = new JComboBox();
+			cbxPresidente.setBounds(116, 210, 374, 22);
 			panelJurado.add(cbxPresidente);
-			cbxPresidente.setModel(new DefaultComboBoxModel(new String[] {"."}));
+			
 			
 			JLabel lblJuecesSeleccionados = new JLabel("Jueces seleccionados:");
 			lblJuecesSeleccionados.setBounds(306, 26, 184, 16);
@@ -294,7 +345,7 @@ public class RegComision extends JDialog {
 						//agregar valor a la lista derecha
 						int value = listTrabajosDisponibles.getSelectedIndex();
 						jListJobSelectModel.addElement(string);
-						listJuecesSeleccionados.setModel(jListJobSelectModel);
+						listTrabajosSeleccionados.setModel(jListJobSelectModel);
 						
 //						System.out.println("Moviendo a la derecha:");
 //						System.out.println("1"+list_ViewingQuesos.getSelectedValue());
@@ -318,6 +369,44 @@ public class RegComision extends JDialog {
 			panel_1.add(btnRightTrabajos);
 			
 			JButton btnLeftTrabajos = new JButton("<");
+			btnLeftTrabajos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					//MOVIENDO DE DERECHA A IZQUIERDA
+					String string = (String) listTrabajosSeleccionados.getSelectedValue();
+					
+					if(listTrabajosSeleccionados.getSelectedIndex() == -1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione algún trabajo", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+					{
+						//agregar valor a la lista izquierda
+						
+						int value = listTrabajosSeleccionados.getSelectedIndex();
+						
+						jListJobDispModel.addElement(string);
+						listTrabajosDisponibles.setModel(jListJobDispModel);
+						
+//						System.out.println("Moviendo a la izquierda:");
+//						System.out.println("1:"+list_CompraQuesos.getSelectedValue());
+//						System.out.println("2"+list_CompraQuesos.getName());
+//						System.out.println("3:"+list_CompraQuesos.getSelectedValue().toString());
+						
+						Trabajo buscando = miEvento.buscandoTrabajoEntreMisParticipantesByName(listTrabajosDisponibles.getSelectedValue().toString());
+						trabajos.add(buscando);
+						
+						//removiendo valor de la lista de la derecha
+						if(jListJobSelectModel.getSize() != 0)
+						{
+							jListJobSelectModel.removeElementAt(value);
+						}
+						
+						listTrabajosSeleccionados.setModel(jListJobSelectModel);
+					}
+					
+				}
+			});
 			btnLeftTrabajos.setBounds(218, 151, 71, 31);
 			panel_1.add(btnLeftTrabajos);
 			
@@ -345,15 +434,68 @@ public class RegComision extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						if(jueces.size() > 0 && trabajos.size() > 0 && cbxArea.getSelectedIndex() > 0)
+						{
+							Jurado presidente = null;
+							
+							for(Jurado juez : jueces)
+							{
+								if((juez.getCedula()+ " " + juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
+								{
+									presidente = juez;
+								}
+							}
+							Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
+							miEvento.insertarComision(nuevaComision);
+							clean();
+							JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+						}
+						else
+						{
+							if(jueces.size() < 1)
+							{
+								JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
+							}
+							else if(trabajos.size() <= 0)
+							{
+								JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
+							}
+							else
+								JOptionPane.showMessageDialog(null, "Operación Errónea. Revise los campos nuevamente.", "Error de registro", JOptionPane.WARNING_MESSAGE);
+						}
+					}
+				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
 				JButton btnCancel = new JButton("Cancelar");
+				btnCancel.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				btnCancel.setActionCommand("Cancel");
 				buttonPane.add(btnCancel);
 			}
 		}
+	}
+	
+	private void clean()
+	{		
+		jueces = new ArrayList<>();
+		trabajos = new ArrayList<>();
+		jListJuecesDispModel = new DefaultListModel();
+		jListJuecesSelectModel = new DefaultListModel();
+		jListJobDispModel = new DefaultListModel();
+		jListJobSelectModel = new DefaultListModel();
+		listJuecesDisponibles.setModel(jListJobDispModel);
+		listJuecesSeleccionados.setModel(jListJuecesSelectModel);
+		listTrabajosDisponibles.setModel(jListJobDispModel);
+		listTrabajosSeleccionados.setModel(jListJobSelectModel);
 	}
 }

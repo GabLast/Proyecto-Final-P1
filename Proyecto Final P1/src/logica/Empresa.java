@@ -15,7 +15,7 @@ public class Empresa implements Serializable{
 	private ArrayList<Recurso> recursos;
 	private ArrayList<Evento> eventos;
 	//private ArrayList<Trabajo> trabajos;
-	
+	private static int genIDEvento = 0;
 	
 	private  Empresa()
 	{
@@ -59,6 +59,13 @@ public class Empresa implements Serializable{
 		this.eventos = eventos;
 	}
 	
+	public static int getGenIDEvento() {
+		return genIDEvento;
+	}
+	public static void setGenIDEvento(int genIDEvento) {
+		Empresa.genIDEvento = genIDEvento;
+	}
+	
 //	public ArrayList<Trabajo> getTrabajos() {
 //		return trabajos;
 //	}
@@ -79,6 +86,7 @@ public class Empresa implements Serializable{
 	public void insertarEvento(Evento event) {
 
 		eventos.add(event);
+		genIDEvento++;
 	}
 	
 //	public void insertarTrabajo(Trabajo job) {

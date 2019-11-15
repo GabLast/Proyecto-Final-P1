@@ -7,7 +7,7 @@ public class Jurado extends Persona {
 
 	public Jurado(String cedula, String nombre, String telefono, String direccion, String sexo, String gradoAcademico,
 			Evento evento, String areaEstudio, boolean presidente) {
-		super(cedula, nombre, telefono, direccion, sexo, gradoAcademico, evento);
+		super(cedula, nombre, telefono, direccion, sexo, gradoAcademico);
 		// TODO Auto-generated constructor stub
 		this.areaEstudio = areaEstudio;
 		this.presidente = presidente;

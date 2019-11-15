@@ -7,22 +7,25 @@ import java.util.Date;
 public class Evento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private static int genIDComision = 0;
+	private static int genIDRecursos = 0;
 	private ArrayList<Comision> misComisiones;
 	private ArrayList<Recurso> recursosUsados;
 	private ArrayList<Participante> participantes;
 	private String nombre;
 	private String id;
+	private String tipo;
 	private Date fecha;
 	private boolean estado;
 	
-	public Evento(ArrayList<Comision> misComisiones, ArrayList<Recurso> recursosUsados,
-			ArrayList<Participante> participantes, String nombre, String id, Date fecha) {
+	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String tipo, String id, Date fecha) {
 		super();
-		this.misComisiones = misComisiones; //hacer ventana para crear comision
+		misComisiones = new ArrayList<>();
 		this.recursosUsados = recursosUsados; //hacer ventana para elegir recursos a usar
 		this.participantes = participantes;
 		this.nombre = nombre;
 		this.id = id;
+		this.tipo = tipo;
 		this.fecha = fecha;
 		this.estado = true;
 	}
@@ -83,12 +86,35 @@ public class Evento implements Serializable{
 		this.estado = estado;
 	}	
 	
+	public static int getGenIDComision() {
+		return genIDComision;
+	}
+
+	public static void setGenIDComision(int genIDComision) {
+		Evento.genIDComision = genIDComision;
+	}
+
+	public static int getGenIDRecursos() {
+		return genIDRecursos;
+	}
+
+	public static void setGenIDRecursos(int genIDRecursos) {
+		Evento.genIDRecursos = genIDRecursos;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 	
-	
-//	public void insertarComision(Comision c1) {
-//
-//		misComisiones.add(c1);
-//	}
+	public void insertarComision(Comision c1) {
+
+		misComisiones.add(c1);
+		genIDComision++;
+	}
 	
 	public void verificarFin() 
 	{
@@ -111,4 +137,5 @@ public class Evento implements Serializable{
 		
 		return job;
 	}
+
 }

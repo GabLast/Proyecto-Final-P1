@@ -11,10 +11,10 @@ public abstract class Persona implements Serializable{
 	protected String direccion;
 	protected String sexo;
 	protected String gradoAcademico;
-	protected Evento evento;
+	//protected Evento evento;
 	
 	public Persona(String cedula, String nombre, String telefono, String direccion, String sexo,
-			String gradoAcademico, Evento evento) {
+			String gradoAcademico/*, Evento evento*/) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -22,7 +22,7 @@ public abstract class Persona implements Serializable{
 		this.direccion = direccion;
 		this.sexo = sexo;
 		this.gradoAcademico = gradoAcademico;
-		this.evento = evento;
+		//this.evento = evento;
 	}
 
 	public String getCedula() {
