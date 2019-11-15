@@ -14,7 +14,7 @@ public class Empresa implements Serializable{
 	private ArrayList<Persona> personasRegistradas;
 	private ArrayList<Recurso> recursos;
 	private ArrayList<Evento> eventos;
-	private ArrayList<Trabajo> trabajos;
+	//private ArrayList<Trabajo> trabajos;
 	
 	
 	private  Empresa()
@@ -24,7 +24,7 @@ public class Empresa implements Serializable{
 		this.recursos = new ArrayList();
 		this.eventos = new ArrayList();
 		this.misUsers = new ArrayList();
-		this.trabajos = new ArrayList();
+		//this.trabajos = new ArrayList();
 		
 	}
 	public static Empresa getInstance() 
@@ -59,12 +59,12 @@ public class Empresa implements Serializable{
 		this.eventos = eventos;
 	}
 	
-	public ArrayList<Trabajo> getTrabajos() {
-		return trabajos;
-	}
-	public void setTrabajos(ArrayList<Trabajo> trabajos) {
-		this.trabajos = trabajos;
-	}
+//	public ArrayList<Trabajo> getTrabajos() {
+//		return trabajos;
+//	}
+//	public void setTrabajos(ArrayList<Trabajo> trabajos) {
+//		this.trabajos = trabajos;
+//	}
 	
 	public void insertarPersona(Persona person) {
 
@@ -81,10 +81,10 @@ public class Empresa implements Serializable{
 		eventos.add(event);
 	}
 	
-	public void insertarTrabajo(Trabajo job) {
-
-		trabajos.add(job);
-	}
+//	public void insertarTrabajo(Trabajo job) {
+//
+//		trabajos.add(job);
+//	}
 	
 	public ArrayList<User> getMisUsers() {
 		return misUsers;

@@ -90,11 +90,25 @@ public class Evento implements Serializable{
 //		misComisiones.add(c1);
 //	}
 	
-	public void verificarFin() {
+	public void verificarFin() 
+	{
 		Date actual = new Date();
-		if(actual.getTime() > fecha.getTime()) {
+		if(actual.getTime() > fecha.getTime()) 
+		{
 			estado = false;
 		}
 		
+	}
+	
+	public Trabajo buscandoTrabajoEntreMisParticipantesByName(String id)
+	{
+		Trabajo job = null;
+		
+		for(Participante parti : participantes)
+		{
+			job = parti.buscarTrabajoByName(id);
+		}
+		
+		return job;
 	}
 }

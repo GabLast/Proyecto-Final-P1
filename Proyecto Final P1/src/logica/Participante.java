@@ -20,4 +20,20 @@ public class Participante extends Persona {
 		this.misTrabajos = misTrabajos;
 	}
 	
+	public Trabajo buscarTrabajoByName(String id)
+	{
+		Trabajo aBuscar = null;
+		
+		for(Trabajo job : misTrabajos)
+		{
+			if(job.getId().equalsIgnoreCase(id))
+			{
+				aBuscar = job;
+				return aBuscar;
+			}
+		}
+		
+		return aBuscar;
+	}
+	
 }

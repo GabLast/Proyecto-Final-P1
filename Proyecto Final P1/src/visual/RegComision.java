@@ -12,6 +12,7 @@ import javax.swing.border.TitledBorder;
 import logica.Empresa;
 import logica.Evento;
 import logica.Jurado;
+import logica.Participante;
 import logica.Persona;
 import logica.Trabajo;
 
@@ -44,7 +45,7 @@ public class RegComision extends JDialog {
 	DefaultListModel jListJobSelectModel;
 	
 	ArrayList<Jurado> jueces = new ArrayList();
-	
+	ArrayList<Trabajo> trabajos = new ArrayList();
 
 	/**
 	 * Launch the application.
@@ -110,16 +111,20 @@ public class RegComision extends JDialog {
 					listJuecesDisponibles.setModel(jListJuecesDispModel);
 					
 					
-					//Mostrando los trabajos disponibles para la comision
+					//Mostrando los trabajos disponibles para la comision de los participantes ya registrados en el evento
 					
 					jListJobDispModel = new DefaultListModel();
 					
-					for(Trabajo job: Empresa.getInstance().getTrabajos())
+					for(Participante parti : miEvento.getParticipantes())
 					{
-						if(job.getArea().equalsIgnoreCase(cbxArea.getSelectedItem().toString()))
+						for(Trabajo job : parti.getMisTrabajos())
 						{
-							jListJobSelectModel.addElement(job.getNombreTrabajo());
+							if(job.getArea().equalsIgnoreCase(cbxArea.getSelectedItem().toString()))
+							{
+								jListJobSelectModel.addElement(job.getNombreTrabajo());
+							}
 						}
+						
 					}
 					listTrabajosDisponibles.setModel(jListJobDispModel);
 					
@@ -203,6 +208,43 @@ public class RegComision extends JDialog {
 			panelJurado.add(btnRightJurado);
 			
 			JButton btnLeftJurado = new JButton("<");
+			btnLeftJurado.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					//MOVIENDO DE DERECHA A IZQUIERDA
+					String string = (String) listJuecesSeleccionados.getSelectedValue();
+					
+					if(listJuecesSeleccionados.getSelectedIndex() == -1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione algún juez", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+					{
+						//agregar valor a la lista izquierda
+						
+						int value = listJuecesSeleccionados.getSelectedIndex();
+						
+						jListJuecesDispModel.addElement(string);
+						listJuecesDisponibles.setModel(jListJuecesDispModel);
+						
+//						System.out.println("Moviendo a la izquierda:");
+//						System.out.println("1:"+list_CompraQuesos.getSelectedValue());
+//						System.out.println("2"+list_CompraQuesos.getName());
+//						System.out.println("3:"+list_CompraQuesos.getSelectedValue().toString());
+						
+						Jurado buscando = Empresa.getInstance().buscarJuezByID(listJuecesDisponibles.getSelectedValue().toString());
+						jueces.remove(buscando);
+						
+						//removiendo valor de la lista de la derecha
+						if(jListJuecesSelectModel.getSize() != 0)
+						{
+							jListJuecesSelectModel.removeElementAt(value);
+						}
+						
+						listJuecesSeleccionados.setModel(jListJuecesSelectModel);
+					}
+				}
+			});
 			btnLeftJurado.setBounds(218, 151, 71, 31);
 			panelJurado.add(btnLeftJurado);
 			
@@ -237,6 +279,41 @@ public class RegComision extends JDialog {
 			panel_1.add(lblTrabajosDelrea);
 			
 			JButton btnRightTrabajos = new JButton(">");
+			btnRightTrabajos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					//MOVIENDO IZQUIERDA A DERECHA
+					String string = (String) listTrabajosDisponibles.getSelectedValue();
+					
+					if(listJuecesDisponibles.getSelectedIndex() == -1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione algún trabajo", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+					{
+						//agregar valor a la lista derecha
+						int value = listTrabajosDisponibles.getSelectedIndex();
+						jListJobSelectModel.addElement(string);
+						listJuecesSeleccionados.setModel(jListJobSelectModel);
+						
+//						System.out.println("Moviendo a la derecha:");
+//						System.out.println("1"+list_ViewingQuesos.getSelectedValue());
+//						System.out.println("2"+list_ViewingQuesos.getName());
+//						System.out.println("3"+list_ViewingQuesos.getSelectedValue().toString());
+						
+						Trabajo buscando = miEvento.buscandoTrabajoEntreMisParticipantesByName(listTrabajosDisponibles.getSelectedValue().toString());
+						trabajos.add(buscando);
+						
+						//removiendo valor de la lista de la izquierda
+						if(jListJobDispModel.getSize() != 0)
+						{
+							jListJobDispModel.removeElementAt(value);
+						}
+						
+						listTrabajosDisponibles.setModel(jListJobDispModel);
+					}
+				}
+			});
 			btnRightTrabajos.setBounds(218, 68, 71, 31);
 			panel_1.add(btnRightTrabajos);
 			

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Trabajo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	private static int idTrabajo = 0;
 	private Persona duenio;
 	private String id;
 	private String nombreTrabajo;
@@ -18,6 +19,7 @@ public class Trabajo implements Serializable{
 		this.nombreTrabajo = nombreTrabajo;
 		this.area = area;
 		this.descripcion = descripcion;
+		idTrabajo++;
 	}
 	
 	public Persona getDuenio() {
@@ -49,6 +51,14 @@ public class Trabajo implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public static int getIdTrabajo() {
+		return idTrabajo;
+	}
+
+	public static void setIdTrabajo(int idTrabajo) {
+		Trabajo.idTrabajo = idTrabajo;
 	}
 	
 }
