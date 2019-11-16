@@ -6,13 +6,13 @@ public class Trabajo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private static int idTrabajo = 0;
-	private Persona duenio;
+	private Participante duenio;
 	private String id;
 	private String nombreTrabajo;
 	private String area;
 	private String descripcion;
 	
-	public Trabajo(Persona duenio, String id, String nombreTrabajo, String area, String descripcion) {
+	public Trabajo(Participante duenio, String id, String nombreTrabajo, String area, String descripcion) {
 		super();
 		this.duenio = duenio;
 		this.id = id;
@@ -25,7 +25,7 @@ public class Trabajo implements Serializable{
 	public Persona getDuenio() {
 		return duenio;
 	}
-	public void setDuenio(Persona duenio) {
+	public void setDuenio(Participante duenio) {
 		this.duenio = duenio;
 	}
 	public String getId() {
