@@ -55,6 +55,8 @@ public class ListaRecursos extends JDialog {
 		dim.width *= .70;
 		dim.height *= .92;
 		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
+		super.setSize(dim.width, dim.height);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

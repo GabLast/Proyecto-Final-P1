@@ -3,6 +3,8 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -14,16 +16,13 @@ import javax.swing.table.DefaultTableModel;
 import logica.Empresa;
 import logica.Participante;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.text.SimpleDateFormat;
-import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class ListarTrabajos extends JDialog {
+public class ListarPersonas extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private static JTable table;
@@ -32,14 +31,15 @@ public class ListarTrabajos extends JDialog {
 	private Dimension dim;
 	String id = "";
 
-	JButton btnModificar;
+	
+	JButton btnLista;
+	JButton btnAgregar;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Participante duenio = null;
-			ListarTrabajos dialog = new ListarTrabajos(duenio);
+			ListarPersonas dialog = new ListarPersonas();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -50,9 +50,9 @@ public class ListarTrabajos extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListarTrabajos(Participante duenio) {
-		setTitle("Listado de trabajos de:" + duenio.getNombre());
-		setBounds(100, 100, 450, 300);
+	public ListarPersonas() {
+		setTitle("Lista del personal");
+		setBounds(100, 100, 583, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
 		dim.height *= .92;
@@ -64,7 +64,7 @@ public class ListarTrabajos extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Listado de trabajos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Listado de las personas registradas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
@@ -80,12 +80,12 @@ public class ListarTrabajos extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Nombre", "Área", "Descripción"};
+					String[] header = {"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
 					
-					//loadEventos();
+					loadPersonas();
 					
 					table.addMouseListener(new MouseAdapter() {
 						@Override
@@ -93,8 +93,8 @@ public class ListarTrabajos extends JDialog {
 							if(table.getSelectedRow()>-1){
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
-								btnModificar.setEnabled(true);
-								
+								btnLista.setEnabled(true);
+								btnAgregar.setEnabled(true);
 								
 							}
 						}
@@ -110,37 +110,50 @@ public class ListarTrabajos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnModificar = new JButton("Modificar");
-				btnModificar.setActionCommand("OK");
-				btnModificar.setEnabled(false);
-				buttonPane.add(btnModificar);
-				getRootPane().setDefaultButton(btnModificar);
+				btnAgregar = new JButton("Agregar un trabajo");
+				btnAgregar.setActionCommand("OK");
+				btnAgregar.setEnabled(false);
+				buttonPane.add(btnAgregar);
+				getRootPane().setDefaultButton(btnAgregar);
 			}
 			{
-				JButton cancelButton = new JButton("Salir");
-				cancelButton.addActionListener(new ActionListener() {
+				btnLista = new JButton("Listar trabajos");
+				btnLista.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						dispose();
+						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
+						ListarTrabajos window = new ListarTrabajos(duenio);
+						window.setModal(true);
+						window.setVisible(true);
+						
 					}
 				});
+				btnLista.setActionCommand("OK");
+				btnLista.setEnabled(false);
+				buttonPane.add(btnLista);
+			}
+			{
+				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-
-
-	public static void loadEventos(Participante duenio) 
+	
+	public static void loadPersonas() 
 	{
 		model.setRowCount(0);
-		//{"ID", "Nombre", "Área", "Descripción"};
+		Empresa miEmpresa = Empresa.getInstance();
+		//{"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
 		row = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < duenio.getMisTrabajos().size(); i++) 
+		for (int i = 0; i < miEmpresa.getPersonasRegistradas().size(); i++) 
 		{
-			row[0] = duenio.getMisTrabajos().get(i).getId();
-			row[1] = duenio.getMisTrabajos().get(i).getArea();
-			row[2] = duenio.getMisTrabajos().get(i).getDescripcion();
+			row[0] = miEmpresa.getPersonasRegistradas().get(i).getCedula();
+			row[1] = miEmpresa.getPersonasRegistradas().get(i).getNombre();
+			row[2] = miEmpresa.getPersonasRegistradas().get(i).getTelefono();
+			row[3] = miEmpresa.getPersonasRegistradas().get(i).getDireccion();
+			row[4] = miEmpresa.getPersonasRegistradas().get(i).getSexo();
+			row[5] = miEmpresa.getPersonasRegistradas().get(i).getGradoAcademico();
 			
 			model.addRow(row);
 		}
@@ -150,4 +163,5 @@ public class ListarTrabajos extends JDialog {
 		table.getTableHeader().setReorderingAllowed(false);
 		
 	}
+
 }
