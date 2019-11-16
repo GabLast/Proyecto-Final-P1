@@ -7,37 +7,39 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import logica.Comision;
 import logica.Empresa;
+import logica.Participante;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
-public class ListaRecursos extends JDialog {
+public class ListarTrabajos extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private static JTable table;
 	private static Object[] row;
 	private static DefaultTableModel model;
 	private Dimension dim;
-	private static JTable table;
+	String id = "";
 
+	JButton btnModificar;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			ListaRecursos dialog = new ListaRecursos();
+			Participante duenio = null;
+			ListarTrabajos dialog = new ListarTrabajos(duenio);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -48,20 +50,16 @@ public class ListaRecursos extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListaRecursos() {
-		setTitle("Lista de Recursos");
+	public ListarTrabajos(Participante duenio) {
+		setTitle("Listado de trabajos de:" + duenio.getNombre());
 		setBounds(100, 100, 450, 300);
-		dim = super.getToolkit().getScreenSize();
-		dim.width *= .70;
-		dim.height *= .92;
-		super.setSize(dim.width, dim.height);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Listado de recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Listado de trabajos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
@@ -77,12 +75,25 @@ public class ListaRecursos extends JDialog {
 					};
 					
 					
-					String[] header = {"Nombre", "Cantidad disponible"};
+					String[] header = {"ID", "Nombre", "Área", "Descripción"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
 					
-					loadRecursos();					
+					//loadEventos();
+					
+					table.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent e) {
+							if(table.getSelectedRow()>-1){
+								int index = table.getSelectedRow();
+								id = String.valueOf(table.getValueAt(index, 0));
+								btnModificar.setEnabled(true);
+								
+								
+							}
+						}
+					});
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					table.setModel(model);
 					scrollPane.setViewportView(table);
@@ -94,9 +105,16 @@ public class ListaRecursos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
+				btnModificar = new JButton("Modificar");
+				btnModificar.setActionCommand("OK");
+				btnModificar.setEnabled(false);
+				buttonPane.add(btnModificar);
+				getRootPane().setDefaultButton(btnModificar);
+			}
+			{
 				JButton cancelButton = new JButton("Salir");
 				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
+					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
@@ -106,17 +124,18 @@ public class ListaRecursos extends JDialog {
 		}
 	}
 
-	public static void loadRecursos() 
+	//{"ID", "Autor", "Nombre", "Área", "Descripción"};
+	public static void loadEventos(Participante duenio) 
 	{
 		model.setRowCount(0);
-		Empresa miEmpresa = Empresa.getInstance();
-		//{"Nombre", "Cantidad"
+		//{"ID", "Nombre", "Área", "Descripción"};
 		row = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < miEmpresa.getRecursos().size(); i++) 
+		for (int i = 0; i < duenio.getMisTrabajos().size(); i++) 
 		{
-			row[0] = miEmpresa.getRecursos().get(i).getTipo();
-			row[1] = miEmpresa.getRecursos().get(i).getCantidad();
+			row[0] = duenio.getMisTrabajos().get(i).getId();
+			row[1] = duenio.getMisTrabajos().get(i).getArea();
+			row[2] = duenio.getMisTrabajos().get(i).getDescripcion();
 			
 			model.addRow(row);
 		}

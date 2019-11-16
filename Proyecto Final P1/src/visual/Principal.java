@@ -81,10 +81,13 @@ public class Principal extends JFrame {
 		mnGestionDePersonal.add(mntmRegistrarPersona);
 		
 		JMenuItem mntmListarPersonal = new JMenuItem("Listar personal");
+		mntmListarPersonal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//En esta ventana, registrar y listar trabajos
+				
+			}
+		});
 		mnGestionDePersonal.add(mntmListarPersonal);
-		
-		JMenuItem mntmListaDeTrabajos = new JMenuItem("Listar trabajos");
-		mnGestionDePersonal.add(mntmListaDeTrabajos);
 		
 		JMenu mnGestinDeRecursos = new JMenu("Gesti\u00F3n de Recursos");
 		menuBar.add(mnGestinDeRecursos);
@@ -100,6 +103,13 @@ public class Principal extends JFrame {
 		mnGestinDeRecursos.add(mntmRegistrarRecurso);
 		
 		JMenuItem mntmListarRecursos = new JMenuItem("Listar recursos");
+		mntmListarRecursos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ListaRecursos window = new ListaRecursos();
+				window.setModal(true);
+				window.setVisible(true);
+			}
+		});
 		mnGestinDeRecursos.add(mntmListarRecursos);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
