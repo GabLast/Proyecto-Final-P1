@@ -406,6 +406,7 @@ public class CreandoEvento extends JDialog {
 							nuevoEvento.verificarFin();
 							Empresa.getInstance().insertarEvento(nuevoEvento);
 							JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
+							clean();
 						}
 					}
 				});
@@ -424,5 +425,23 @@ public class CreandoEvento extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+	}
+	
+	private void clean()
+	{		
+		txtID.setText("EV"+Empresa.getInstance().getGenIDEvento());
+		txtNombre.setText("");
+		cbxTipo.setSelectedIndex(0);
+		cbxRecurso.setSelectedIndex(0);
+		spnCantidad.setValue(0);
+		
+		modelPartiElegidos = new DefaultListModel();
+		modelPartis = new DefaultListModel();
+		modelRecElegidos = new DefaultListModel();
+		
+		listParticipantes.setModel(modelPartis);
+		listPartiElegidos.setModel(modelPartiElegidos);
+		listRecursosElegidos.setModel(modelRecElegidos);
+		
 	}
 }

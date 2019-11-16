@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Participante extends Persona {
 
 	private ArrayList<Trabajo> misTrabajos;//misma interfaz para registrar a un participante con su trabajo
+	private static int genIdTrabajo;
 
 	public Participante(String cedula, String nombre, String telefono, String direccion, String sexo,
 			String gradoAcademico, Evento evento, ArrayList<Trabajo> misTrabajos) {
 		super(cedula, nombre, telefono, direccion, sexo, gradoAcademico);
 		this.misTrabajos = misTrabajos;
+		this.genIdTrabajo = 0;
 	}
 
 	public ArrayList<Trabajo> getMisTrabajos() {
@@ -18,6 +20,20 @@ public class Participante extends Persona {
 
 	public void setMisTrabajos(ArrayList<Trabajo> misTrabajos) {
 		this.misTrabajos = misTrabajos;
+	}
+	
+	public static int getGenIdTrabajo() {
+		return genIdTrabajo;
+	}
+
+	public static void setGenIdTrabajo(int genIdTrabajo) {
+		Participante.genIdTrabajo = genIdTrabajo;
+	}
+	
+	public void insertarTrabajo(Trabajo t) {
+
+		misTrabajos.add(t);
+		genIdTrabajo++;
 	}
 	
 	public Trabajo buscarTrabajoByName(String id)

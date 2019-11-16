@@ -8,27 +8,41 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logica.Empresa;
+import logica.Participante;
+import logica.Trabajo;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegistrarTrabajo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textParticipante;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtCedula;
+	private JTextField txtParticipante;
+	private JTextField txtIDTrabajo;
+	private JTextField txtTema;
+	private JTextField txtDescripcion;
+	JComboBox cbxArea;
 
+	private static Participante duenioGlobal = null;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegistrarTrabajo dialog = new RegistrarTrabajo();
+			Participante duenio = null;
+			RegistrarTrabajo dialog = new RegistrarTrabajo(duenio);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -39,7 +53,9 @@ public class RegistrarTrabajo extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegistrarTrabajo() {
+	public RegistrarTrabajo(Participante duenio) 
+	{
+		this.duenioGlobal = duenio;
 		setTitle("Registrar trabajo");
 		setBounds(100, 100, 547, 446);
 		getContentPane().setLayout(new BorderLayout());
@@ -48,7 +64,7 @@ public class RegistrarTrabajo extends JDialog {
 		contentPanel.setLayout(null);
 		{
 			JPanel panelParticipante = new JPanel();
-			panelParticipante.setBorder(new TitledBorder(null, "Datos del participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panelParticipante.setBorder(new TitledBorder(null, "Datos del autor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelParticipante.setBounds(12, 13, 505, 126);
 			contentPanel.add(panelParticipante);
 			panelParticipante.setLayout(null);
@@ -59,11 +75,12 @@ public class RegistrarTrabajo extends JDialog {
 				panelParticipante.add(lblIdcdula);
 			}
 			{
-				textField = new JTextField();
-				textField.setEditable(false);
-				textField.setColumns(10);
-				textField.setBounds(114, 24, 116, 20);
-				panelParticipante.add(textField);
+				txtCedula = new JTextField();
+				txtCedula.setEditable(false);
+				txtCedula.setText(duenio.getCedula());
+				txtCedula.setColumns(10);
+				txtCedula.setBounds(114, 24, 116, 20);
+				panelParticipante.add(txtCedula);
 			}
 			{
 				JLabel lblParticipante = new JLabel("Participante:");
@@ -72,11 +89,12 @@ public class RegistrarTrabajo extends JDialog {
 				panelParticipante.add(lblParticipante);
 			}
 			{
-				textParticipante = new JTextField();
-				textParticipante.setEditable(false);
-				textParticipante.setColumns(10);
-				textParticipante.setBounds(114, 80, 116, 20);
-				panelParticipante.add(textParticipante);
+				txtParticipante = new JTextField();
+				txtParticipante.setEditable(false);
+				txtParticipante.setText(duenio.getNombre());
+				txtParticipante.setColumns(10);
+				txtParticipante.setBounds(114, 80, 116, 20);
+				panelParticipante.add(txtParticipante);
 			}
 		}
 		
@@ -91,47 +109,69 @@ public class RegistrarTrabajo extends JDialog {
 		lblCdigo.setBounds(10, 20, 102, 43);
 		panelTrabajo.add(lblCdigo);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setBounds(77, 31, 143, 20);
-		panelTrabajo.add(textField_1);
-		textField_1.setColumns(10);
+		txtIDTrabajo = new JTextField();
+		txtIDTrabajo.setEditable(false);
+		txtIDTrabajo.setText("TRAB"+duenio.getGenIdTrabajo());
+		txtIDTrabajo.setBounds(77, 31, 143, 20);
+		panelTrabajo.add(txtIDTrabajo);
+		txtIDTrabajo.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Tema:");
 		lblNombre.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
 		lblNombre.setBounds(10, 83, 102, 43);
 		panelTrabajo.add(lblNombre);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(77, 94, 143, 20);
-		panelTrabajo.add(textField_2);
-		textField_2.setColumns(10);
+		txtTema = new JTextField();
+		txtTema.setBounds(77, 94, 143, 20);
+		panelTrabajo.add(txtTema);
+		txtTema.setColumns(10);
 		
 		JLabel lblrea = new JLabel("\u00C1rea:");
 		lblrea.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
 		lblrea.setBounds(10, 146, 59, 43);
 		panelTrabajo.add(lblrea);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-		comboBox.setBounds(77, 157, 143, 20);
-		panelTrabajo.add(comboBox);
+		cbxArea = new JComboBox();
+		cbxArea.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
+		cbxArea.setBounds(77, 157, 143, 20);
+		panelTrabajo.add(cbxArea);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
 		lblDescripcin.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
 		lblDescripcin.setBounds(232, 20, 102, 43);
 		panelTrabajo.add(lblDescripcin);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(232, 55, 261, 122);
-		panelTrabajo.add(textField_3);
-		textField_3.setColumns(10);
+		txtDescripcion = new JTextField();
+		txtDescripcion.setBounds(232, 55, 261, 122);
+		panelTrabajo.add(txtDescripcion);
+		txtDescripcion.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnRegistrar = new JButton("Registrar");
+				btnRegistrar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(txtTema.getText().isEmpty() || txtDescripcion.getText().isEmpty() ||
+								cbxArea.getSelectedIndex() < 1)
+						{
+							JOptionPane.showMessageDialog(null, "Llenar todas las casillas"
+									+ "y elegir un área de trabajo", "Error", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							Trabajo nuevoTrabajo = new Trabajo(duenio, txtIDTrabajo.getText(),
+									txtTema.getText(), cbxArea.getSelectedItem().toString(), txtDescripcion.getText());
+							duenio.insertarTrabajo(nuevoTrabajo);
+							
+							JOptionPane.showMessageDialog(null, "Trabajo registrado satisfactoriamente"
+									, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+							clean();
+							
+						}
+					}
+				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				getRootPane().setDefaultButton(btnRegistrar);
@@ -142,5 +182,14 @@ public class RegistrarTrabajo extends JDialog {
 				buttonPane.add(cancelButton);
 			}
 		}
+		
+	}
+	private void clean()
+	{		
+		txtDescripcion.setText("");
+		txtIDTrabajo.setText("TRAB"+duenioGlobal.getGenIdTrabajo());
+		cbxArea.setSelectedIndex(0);
+		txtTema.setText("");
+		
 	}
 }
