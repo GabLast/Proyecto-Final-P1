@@ -111,6 +111,15 @@ public class ListarPersonas extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnAgregar = new JButton("Agregar un trabajo");
+				btnAgregar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
+						RegistrarTrabajo window = new RegistrarTrabajo(duenio);
+						window.setModal(true);
+						window.setVisible(true);
+						
+					}
+				});
 				btnAgregar.setActionCommand("OK");
 				btnAgregar.setEnabled(false);
 				buttonPane.add(btnAgregar);
