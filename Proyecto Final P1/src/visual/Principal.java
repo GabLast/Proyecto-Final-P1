@@ -106,6 +106,13 @@ public class Principal extends JFrame {
 		menuBar.add(mnGestionDePersonal);
 		
 		JMenuItem mntmRegistrarPersona = new JMenuItem("Registrar persona");
+		mntmRegistrarPersona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegPersona window = new RegPersona();
+				window.setModal(true);
+				window.setVisible(true);
+			}
+		});
 		mnGestionDePersonal.add(mntmRegistrarPersona);
 		
 		JMenuItem mntmListarPersonal = new JMenuItem("Listar personal");

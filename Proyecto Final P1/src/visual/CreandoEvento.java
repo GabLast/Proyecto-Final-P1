@@ -283,10 +283,10 @@ public class CreandoEvento extends JDialog {
 					btnAgregarRec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) 
 						{
-							string = (String) cbxRecurso.getSelectedItem();
+							string = cbxRecurso.getSelectedItem().toString();
 							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
 							
-							if(cbxRecurso.getSelectedIndex() < 1)
+							if(cbxRecurso.getSelectedIndex() < 0)
 							{
 								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
 							}
@@ -431,8 +431,8 @@ public class CreandoEvento extends JDialog {
 	{		
 		txtID.setText("EV"+Empresa.getInstance().getGenIDEvento());
 		txtNombre.setText("");
-		cbxTipo.setSelectedIndex(0);
-		cbxRecurso.setSelectedIndex(0);
+		cbxTipo.setSelectedIndex(-1);
+		cbxRecurso.setSelectedIndex(-1);
 		spnCantidad.setValue(0);
 		
 		modelPartiElegidos = new DefaultListModel();

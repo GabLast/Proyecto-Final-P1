@@ -14,6 +14,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logica.Empresa;
+import logica.Jurado;
 import logica.Participante;
 
 import javax.swing.JScrollPane;
@@ -80,7 +81,7 @@ public class ListarPersonas extends JDialog {
 					};
 					
 					
-					String[] header = {"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
+					String[] header = {"Cédula", "Nombre", "Función en el evento","Teléfono", "Dirección", "Sexo", "Grado Académico"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -164,10 +165,19 @@ public class ListarPersonas extends JDialog {
 		{
 			row[0] = miEmpresa.getPersonasRegistradas().get(i).getCedula();
 			row[1] = miEmpresa.getPersonasRegistradas().get(i).getNombre();
-			row[2] = miEmpresa.getPersonasRegistradas().get(i).getTelefono();
-			row[3] = miEmpresa.getPersonasRegistradas().get(i).getDireccion();
-			row[4] = miEmpresa.getPersonasRegistradas().get(i).getSexo();
-			row[5] = miEmpresa.getPersonasRegistradas().get(i).getGradoAcademico();
+			
+			if(miEmpresa.getPersonasRegistradas().get(i) instanceof Participante)
+			{
+				row[2] = "Participante";
+			}
+			else if(miEmpresa.getPersonasRegistradas().get(i) instanceof Jurado)
+			{
+				row[2] = "Juez";
+			}
+			row[3] = miEmpresa.getPersonasRegistradas().get(i).getTelefono();
+			row[4] = miEmpresa.getPersonasRegistradas().get(i).getDireccion();
+			row[5] = miEmpresa.getPersonasRegistradas().get(i).getSexo();
+			row[6] = miEmpresa.getPersonasRegistradas().get(i).getGradoAcademico();
 			
 			model.addRow(row);
 		}
