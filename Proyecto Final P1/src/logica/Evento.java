@@ -15,10 +15,11 @@ public class Evento implements Serializable{
 	private String nombre;
 	private String id;
 	private String tipo;
+	private String lugar;
 	private Date fecha;
 	private boolean estado;
 	
-	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String tipo, String id, Date fecha) {
+	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String tipo, String lugar, String id, Date fecha) {
 		super();
 		misComisiones = new ArrayList<>();
 		this.recursosUsados = recursosUsados;
@@ -26,6 +27,7 @@ public class Evento implements Serializable{
 		this.nombre = nombre;
 		this.id = id;
 		this.tipo = tipo;
+		this.lugar = lugar;
 		this.fecha = fecha;
 		this.estado = true;
 	}
@@ -80,6 +82,14 @@ public class Evento implements Serializable{
 
 	public boolean isEstado() {
 		return estado;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
 	}
 
 	public void setEstado(boolean estado) {
@@ -149,5 +159,6 @@ public class Evento implements Serializable{
 		
 		return job;
 	}
+
 
 }

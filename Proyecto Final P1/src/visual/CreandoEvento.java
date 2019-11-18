@@ -56,6 +56,7 @@ public class CreandoEvento extends JDialog {
 	int valorRecurso;
 	String string;
 	private JTextField txtCant;
+	private JTextField txtLugar;
 	/**
 	 * Launch the application.
 	 */
@@ -130,9 +131,18 @@ public class CreandoEvento extends JDialog {
 				{
 					cbxTipo = new JComboBox();
 					cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Panel", "Ponencia", "Conferencia", "Jornada", "Mesa Redonda"}));
-					cbxTipo.setBounds(416, 12, 268, 29);
+					cbxTipo.setBounds(432, 12, 252, 29);
 					panel_1.add(cbxTipo);
 				}
+				
+				JLabel lblLugar = new JLabel("Lugar:");
+				lblLugar.setBounds(366, 53, 74, 23);
+				panel_1.add(lblLugar);
+				
+				txtLugar = new JTextField();
+				txtLugar.setColumns(10);
+				txtLugar.setBounds(432, 50, 252, 29);
+				panel_1.add(txtLugar);
 			}
 			{
 				JPanel panelParticipantes = new JPanel();
@@ -360,7 +370,7 @@ public class CreandoEvento extends JDialog {
 					cbxRecurso = new JComboBox();
 					cbxRecurso.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							string = (String) cbxRecurso.getSelectedItem();
+							string = cbxRecurso.getSelectedItem().toString();
 							Recurso aux = Empresa.getInstance().searchRecursoByTipo(string);
 							txtCant.setText("x"+ aux.getCantidad());
 						}
@@ -369,7 +379,7 @@ public class CreandoEvento extends JDialog {
 					cbxModel = new DefaultComboBoxModel(); 
 					for(Recurso recurso : Empresa.getInstance().getRecursos())
 					{
-						cbxModel.addElement(recurso.getTipo() + " x" + recurso.getCantidad());
+						cbxModel.addElement(recurso.getTipo());
 					}
 					cbxRecurso.setModel(cbxModel);
 					panelRecursos.add(cbxRecurso);
@@ -396,13 +406,14 @@ public class CreandoEvento extends JDialog {
 				btnCrear = new JButton("Crear");
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1)
+						if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty())
 						{
-							JOptionPane.showMessageDialog(null, "Digite un nombre y seleccione el tipo de evento", "Error", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas y elegir el tipo de evento", "Error", JOptionPane.WARNING_MESSAGE);
 						}
 						else
 						{
-							Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), cbxTipo.getSelectedItem().toString(), txtID.getText(), calendar.getDate());
+							Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), cbxTipo.getSelectedItem().toString(), 
+									txtLugar.getText(), txtID.getText(), calendar.getDate());
 							nuevoEvento.verificarFin();
 							Empresa.getInstance().insertarEvento(nuevoEvento);
 							JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
@@ -434,6 +445,7 @@ public class CreandoEvento extends JDialog {
 		cbxTipo.setSelectedIndex(-1);
 		cbxRecurso.setSelectedIndex(-1);
 		spnCantidad.setValue(0);
+		txtLugar.setText("");
 		
 		modelPartiElegidos = new DefaultListModel();
 		modelPartis = new DefaultListModel();
