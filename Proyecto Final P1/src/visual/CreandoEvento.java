@@ -51,6 +51,11 @@ public class CreandoEvento extends JDialog {
 	DefaultListModel modelPartis;
 	DefaultListModel modelPartiElegidos;
 	
+	JButton btnDerechaParti;
+	JButton btnIzquierdaParti;
+	JButton btnAgregarRec;
+	JButton btnRemover;
+	
 	ArrayList<Recurso> recursos = new ArrayList<>();
 	ArrayList<Participante> participantes = new ArrayList<>();
 	int valorRecurso;
@@ -186,7 +191,7 @@ public class CreandoEvento extends JDialog {
 					}
 				}
 				{
-					JButton btnDerechaParti = new JButton(">");
+					btnDerechaParti = new JButton(">");
 					btnDerechaParti.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
@@ -221,7 +226,7 @@ public class CreandoEvento extends JDialog {
 					panelParticipantes.add(btnDerechaParti);
 				}
 				{
-					JButton btnIzquierdaParti = new JButton("<");
+					btnIzquierdaParti = new JButton("<");
 					btnIzquierdaParti.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
@@ -289,7 +294,7 @@ public class CreandoEvento extends JDialog {
 					panelRecursos.add(lblRecursosAUtilizar);
 				}
 				{
-					JButton btnAgregarRec = new JButton("Agregar");						
+					btnAgregarRec = new JButton("Agregar");						
 					btnAgregarRec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) 
 						{
@@ -329,7 +334,7 @@ public class CreandoEvento extends JDialog {
 					panelRecursos.add(btnAgregarRec);
 				}
 				{
-					JButton btnRemover = new JButton("Remover recurso seleccionado");
+					btnRemover = new JButton("Remover recurso seleccionado");
 					btnRemover.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							

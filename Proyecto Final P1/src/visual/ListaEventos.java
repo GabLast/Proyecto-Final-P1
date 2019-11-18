@@ -80,7 +80,7 @@ public class ListaEventos extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Nombre", "Tipo", "Fecha de la actividad", "Estado"};
+					String[] header = {"ID", "Nombre", "Tipo", "Lugar", "Fecha de la actividad", "Estado"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -156,7 +156,7 @@ public class ListaEventos extends JDialog {
 	{
 		model.setRowCount(0);
 		Empresa miEmpresa = Empresa.getInstance();
-		//{"ID", "Nombre", "Tipo", "Fecha de la actividad", "Estado"};
+		//{"ID", "Nombre", "Tipo", "lugar", "Fecha de la actividad", "Estado"};
 		row = new Object[model.getColumnCount()];
 		
 		for (int i = 0; i < miEmpresa.getEventos().size(); i++) 
@@ -164,15 +164,16 @@ public class ListaEventos extends JDialog {
 			row[0] = miEmpresa.getEventos().get(i).getId();
 			row[1] = miEmpresa.getEventos().get(i).getNombre();
 			row[2] = miEmpresa.getEventos().get(i).getTipo();
-			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(miEmpresa.getEventos().get(i).getFecha());
+			row[3] = miEmpresa.getEventos().get(i).getLugar();
+			row[4] = new SimpleDateFormat("dd/MM/yyyy").format(miEmpresa.getEventos().get(i).getFecha());
 			
 			if(miEmpresa.getEventos().get(i).isEstado())
 			{
-				row[4] = "Disponible";
+				row[5] = "Disponible";
 			}
 			else
 			{
-				row[4] = "Finalizado";
+				row[5] = "Finalizado";
 			}
 			
 			model.addRow(row);
