@@ -58,6 +58,7 @@ public class RegistrarTrabajo extends JDialog {
 		this.duenioGlobal = duenio;
 		setTitle("Registrar trabajo");
 		setBounds(100, 100, 547, 446);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -178,6 +179,11 @@ public class RegistrarTrabajo extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
