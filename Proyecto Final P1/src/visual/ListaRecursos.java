@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import logica.Comision;
 import logica.Empresa;
+import logica.Recurso;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -31,6 +32,8 @@ public class ListaRecursos extends JDialog {
 	private static DefaultTableModel model;
 	private Dimension dim;
 	private static JTable table;
+	private String Tipo = "";
+	private JButton btnModificar ;
 
 	/**
 	 * Launch the application.
@@ -83,6 +86,16 @@ public class ListaRecursos extends JDialog {
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
+					table.addMouseListener(new MouseAdapter() {
+						@Override
+						public void mouseClicked(MouseEvent arg0) {
+							if(table.getSelectedRow()>-1){
+								int index = table.getSelectedRow();
+								Tipo = String.valueOf(table.getValueAt(index, 0));
+								btnModificar.setEnabled(true);
+						}
+					}
+					});
 					
 					loadRecursos();					
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -102,6 +115,21 @@ public class ListaRecursos extends JDialog {
 						dispose();
 					}
 				});
+				{
+					JButton btnNewButton = new JButton("Modificar");
+					btnNewButton.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							if (Tipo != "") {
+							Recurso resource = Empresa.getInstance().searchRecursoByTipo(Tipo);
+							ModifcarRecursos v1= new ModifcarRecursos(resource);
+							v1.setModal(true);
+							v1.setVisible(true);
+						}
+						}
+					});
+					buttonPane.add(btnNewButton);
+				}
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

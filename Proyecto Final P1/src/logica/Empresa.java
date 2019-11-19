@@ -233,6 +233,7 @@ public class Empresa implements Serializable{
 		return trabajos;
 	}
 	
+	
 	public ArrayList<Jurado> buscarJuecesPorArea(String area)
 	{
 		ArrayList<Jurado> personas = new ArrayList();
