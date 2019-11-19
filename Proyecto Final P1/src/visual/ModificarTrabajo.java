@@ -134,21 +134,20 @@ public class ModificarTrabajo extends JDialog {
 						if(txtCedula.getText().length() >=1 && txtNombre.getText().length() >= 1 && txtTelefono.getText().length() >= 1
 								&& txtDireccion.getText().length() >= 1)
 						{
-//							txtNombre.setText(txtNombre.getText());
-//							txtDireccion.setText(txtDireccion.getText());
-//							txtTelefono.setText(txtTelefono.getText());
-//							txtCedula.setText(txtCedula.getText());
+							txtNombre.setText(txtNombre.getText());
+							txtDireccion.setText(txtDireccion.getText());
+							txtTelefono.setText(txtTelefono.getText());
+							txtCedula.setText(txtCedula.getText());
 							
 							miTrabajo.setId(txtCedula.getText());
 							miTrabajo.setNombreTrabajo(txtNombre.getText());
 							miTrabajo.setDescripcion(txtTelefono.getText());
 							miTrabajo.setArea(txtDireccion.getText());
-							
-							//Participante duenio = miTrabajo.getDuenio();
+
 							
 							
 							JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-							//ListarTrabajos.loadEventos(duenio);
+							ListarTrabajos.loadTrabajos(miTrabajo.getDuenio());
 							dispose();
 						}
 					}

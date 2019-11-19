@@ -88,7 +88,7 @@ public class ListarTrabajos extends JDialog {
 					
 					table = new JTable();
 					
-					//loadEventos();
+					loadTrabajos(duenio);
 					
 					table.addMouseListener(new MouseAdapter() {
 						@Override
@@ -156,7 +156,7 @@ public class ListarTrabajos extends JDialog {
 	}
 
 
-	public static void loadEventos(Participante duenio) 
+	public static void loadTrabajos(Participante duenio) 
 	{
 		model.setRowCount(0);
 		//{"ID", "Nombre", "Área", "Descripción"};

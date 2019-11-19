@@ -22,7 +22,7 @@ public class Trabajo implements Serializable{
 		idTrabajo++;
 	}
 	
-	public Persona getDuenio() {
+	public Participante getDuenio() {
 		return duenio;
 	}
 	public void setDuenio(Participante duenio) {
