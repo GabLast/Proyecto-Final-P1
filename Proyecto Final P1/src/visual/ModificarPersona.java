@@ -187,6 +187,12 @@ public class ModificarPersona extends JDialog {
 			panelJuez.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Juez", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panelJuez, "name_174943835546300");
 			{
+				JLabel label = new JLabel("Tel\u00E9fono:");
+				label.setBounds(17, 200, 88, 23);
+				panelJuez.add(label);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			}
+			{
 				JLabel label = new JLabel("C\u00E9dula:");
 				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 				label.setBounds(17, 32, 73, 23);
@@ -203,12 +209,6 @@ public class ModificarPersona extends JDialog {
 				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 				label.setBounds(17, 142, 88, 23);
 				panelJuez.add(label);
-			}
-			{
-				JLabel label = new JLabel("Tel\u00E9fono:");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-				label.setBounds(17, 197, 88, 23);
-				panel.add(label);
 			}
 			{
 				txtCedula = new JTextField();
@@ -272,8 +272,8 @@ public class ModificarPersona extends JDialog {
 			panelJuez.add(label_1);
 			
 			comboBox = new JComboBox();
-			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-			comboBox.setBounds(107, 295, 238, 22);
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
+			comboBox.setBounds(132, 295, 238, 22);
 			panelJuez.add(comboBox);
 			{
 				JLabel label_2 = new JLabel("\u00C1rea de estudio:");
@@ -283,7 +283,7 @@ public class ModificarPersona extends JDialog {
 			{
 				JComboBox comboBox_1 = new JComboBox();
 				comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-				comboBox_1.setBounds(107, 345, 238, 22);
+				comboBox_1.setBounds(134, 345, 238, 22);
 				panelJuez.add(comboBox_1);
 			}
 		}
