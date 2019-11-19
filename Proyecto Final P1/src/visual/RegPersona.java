@@ -290,7 +290,7 @@ public class RegPersona extends JDialog {
 									Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
 											txtNombreParti.getText(), txtTeleParti.getText(), 
 											txtDireParti.getText(), "Masculino", 
-											cbxGradoParti.getSelectedItem().toString(), null,null);
+											cbxGradoParti.getSelectedItem().toString(), null);
 									Empresa.getInstance().insertarPersona(nuevoParti);
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
@@ -301,7 +301,7 @@ public class RegPersona extends JDialog {
 									Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
 											txtNombreParti.getText(), txtTeleParti.getText(), 
 											txtDireParti.getText(), ""
-													+ "Femenino", cbxGradoParti.getSelectedItem().toString(), null,null);
+													+ "Femenino", cbxGradoParti.getSelectedItem().toString(), null);
 									Empresa.getInstance().insertarPersona(nuevoParti);
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
