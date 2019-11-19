@@ -19,6 +19,7 @@ import javax.swing.border.TitledBorder;
 import logica.Persona;
 import logica.Recurso;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class ModifcarRecursos extends JDialog {
 
@@ -85,6 +86,7 @@ public class ModifcarRecursos extends JDialog {
 			}
 			
 			JSpinner txCantidad = new JSpinner();
+			txCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 			txCantidad.setBounds(107, 83, 244, 29);
 			panel.add(txCantidad);
 			
@@ -102,14 +104,14 @@ public class ModifcarRecursos extends JDialog {
 				btnModi.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txNombre.getText().length() >=1 && txCantidad.getValue().length() >= 1 )
+						if(txNombre.getText().length() >=1 && (int)txCantidad.getValue() >= 1 )
 						{
 //							
 							miRecurso.setTipo(txNombre.getText());
 							miRecurso.setCantidad((Integer) txCantidad.getValue());
 							
 							JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-							ListarPersonas.loadPersonas();
+							ListaRecursos.loadRecursos();
 							dispose();
 						}
 					}
