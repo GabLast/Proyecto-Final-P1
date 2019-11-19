@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -13,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 import logica.Empresa;
 import logica.Participante;
+import logica.Persona;
+import logica.Trabajo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -111,6 +114,26 @@ public class ListarTrabajos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnModificar = new JButton("Modificar");
+				btnModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(!id.equals("")) 
+						{
+							
+							Trabajo work= Empresa.getInstance().buscarTrabajobyID(id);
+							
+							//System.out.println(clienteModi.getCedula());
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar la cuenta: " 
+									   + work.getId(),"Información",JOptionPane.WARNING_MESSAGE);
+							
+							if(option == JOptionPane.OK_OPTION && work != null)
+							{
+								new ModificarTrabajo(work).setVisible(true);
+								//new Facturar(true, clienteModi);
+							}
+					}
+					}
+					});
+				
 				btnModificar.setActionCommand("OK");
 				btnModificar.setEnabled(false);
 				buttonPane.add(btnModificar);
