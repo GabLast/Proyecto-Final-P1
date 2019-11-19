@@ -127,8 +127,11 @@ public class ListarTrabajos extends JDialog {
 							
 							if(option == JOptionPane.OK_OPTION && work != null)
 							{
-								new ModificarTrabajo(work).setVisible(true);
+								//new ModificarTrabajo(work).setVisible(true);
 								//new Facturar(true, clienteModi);
+								ModificarTrabajo v1 = new ModificarTrabajo(work);
+								v1.setModal(true);
+								v1.setVisible(true);
 							}
 					}
 					}

@@ -146,22 +146,20 @@ public class ListarPersonas extends JDialog {
 				 btnModificar = new JButton("Modificar");
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							
-							if(!id.equals("")) 
+	
+					if(id!="") 
 							{
 								
 								Persona participante = Empresa.getInstance().searchPersonabyCedula(id);
-								
-								//System.out.println(clienteModi.getCedula());
 								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar la cuenta: " 
 										   + participante.getCedula(),"Información",JOptionPane.WARNING_MESSAGE);
 								
-								if(option == JOptionPane.OK_OPTION && participante != null)
-								{
-									new ModificarPersona(participante).setVisible(true);
-									//new Facturar(true, clienteModi);
-								}
+								if(option == JOptionPane.OK_OPTION && participante != null) {
+								ModificarPersona v1 = new ModificarPersona(participante);
+								v1.setModal(true);
+								v1.setVisible(true);
 								
+								}
 							}
 						}
 					});

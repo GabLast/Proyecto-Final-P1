@@ -153,6 +153,7 @@ public class RegPersona extends JDialog {
 			rdbtnFemenino.setBounds(262, 210, 112, 25);
 			panelJuez.add(rdbtnFemenino);
 			
+			
 			txtCedula = new JTextField();
 			txtCedula.setColumns(10);
 			txtCedula.setBounds(136, 28, 238, 20);
