@@ -85,7 +85,7 @@ public class ModifcarRecursos extends JDialog {
 				panel.add(txNombre);
 			}
 			
-			JSpinner txCantidad = new JSpinner();
+			txCantidad = new JSpinner();
 			txCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 			txCantidad.setBounds(107, 83, 244, 29);
 			panel.add(txCantidad);
