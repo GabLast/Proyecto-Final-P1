@@ -83,7 +83,7 @@ public class ListarTrabajos extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Nombre", "Área", "Descripción"};
+					String[] header = {"ID", "Área", "Tema", "Descripción"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -168,7 +168,8 @@ public class ListarTrabajos extends JDialog {
 		{
 			row[0] = duenio.getMisTrabajos().get(i).getId();
 			row[1] = duenio.getMisTrabajos().get(i).getArea();
-			row[2] = duenio.getMisTrabajos().get(i).getDescripcion();
+			row[2] = duenio.getMisTrabajos().get(i).getTema();
+			row[3] = duenio.getMisTrabajos().get(i).getDescripcion();
 			
 			model.addRow(row);
 		}

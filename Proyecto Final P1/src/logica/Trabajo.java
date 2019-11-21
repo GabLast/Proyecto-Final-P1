@@ -34,10 +34,10 @@ public class Trabajo implements Serializable{
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getNombreTrabajo() {
+	public String getTema() {
 		return tema;
 	}
-	public void setNombreTrabajo(String nombreTrabajo) {
+	public void setTema(String nombreTrabajo) {
 		this.tema = nombreTrabajo;
 	}
 	public String getArea() {
