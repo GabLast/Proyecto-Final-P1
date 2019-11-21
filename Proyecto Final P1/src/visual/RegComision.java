@@ -103,6 +103,8 @@ public class RegComision extends JDialog {
 			
 			cbxArea = new JComboBox();
 			
+			jListJuecesSelectModel = new DefaultListModel();
+			
 			cbxArea.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
@@ -184,6 +186,8 @@ public class RegComision extends JDialog {
 			JLabel label = new JLabel("Jueces disponibles:");
 			label.setBounds(17, 26, 184, 16);
 			panelJurado.add(label);
+			
+			jListJuecesSelectModel = new DefaultListModel();
 			
 			JButton btnRightJurado = new JButton(">");
 			btnRightJurado.addActionListener(new ActionListener() {
