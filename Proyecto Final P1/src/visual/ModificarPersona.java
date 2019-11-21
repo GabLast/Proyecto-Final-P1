@@ -93,63 +93,64 @@ public class ModificarPersona extends JDialog {
 			contentPanel.add(panel, "name_174943819359200");
 			{
 				JLabel label = new JLabel("C\u00E9dula:");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-				label.setBounds(17, 32, 73, 23);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				label.setBounds(17, 41, 73, 23);
 				panel.add(label);
 			}
 			{
 				JLabel label = new JLabel("Nombre:");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-				label.setBounds(17, 87, 88, 23);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				label.setBounds(17, 105, 88, 23);
 				panel.add(label);
 			}
 			{
 				JLabel label = new JLabel("Direcci\u00F3n:");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-				label.setBounds(17, 142, 88, 23);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				label.setBounds(17, 169, 88, 23);
 				panel.add(label);
 			}
 			{
 				JLabel label = new JLabel("Tel\u00E9fono:");
-				label.setFont(new Font("Tahoma", Font.PLAIN, 11));
-				label.setBounds(17, 197, 88, 23);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+				label.setBounds(17, 233, 88, 23);
 				panel.add(label);
 			}
 			{
 				txtCedula = new JTextField();
-				txtCedula.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtCedula.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				txtCedula.setColumns(10);
-				txtCedula.setBounds(107, 29, 244, 29);
+				txtCedula.setBounds(107, 38, 244, 29);
 				txtCedula.setText(miPersona.getCedula());
 				panel.add(txtCedula);
 			}
 			{
 				txtNombre = new JTextField();
-				txtNombre.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				txtNombre.setColumns(10);
-				txtNombre.setBounds(107, 84, 244, 29);
+				txtNombre.setBounds(107, 102, 244, 29);
 				txtNombre.setText(miPersona.getNombre());
 				panel.add(txtNombre);
 			}
 			{
 				txtDireccion = new JTextField();
-				txtDireccion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtDireccion.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				txtDireccion.setColumns(10);
-				txtDireccion.setBounds(107, 139, 244, 29);
+				txtDireccion.setBounds(107, 166, 244, 29);
 				txtDireccion.setText(miPersona.getDireccion());
 				panel.add(txtDireccion);
 			}
 			{
 				txtTelefono = new JTextField();
-				txtTelefono.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtTelefono.setFont(new Font("Tahoma", Font.PLAIN, 13));
 				txtTelefono.setColumns(10);
-				txtTelefono.setBounds(107, 194, 244, 29);
+				txtTelefono.setBounds(107, 230, 244, 29);
 				txtTelefono.setText(miPersona.getTelefono());
 				panel.add(txtTelefono);
 			}
 			
 			JLabel label = new JLabel("Sexo:");
-			label.setBounds(17, 253, 72, 16);
+			label.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			label.setBounds(17, 297, 72, 16);
 			panel.add(label);
 			
 			rdbtnMasculin = new JRadioButton("Masculino");
@@ -159,7 +160,7 @@ public class ModificarPersona extends JDialog {
 					rdbtnFemenino.setSelected(false);
 				}
 			});
-			rdbtnMasculin.setBounds(107, 253, 100, 25);
+			rdbtnMasculin.setBounds(107, 293, 100, 25);
 			panel.add(rdbtnMasculin);
 			
 			rdbtnFemenino = new JRadioButton("Femenino");
@@ -169,16 +170,18 @@ public class ModificarPersona extends JDialog {
 					rdbtnFemenino.setSelected(true);
 				}
 			});
-			rdbtnFemenino.setBounds(230, 253, 112, 25);
+			rdbtnFemenino.setBounds(230, 293, 112, 25);
 			panel.add(rdbtnFemenino);
 			
 			JLabel label_1 = new JLabel("Grado Acad\u00E9mico:");
-			label_1.setBounds(10, 298, 112, 16);
+			label_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+			label_1.setBounds(10, 354, 112, 16);
 			panel.add(label_1);
 			
 			comboBox = new JComboBox();
+			comboBox.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
-			comboBox.setBounds(107, 295, 238, 22);
+			comboBox.setBounds(132, 351, 219, 22);
 			panel.add(comboBox);
 		}
 		{
