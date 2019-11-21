@@ -76,6 +76,7 @@ public class RegPersona extends JDialog {
 			panel.setLayout(null);
 			
 			rdbtnParticipante = new JRadioButton("Participante");
+			rdbtnParticipante.setSelected(true);
 			rdbtnParticipante.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnJuez.setSelected(false);
@@ -189,7 +190,7 @@ public class RegPersona extends JDialog {
 			panelJuez.add(label_7);
 			
 			panelParticipante = new JPanel();
-			panelParticipante.setVisible(false);
+			panelParticipante.setVisible(true);
 			panelParticipante.setBorder(new TitledBorder(null, "Datos del participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelParticipante.setBounds(12, 85, 395, 356);
 			panel.add(panelParticipante);

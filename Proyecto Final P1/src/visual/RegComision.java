@@ -135,7 +135,7 @@ public class RegComision extends JDialog {
 						{
 							if(job.getArea().equalsIgnoreCase(cbxArea.getSelectedItem().toString()))
 							{
-								jListJobSelectModel.addElement(job.getNombreTrabajo());
+								jListJobSelectModel.addElement(job.getTema());
 							}
 						}
 						
