@@ -116,10 +116,10 @@ public class ListarTrabajos extends JDialog {
 				btnModificar = new JButton("Modificar");
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(!id.equals("")) 
+						if(id!="")
 						{
 							
-							Trabajo work= Empresa.getInstance().buscarTrabajobyID(id);
+							Trabajo work= duenio.buscarTrabajoByName(id);
 							
 							//System.out.println(clienteModi.getCedula());
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar la cuenta: " 

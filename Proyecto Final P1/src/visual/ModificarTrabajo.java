@@ -19,15 +19,17 @@ import javax.swing.border.TitledBorder;
 import logica.Participante;
 import logica.Persona;
 import logica.Trabajo;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class ModificarTrabajo extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private Trabajo miTrabajo = null;
-	private JTextField txtCedula;
-	private JTextField txtNombre;
-	private JTextField txtDireccion;
-	private JTextField txtTelefono;
+	private JTextField txtID;
+	private JTextField txtTema;
+	private JTextField txtDescripcion;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -66,61 +68,59 @@ public class ModificarTrabajo extends JDialog {
 			panel.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			{
-				JLabel label = new JLabel("C\u00E9dula:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				label.setBounds(17, 32, 73, 23);
-				panel.add(label);
+				JLabel lblCdigo = new JLabel("C\u00F3digo:");
+				lblCdigo.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblCdigo.setBounds(17, 32, 73, 23);
+				panel.add(lblCdigo);
 			}
 			{
-				JLabel label = new JLabel("Nombre:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				label.setBounds(17, 87, 88, 23);
-				panel.add(label);
+				JLabel lblTema = new JLabel("Tema:");
+				lblTema.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblTema.setBounds(17, 87, 88, 23);
+				panel.add(lblTema);
 			}
 			{
-				JLabel label = new JLabel("Direcci\u00F3n:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				label.setBounds(17, 142, 88, 23);
-				panel.add(label);
+				JLabel lblArea = new JLabel("\u00C1rea:");
+				lblArea.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblArea.setBounds(17, 142, 88, 23);
+				panel.add(lblArea);
 			}
 			{
-				JLabel label = new JLabel("Tel\u00E9fono:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				label.setBounds(17, 197, 88, 23);
-				panel.add(label);
+				JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
+				lblDescripcin.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblDescripcin.setBounds(17, 197, 109, 23);
+				panel.add(lblDescripcin);
 			}
 			{
-				txtCedula = new JTextField();
-				txtCedula.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtCedula.setColumns(10);
-				txtCedula.setBounds(107, 29, 244, 29);
-				txtCedula.setText(miTrabajo.getId());
-				panel.add(txtCedula);
+				txtID = new JTextField();
+				txtID.setEditable(false);
+				txtID.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtID.setColumns(10);
+				txtID.setBounds(107, 29, 244, 29);
+				txtID.setText(miTrabajo.getId());
+				panel.add(txtID);
 			}
 			{
-				txtNombre = new JTextField();
-				txtNombre.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtNombre.setColumns(10);
-				txtNombre.setBounds(107, 84, 244, 29);
-				txtNombre.setText(miTrabajo.getNombreTrabajo());
-				panel.add(txtNombre);
+				txtTema = new JTextField();
+				txtTema.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtTema.setColumns(10);
+				txtTema.setBounds(107, 84, 244, 29);
+				txtTema.setText(miTrabajo.getNombreTrabajo());
+				panel.add(txtTema);
 			}
 			{
-				txtDireccion = new JTextField();
-				txtDireccion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtDireccion.setColumns(10);
-				txtDireccion.setBounds(107, 139, 244, 29);
-				txtDireccion.setText(miTrabajo.getDescripcion());
-				panel.add(txtDireccion);
+				txtDescripcion = new JTextField();
+				txtDescripcion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtDescripcion.setColumns(10);
+				txtDescripcion.setBounds(124, 194, 227, 29);
+				txtDescripcion.setText(miTrabajo.getArea());
+				panel.add(txtDescripcion);
 			}
-			{
-				txtTelefono = new JTextField();
-				txtTelefono.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtTelefono.setColumns(10);
-				txtTelefono.setBounds(107, 194, 244, 29);
-				txtTelefono.setText(miTrabajo.getArea());
-				panel.add(txtTelefono);
-			}
+			
+			comboBox = new JComboBox();
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
+			comboBox.setBounds(109, 146, 143, 20);
+			panel.add(comboBox);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -131,18 +131,17 @@ public class ModificarTrabajo extends JDialog {
 				btnModi.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txtCedula.getText().length() >=1 && txtNombre.getText().length() >= 1 && txtTelefono.getText().length() >= 1
-								&& txtDireccion.getText().length() >= 1)
+						if(txtID.getText().length() >=1 && txtTema.getText().length() >= 1 && txtDescripcion.getText().length() >= 1 && comboBox.getSelectedIndex() > 1)
 						{
-							txtNombre.setText(txtNombre.getText());
-							txtDireccion.setText(txtDireccion.getText());
-							txtTelefono.setText(txtTelefono.getText());
-							txtCedula.setText(txtCedula.getText());
+							txtTema.setText(txtTema.getText());
 							
-							miTrabajo.setId(txtCedula.getText());
-							miTrabajo.setNombreTrabajo(txtNombre.getText());
-							miTrabajo.setDescripcion(txtTelefono.getText());
-							miTrabajo.setArea(txtDireccion.getText());
+							txtDescripcion.setText(txtDescripcion.getText());
+							txtID.setText(txtID.getText());
+							
+							miTrabajo.setId(txtID.getText());
+							miTrabajo.setNombreTrabajo(txtTema.getText());
+							miTrabajo.setDescripcion(txtDescripcion.getText());
+							miTrabajo.setArea(comboBox.getSelectedItem().toString());
 
 							
 							
@@ -169,5 +168,4 @@ public class ModificarTrabajo extends JDialog {
 			}
 		}
 	}
-
 }

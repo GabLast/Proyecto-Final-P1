@@ -212,26 +212,6 @@ public class Empresa implements Serializable{
 		return resource;
 	}
 	
-	public Trabajo buscarTrabajobyID(String id)
-	{
-		Trabajo trabajos = null;
-		Participante duenio = null;
-		
-		for (int i = 0; i < duenio.getMisTrabajos().size(); i++) {
-		for(Trabajo work : duenio.getMisTrabajos() )
-		{	
-			if(work instanceof Trabajo)
-			{
-				if(((Trabajo) work).getId().equalsIgnoreCase(id))
-				{
-					trabajos = work;
-				}
-			}
-		}
-		
-	}
-		return trabajos;
-	}
 	
 	
 	public ArrayList<Jurado> buscarJuecesPorArea(String area)
