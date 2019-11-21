@@ -8,15 +8,15 @@ public class Trabajo implements Serializable{
 	private static int idTrabajo = 0;
 	private Participante duenio;
 	private String id;
-	private String nombreTrabajo;
+	private String tema;
 	private String area;
 	private String descripcion;
 	
-	public Trabajo(Participante duenio, String id, String nombreTrabajo, String area, String descripcion) {
+	public Trabajo(Participante duenio, String id, String tema, String area, String descripcion) {
 		super();
 		this.duenio = duenio;
 		this.id = id;
-		this.nombreTrabajo = nombreTrabajo;
+		this.tema = tema;
 		this.area = area;
 		this.descripcion = descripcion;
 		idTrabajo++;
@@ -35,10 +35,10 @@ public class Trabajo implements Serializable{
 		this.id = id;
 	}
 	public String getNombreTrabajo() {
-		return nombreTrabajo;
+		return tema;
 	}
 	public void setNombreTrabajo(String nombreTrabajo) {
-		this.nombreTrabajo = nombreTrabajo;
+		this.tema = nombreTrabajo;
 	}
 	public String getArea() {
 		return area;
