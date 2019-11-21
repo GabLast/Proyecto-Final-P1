@@ -120,6 +120,10 @@ public class ListaEventos extends JDialog {
 						comi.setVisible(true);
 					}
 				});
+				{
+					JButton btnModifcar = new JButton("Modifcar");
+					buttonPane.add(btnModifcar);
+				}
 				btnCrear.setActionCommand("OK");
 				buttonPane.add(btnCrear);
 				btnCrear.setEnabled(false);
