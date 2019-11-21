@@ -119,6 +119,8 @@ public class ListarTrabajos extends JDialog {
 						if(id!="")
 						{
 							
+							
+							
 							Trabajo work= duenio.buscarTrabajoByName(id);
 							
 							//System.out.println(clienteModi.getCedula());
