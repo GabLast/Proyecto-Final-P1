@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Participante extends Persona {
 
-	private ArrayList<Trabajo> misTrabajos;//misma interfaz para registrar a un participante con su trabajo
+	private ArrayList<Trabajo> misTrabajos;
 	private static int genIdTrabajo;
 
 	public Participante(String cedula, String nombre, String telefono, String direccion, String sexo,
-			String gradoAcademico, Evento evento, ArrayList<Trabajo> misTrabajos) {
+			String gradoAcademico, Evento evento) {
 		super(cedula, nombre, telefono, direccion, sexo, gradoAcademico);
 		misTrabajos = new ArrayList<>();
 		this.genIdTrabajo = 0;

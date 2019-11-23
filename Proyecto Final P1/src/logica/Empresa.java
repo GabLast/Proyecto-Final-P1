@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
 public class Empresa implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -210,6 +211,8 @@ public class Empresa implements Serializable{
 		}
 		return resource;
 	}
+	
+	
 	
 	public ArrayList<Jurado> buscarJuecesPorArea(String area)
 	{

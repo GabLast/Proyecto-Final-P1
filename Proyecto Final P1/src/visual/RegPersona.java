@@ -76,6 +76,7 @@ public class RegPersona extends JDialog {
 			panel.setLayout(null);
 			
 			rdbtnParticipante = new JRadioButton("Participante");
+			rdbtnParticipante.setSelected(true);
 			rdbtnParticipante.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnJuez.setSelected(false);
@@ -153,6 +154,7 @@ public class RegPersona extends JDialog {
 			rdbtnFemenino.setBounds(262, 210, 112, 25);
 			panelJuez.add(rdbtnFemenino);
 			
+			
 			txtCedula = new JTextField();
 			txtCedula.setColumns(10);
 			txtCedula.setBounds(136, 28, 238, 20);
@@ -188,7 +190,7 @@ public class RegPersona extends JDialog {
 			panelJuez.add(label_7);
 			
 			panelParticipante = new JPanel();
-			panelParticipante.setVisible(false);
+			panelParticipante.setVisible(true);
 			panelParticipante.setBorder(new TitledBorder(null, "Datos del participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelParticipante.setBounds(12, 85, 395, 356);
 			panel.add(panelParticipante);
@@ -289,7 +291,7 @@ public class RegPersona extends JDialog {
 									Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
 											txtNombreParti.getText(), txtTeleParti.getText(), 
 											txtDireParti.getText(), "Masculino", 
-											cbxGradoParti.getSelectedItem().toString(), null,null);
+											cbxGradoParti.getSelectedItem().toString(), null);
 									Empresa.getInstance().insertarPersona(nuevoParti);
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
@@ -300,7 +302,7 @@ public class RegPersona extends JDialog {
 									Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
 											txtNombreParti.getText(), txtTeleParti.getText(), 
 											txtDireParti.getText(), ""
-													+ "Femenino", cbxGradoParti.getSelectedItem().toString(), null,null);
+													+ "Femenino", cbxGradoParti.getSelectedItem().toString(), null);
 									Empresa.getInstance().insertarPersona(nuevoParti);
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);

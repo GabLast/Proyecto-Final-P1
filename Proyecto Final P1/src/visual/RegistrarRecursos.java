@@ -18,6 +18,7 @@ import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.TitledBorder;
 
 public class RegistrarRecursos extends JDialog {
 
@@ -43,30 +44,30 @@ public class RegistrarRecursos extends JDialog {
 	 */
 	public RegistrarRecursos() {
 		setTitle("Registrar Recursos");
-		setBounds(100, 100, 287, 218);
+		setBounds(100, 100, 285, 197);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBorder(new TitledBorder(null, "Informaci\u00F3n del recurso", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
-		lblNewLabel.setBounds(17, 19, 83, 17);
+		lblNewLabel.setBounds(17, 32, 83, 17);
 		contentPanel.add(lblNewLabel);
 		
 		txtNombre = new JTextField();
 		txtNombre.setText("");
-		txtNombre.setBounds(117, 17, 137, 20);
+		txtNombre.setBounds(116, 30, 137, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setBounds(17, 75, 83, 17);
+		lblCantidad.setBounds(17, 77, 83, 17);
 		contentPanel.add(lblCantidad);
 		
 		JSpinner spnCantidad = new JSpinner();
 		spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spnCantidad.setBounds(117, 73, 137, 23);
+		spnCantidad.setBounds(116, 74, 137, 23);
 		contentPanel.add(spnCantidad);
 		
 		JButton btnRegistrar = new JButton("Registrar");
@@ -84,7 +85,7 @@ public class RegistrarRecursos extends JDialog {
 				}
 			}
 		});
-		btnRegistrar.setBounds(27, 111, 119, 23);
+		btnRegistrar.setBounds(17, 120, 119, 23);
 		contentPanel.add(btnRegistrar);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -93,7 +94,7 @@ public class RegistrarRecursos extends JDialog {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(165, 111, 89, 23);
+		btnSalir.setBounds(164, 120, 89, 23);
 		contentPanel.add(btnSalir);
 	}
 }

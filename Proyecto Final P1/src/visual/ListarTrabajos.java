@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -13,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 
 import logica.Empresa;
 import logica.Participante;
+import logica.Persona;
+import logica.Trabajo;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -80,12 +83,12 @@ public class ListarTrabajos extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Nombre", "Área", "Descripción"};
+					String[] header = {"ID", "Área", "Tema", "Descripción"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
 					
-					//loadEventos();
+					loadTrabajos(duenio);
 					
 					table.addMouseListener(new MouseAdapter() {
 						@Override
@@ -111,6 +114,31 @@ public class ListarTrabajos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnModificar = new JButton("Modificar");
+				btnModificar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(id!="")
+						{
+							
+							
+							
+							Trabajo work= duenio.buscarTrabajoByName(id);
+							
+							//System.out.println(clienteModi.getCedula());
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar la cuenta: " 
+									   + work.getId(),"Información",JOptionPane.WARNING_MESSAGE);
+							
+							if(option == JOptionPane.OK_OPTION && work != null)
+							{
+								//new ModificarTrabajo(work).setVisible(true);
+								//new Facturar(true, clienteModi);
+								ModificarTrabajo v1 = new ModificarTrabajo(work);
+								v1.setModal(true);
+								v1.setVisible(true);
+							}
+					}
+					}
+					});
+				
 				btnModificar.setActionCommand("OK");
 				btnModificar.setEnabled(false);
 				buttonPane.add(btnModificar);
@@ -130,7 +158,7 @@ public class ListarTrabajos extends JDialog {
 	}
 
 
-	public static void loadEventos(Participante duenio) 
+	public static void loadTrabajos(Participante duenio) 
 	{
 		model.setRowCount(0);
 		//{"ID", "Nombre", "Área", "Descripción"};
@@ -140,7 +168,8 @@ public class ListarTrabajos extends JDialog {
 		{
 			row[0] = duenio.getMisTrabajos().get(i).getId();
 			row[1] = duenio.getMisTrabajos().get(i).getArea();
-			row[2] = duenio.getMisTrabajos().get(i).getDescripcion();
+			row[2] = duenio.getMisTrabajos().get(i).getTema();
+			row[3] = duenio.getMisTrabajos().get(i).getDescripcion();
 			
 			model.addRow(row);
 		}

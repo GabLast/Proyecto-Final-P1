@@ -8,14 +8,17 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logica.Empresa;
+import logica.Evento;
 import logica.Jurado;
 import logica.Participante;
+import logica.Persona;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -35,6 +38,7 @@ public class ListarPersonas extends JDialog {
 	
 	JButton btnLista;
 	JButton btnAgregar;
+	JButton btnModificar;
 	/**
 	 * Launch the application.
 	 */
@@ -96,6 +100,7 @@ public class ListarPersonas extends JDialog {
 								id = String.valueOf(table.getValueAt(index, 0));
 								btnLista.setEnabled(true);
 								btnAgregar.setEnabled(true);
+								btnModificar.setEnabled(true);
 								
 							}
 						}
@@ -137,6 +142,31 @@ public class ListarPersonas extends JDialog {
 						
 					}
 				});
+				{
+				 btnModificar = new JButton("Modificar");
+					btnModificar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+	
+					if(id!="") 
+							{
+								
+								Persona participante = Empresa.getInstance().searchPersonabyCedula(id);
+								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar la cuenta: " 
+										   + participante.getCedula(),"Información",JOptionPane.WARNING_MESSAGE);
+								
+								if(option == JOptionPane.OK_OPTION && participante != null) {
+								ModificarPersona v1 = new ModificarPersona(participante);
+								v1.setModal(true);
+								v1.setVisible(true);
+								
+								}
+							}
+						}
+					});
+					btnModificar.setEnabled(false);
+					btnModificar.setActionCommand("OK");
+					buttonPane.add(btnModificar);
+				}
 				btnLista.setActionCommand("OK");
 				btnLista.setEnabled(false);
 				buttonPane.add(btnLista);
