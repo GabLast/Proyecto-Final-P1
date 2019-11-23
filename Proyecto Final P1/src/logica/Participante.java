@@ -8,7 +8,7 @@ public class Participante extends Persona {
 	private static int genIdTrabajo;
 
 	public Participante(String cedula, String nombre, String telefono, String direccion, String sexo,
-			String gradoAcademico, Evento evento) {
+			String gradoAcademico) {
 		super(cedula, nombre, telefono, direccion, sexo, gradoAcademico);
 		misTrabajos = new ArrayList<>();
 		this.genIdTrabajo = 0;

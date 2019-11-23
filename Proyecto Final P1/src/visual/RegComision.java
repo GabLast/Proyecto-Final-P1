@@ -104,6 +104,7 @@ public class RegComision extends JDialog {
 			cbxArea = new JComboBox();
 			
 			jListJuecesSelectModel = new DefaultListModel();
+			jListJobSelectModel = new DefaultListModel();
 			
 			cbxArea.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
@@ -118,7 +119,7 @@ public class RegComision extends JDialog {
 						{
 							if(cbxArea.getSelectedItem().toString().equalsIgnoreCase(((Jurado) juez).getAreaEstudio()))
 							{
-								jListJuecesDispModel.addElement(juez.getCedula());
+								jListJuecesDispModel.addElement(juez.getNombre());
 							}
 						}
 					}
@@ -220,7 +221,7 @@ public class RegComision extends JDialog {
 							cbxModel = new DefaultComboBoxModel(); 
 							for(Jurado juez : jueces)
 							{
-								cbxModel.addElement(juez.getCedula()+ " " + juez.getNombre());
+								cbxModel.addElement(juez.getNombre());
 							}
 							
 							
@@ -340,6 +341,8 @@ public class RegComision extends JDialog {
 			JLabel lblTrabajosDelrea = new JLabel("Trabajos del \u00E1rea:");
 			lblTrabajosDelrea.setBounds(17, 26, 152, 23);
 			panel_1.add(lblTrabajosDelrea);
+			
+			jListJobSelectModel = new DefaultListModel();
 			
 			JButton btnRightTrabajos = new JButton(">");
 			btnRightTrabajos.addActionListener(new ActionListener() {
@@ -461,7 +464,7 @@ public class RegComision extends JDialog {
 								
 								for(Jurado juez : jueces)
 								{
-									if((juez.getCedula()+ " " + juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
+									if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
 									{
 										presidente = juez;
 									}

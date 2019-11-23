@@ -285,6 +285,7 @@ public class CreandoEvento extends JDialog {
 					panelRecursos.add(scrollPane);
 					{
 						listRecursosElegidos = new JList();
+						modelRecElegidos = new DefaultListModel();
 						scrollPane.setViewportView(listRecursosElegidos);
 					}
 				}

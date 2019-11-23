@@ -69,13 +69,6 @@ public class Empresa implements Serializable{
 		Empresa.genIDEvento = genIDEvento;
 	}
 	
-//	public ArrayList<Trabajo> getTrabajos() {
-//		return trabajos;
-//	}
-//	public void setTrabajos(ArrayList<Trabajo> trabajos) {
-//		this.trabajos = trabajos;
-//	}
-	
 	public void insertarPersona(Persona person) {
 
 		personasRegistradas.add(person);
@@ -91,11 +84,6 @@ public class Empresa implements Serializable{
 		eventos.add(event);
 		genIDEvento++;
 	}
-	
-//	public void insertarTrabajo(Trabajo job) {
-//
-//		trabajos.add(job);
-//	}
 	
 	public ArrayList<User> getMisUsers() {
 		return misUsers;
@@ -211,7 +199,6 @@ public class Empresa implements Serializable{
 		}
 		return resource;
 	}
-	
 	
 	
 	public ArrayList<Jurado> buscarJuecesPorArea(String area)
