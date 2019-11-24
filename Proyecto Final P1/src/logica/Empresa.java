@@ -158,6 +158,24 @@ public class Empresa implements Serializable{
 		
 	}
 	
+	public Jurado buscarJuezByName (String id) {
+		Jurado persona = null;
+		
+		for (Persona aux : personasRegistradas) {
+			
+			if(aux instanceof Jurado)
+			{
+				if (aux.getNombre().equalsIgnoreCase(id)) 
+				{
+					persona = (Jurado) aux;
+					return persona;
+				}
+			}
+		}
+		return persona;
+		
+	}
+	
 	public Participante buscarParticipanteByName (String id) {
 		Participante persona = null;
 		

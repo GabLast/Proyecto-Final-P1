@@ -37,6 +37,7 @@ public class ListaEventos extends JDialog {
 	private JButton btnGestionarComisiones;
 	JButton btnRecursosUtilizados;
 	JButton btnModifcar;
+	private JButton btnListarParticipantes;
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +84,7 @@ public class ListaEventos extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Nombre", "Tipo", "Lugar", "Fecha de la actividad", "Estado"};
+					String[] header = {"ID", "Nombre", "Tipo", "Lugar", "Fecha de la actividad", "Cantidad de participantes","Estado"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -100,6 +101,7 @@ public class ListaEventos extends JDialog {
 								btnGestionarComisiones.setEnabled(true);
 								btnModifcar.setEnabled(true);
 								btnRecursosUtilizados.setEnabled(true);
+								btnListarParticipantes.setEnabled(true);
 								
 							}
 						}
@@ -170,6 +172,20 @@ public class ListaEventos extends JDialog {
 					btnRecursosUtilizados.setActionCommand("OK");
 					buttonPane.add(btnRecursosUtilizados);
 				}
+				{
+					btnListarParticipantes = new JButton("Listar Participantes");
+					btnListarParticipantes.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							Evento elEvento = Empresa.getInstance().searchEventoByID(id);
+							ListPartiEvento window = new ListPartiEvento(elEvento);
+							window.setModal(true);
+							window.setVisible(true);
+						}
+					});
+					btnListarParticipantes.setEnabled(false);
+					btnListarParticipantes.setActionCommand("OK");
+					buttonPane.add(btnListarParticipantes);
+				}
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -190,14 +206,15 @@ public class ListaEventos extends JDialog {
 			row[2] = miEmpresa.getEventos().get(i).getTipo();
 			row[3] = miEmpresa.getEventos().get(i).getLugar();
 			row[4] = new SimpleDateFormat("dd/MM/yyyy").format(miEmpresa.getEventos().get(i).getFecha());
+			row[5] = miEmpresa.getEventos().get(i).getParticipantes().size();
 			
 			if(miEmpresa.getEventos().get(i).isEstado())
 			{
-				row[5] = "Disponible";
+				row[6] = "Disponible";
 			}
 			else
 			{
-				row[5] = "Finalizado";
+				row[6] = "Finalizado";
 			}
 			
 			model.addRow(row);

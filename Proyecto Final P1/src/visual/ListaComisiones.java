@@ -55,6 +55,11 @@ public class ListaComisiones extends JDialog {
 	public ListaComisiones(Evento miEvento) {
 		setTitle("Comisiones");
 		setBounds(100, 100, 450, 300);
+		dim = super.getToolkit().getScreenSize();
+		dim.width *= .70;
+		dim.height *= .92;
+		//super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -77,7 +82,7 @@ public class ListaComisiones extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Área", "Presidente", "Fecha de creación"};
+					String[] header = {"ID", "Área", "Presidente", "Fecha de creación", "Cantidad de trabajos"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -146,7 +151,7 @@ public class ListaComisiones extends JDialog {
 			row[1] = comisionesEvento.get(i).getArea();
 			row[2] = comisionesEvento.get(i).getPresidente().getNombre();
 			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(comisionesEvento.get(i).getFechaCreacion());
-			
+			row[4] = comisionesEvento.get(i).getTrabajosParticipantes().size();
 			model.addRow(row);
 		}
 		

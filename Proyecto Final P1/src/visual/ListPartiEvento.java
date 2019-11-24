@@ -8,13 +8,14 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import logica.Empresa;
 import logica.Evento;
-import logica.Recurso;
+import logica.Jurado;
+import logica.Participante;
+import logica.Persona;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -24,23 +25,23 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class RecEvento extends JDialog {
+public class ListPartiEvento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private Dimension dim;
+	JButton btnEliminar;
 	private static JTable table;
 	private static Object[] row;
 	private static DefaultTableModel model;
-	JButton btnDevolver;
-	String tipo = "";
+	private Dimension dim;
+	String id = "";
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Evento event = null;
-			RecEvento dialog = new RecEvento(event);
+			Evento evento = null;
+			ListPartiEvento dialog = new ListPartiEvento(evento);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -51,8 +52,8 @@ public class RecEvento extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RecEvento(Evento evento) {
-		setTitle("Recursos del evento" + evento.getNombre());
+	public ListPartiEvento(Evento mievento) {
+		setTitle("Lista de Participantes");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
@@ -65,7 +66,7 @@ public class RecEvento extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Recursos utilizados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Listado de Participantes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
@@ -81,22 +82,24 @@ public class RecEvento extends JDialog {
 					};
 					
 					
-					String[] header = {"Nombre", "Cantidad utilizada"};
+					String[] header = {"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
+					
+					loadPersonas(mievento);
+					
 					table.addMouseListener(new MouseAdapter() {
 						@Override
-						public void mouseClicked(MouseEvent arg0) {
+						public void mouseClicked(MouseEvent e) {
 							if(table.getSelectedRow()>-1){
 								int index = table.getSelectedRow();
-								tipo = String.valueOf(table.getValueAt(index, 0));
-								btnDevolver.setEnabled(true);
+								id = String.valueOf(table.getValueAt(index, 0));
+								btnEliminar.setEnabled(true);
+								
+							}
 						}
-					}
 					});
-					
-					loadRecursos(evento);					
 					table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					table.setModel(model);
 					scrollPane.setViewportView(table);
@@ -108,21 +111,11 @@ public class RecEvento extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnDevolver = new JButton("Devolver recurso");
-				btnDevolver.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Recurso rec = evento.searchRecursoByTipo(tipo);
-						Empresa.getInstance().retornoRecursosDesdeEvento(rec);
-						evento.getRecursosUsados().remove(rec);
-						JOptionPane.showMessageDialog(null, "Recurso retornado"
-								, "Notificación", JOptionPane.INFORMATION_MESSAGE);
-						RecEvento.loadRecursos(evento);
-					}
-				});
-				btnDevolver.setActionCommand("OK");
-				buttonPane.add(btnDevolver);
-				btnDevolver.setEnabled(false);
-				getRootPane().setDefaultButton(btnDevolver);
+				btnEliminar = new JButton("Eliminar");
+				btnEliminar.setActionCommand("OK");
+				buttonPane.add(btnEliminar);
+				btnEliminar.setEnabled(false);
+				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
@@ -137,16 +130,21 @@ public class RecEvento extends JDialog {
 		}
 	}
 
-	public static void loadRecursos(Evento miEve) 
+	public static void loadPersonas(Evento evento) 
 	{
 		model.setRowCount(0);
-		//{"Nombre", "Cantidad"
+
+//		{"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
 		row = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < miEve.getRecursosUsados().size(); i++) 
+		for (int i = 0; i < evento.getParticipantes().size(); i++) 
 		{
-			row[0] = miEve.getRecursosUsados().get(i).getTipo();
-			row[1] = miEve.getRecursosUsados().get(i).getCantUsadaEvento();
+			row[0] = evento.getParticipantes().get(i).getCedula();
+			row[1] = evento.getParticipantes().get(i).getNombre();
+			row[2] = evento.getParticipantes().get(i).getTelefono();
+			row[3] = evento.getParticipantes().get(i).getDireccion();
+			row[4] = evento.getParticipantes().get(i).getSexo();
+			row[5] = evento.getParticipantes().get(i).getGradoAcademico();
 			
 			model.addRow(row);
 		}

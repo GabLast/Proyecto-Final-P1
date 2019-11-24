@@ -164,7 +164,7 @@ public class RegistrarTrabajo extends JDialog {
 						{
 							Trabajo nuevoTrabajo = new Trabajo(duenio, txtIDTrabajo.getText(),
 									txtTema.getText(), cbxArea.getSelectedItem().toString(), txtDescripcion.getText());
-							duenioGlobal.insertarTrabajo(nuevoTrabajo);
+							duenio.insertarTrabajo(nuevoTrabajo);
 							
 							JOptionPane.showMessageDialog(null, "Trabajo registrado satisfactoriamente"
 									, "Notificación", JOptionPane.INFORMATION_MESSAGE);

@@ -23,6 +23,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class Login extends JFrame {
 
@@ -93,7 +95,7 @@ public class Login extends JFrame {
 	public Login() {
 		setTitle("Iniciar Sesión");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 518, 262);
+		setBounds(100, 100, 518, 247);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -101,25 +103,25 @@ public class Login extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Iniciando sesi\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar sesión");
-		btnLogIn.setBounds(326, 127, 141, 31);
+		btnLogIn.setBounds(326, 118, 141, 31);
 		panel.add(btnLogIn);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(98, 24, 369, 29);
+		txtUsuario.setBounds(98, 35, 369, 29);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(17, 27, 69, 23);
+		lblUsuario.setBounds(17, 38, 69, 23);
 		panel.add(lblUsuario);
 		
 		JLabel lblClave = new JLabel("Clave:");
-		lblClave.setBounds(17, 77, 51, 23);
+		lblClave.setBounds(17, 80, 51, 23);
 		panel.add(lblClave);
 		
 		passwordField = new JPasswordField();
@@ -139,7 +141,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		passwordField.setBounds(98, 74, 369, 29);
+		passwordField.setBounds(98, 77, 369, 29);
 		panel.add(passwordField);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
