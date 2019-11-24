@@ -534,10 +534,12 @@ public class RegComision extends JDialog {
 		modelJuecesSelect = new DefaultListModel();
 		modelJobDisp = new DefaultListModel();
 		modelJobSelect = new DefaultListModel();
+		cbxModel = new DefaultComboBoxModel();
 		listJuecesDisponibles.setModel(modelJobDisp);
 		listJuecesSeleccionados.setModel(modelJuecesSelect);
 		listTrabajosDisponibles.setModel(modelJobDisp);
 		listTrabajosSeleccionados.setModel(modelJobSelect);
+		cbxPresidente.setModel(cbxModel);
 	}
 }
 

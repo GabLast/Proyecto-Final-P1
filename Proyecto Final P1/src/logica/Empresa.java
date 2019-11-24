@@ -247,6 +247,13 @@ public class Empresa implements Serializable{
 	}
 	
 	public void deleteEvento(Evento event) {
+		
+		returnAllResourcesBeforeModifyingEvent(event);
+		
+		eventos.remove(event);
+	}
+	
+	public void returnAllResourcesBeforeModifyingEvent(Evento event) {
 
 		for(Recurso recs : recursos)
 		{
@@ -258,7 +265,20 @@ public class Empresa implements Serializable{
 				}
 			}
 		}
-		eventos.remove(event);
+	}
+	
+	public void returnAllResourcesBeforeModifyingEventCANCEL(Evento event) {
+
+		for(Recurso recs : recursos)
+		{
+			for(Recurso recEvento : event.getRecursosUsados())
+			{
+				if(recs.getTipo().equalsIgnoreCase(recEvento.getTipo()))
+				{
+					recs.devolverRecursoTomadoCANCEL(recEvento.getCantUsadaEvento());
+				}
+			}
+		}
 	}
 	
 	public boolean verificarRecursoUnico(String tipo)

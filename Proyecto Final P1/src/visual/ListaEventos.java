@@ -132,6 +132,24 @@ public class ListaEventos extends JDialog {
 				});
 				{
 					btnModifcar = new JButton("Modificar");
+					btnModifcar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(id != "")
+							{
+								Evento elEvento = Empresa.getInstance().searchEventoByID(id);
+								
+								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar el evento: " 
+										   + elEvento.getNombre(), "Notificación",JOptionPane.WARNING_MESSAGE);
+								
+								if(option == JOptionPane.OK_OPTION && elEvento != null)
+								{
+									CreandoEvento window = new CreandoEvento(elEvento, true);
+									window.setModal(true);
+									window.setVisible(true);
+								}
+							}
+						}
+					});
 					buttonPane.add(btnModifcar);
 					btnModifcar.setEnabled(false);
 				}
@@ -167,7 +185,7 @@ public class ListaEventos extends JDialog {
 				getRootPane().setDefaultButton(btnCrear);
 			}
 			{
-				btnGestionarComisiones = new JButton("Gestionar Comisiones");
+				btnGestionarComisiones = new JButton("Listar Comisiones");
 				btnGestionarComisiones.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Evento elEvento = Empresa.getInstance().searchEventoByID(id);

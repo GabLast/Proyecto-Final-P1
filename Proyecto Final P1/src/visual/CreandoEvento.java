@@ -36,12 +36,12 @@ public class CreandoEvento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	JButton btnCrear;
-	private JTextField txtID;
-	private JTextField txtNombre;
+	private JTextField txtID = new JTextField();;
+	private JTextField txtNombre = new JTextField();
 	private JComboBox cbxRecurso;
-	private JComboBox cbxTipo;
+	private JComboBox cbxTipo = new JComboBox();;
 	JSpinner spnCantidad;
-	JCalendar calendar;
+	JCalendar calendar = new JCalendar();;
 	JList listRecursosElegidos;
 	JList listPartiElegidos;
 	JList listParticipantes;
@@ -58,16 +58,18 @@ public class CreandoEvento extends JDialog {
 	
 	ArrayList<Recurso> recursos = new ArrayList<>();
 	ArrayList<Participante> participantes = new ArrayList<>();
+	ArrayList<Recurso> recBackUp = new ArrayList<>();
 	int valorRecurso;
 	String string;
 	private JTextField txtCant;
-	private JTextField txtLugar;
+	private JTextField txtLugar = new JTextField();;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			CreandoEvento dialog = new CreandoEvento();
+			Evento modi = null;
+			CreandoEvento dialog = new CreandoEvento(modi, false);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -78,8 +80,20 @@ public class CreandoEvento extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public CreandoEvento() {
-		setTitle("Organizaci\u00F3n de un evento");
+	public CreandoEvento(Evento modiEvento, boolean modificar) {
+		if(!modificar)
+			setTitle("Organizaci\u00F3n de un evento");
+		else
+		{
+			setTitle("Modificando el evento: " + modiEvento.getNombre());
+			txtID.setText(modiEvento.getId());
+			cbxTipo.setSelectedItem(modiEvento.getTipo());
+			txtNombre.setText(modiEvento.getNombre());
+			txtLugar.setText(modiEvento.getLugar());
+			calendar.setDate(modiEvento.getFecha());
+			recBackUp = modiEvento.getRecursosUsados();
+			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
+		}
 		setBounds(100, 100, 769, 947);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -247,7 +261,7 @@ public class CreandoEvento extends JDialog {
 								listParticipantes.setModel(modelPartis);
 								
 
-								Participante buscando = Empresa.getInstance().buscarParticipanteByName(listParticipantes.getSelectedValue().toString());
+								Participante buscando = Empresa.getInstance().buscarParticipanteByName(string);
 								participantes.remove(buscando);
 
 								//removiendo valor de la lista de la derecha
@@ -428,24 +442,59 @@ public class CreandoEvento extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnCrear = new JButton("Crear");
+				if(modificar)
+				{
+					btnCrear.setText("Modificar");
+				}
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty() || 
-								participantes.size() < 1)
+						
+						if(!modificar)
 						{
-							JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes", "Error", JOptionPane.WARNING_MESSAGE);
+							if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty() || 
+									participantes.size() < 1)
+							{
+								JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes", "Error", JOptionPane.WARNING_MESSAGE);
+							}
+							else
+							{
+								Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), cbxTipo.getSelectedItem().toString(), 
+										txtLugar.getText(), txtID.getText(), calendar.getDate());
+								nuevoEvento.verificarFin();
+								Empresa.getInstance().insertarEvento(nuevoEvento);
+								JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
+								dispose();
+								RegComision comi = new RegComision(nuevoEvento, false, null);
+								comi.setModal(true);
+								comi.setVisible(true);
+							}
 						}
 						else
 						{
-							Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), cbxTipo.getSelectedItem().toString(), 
-									txtLugar.getText(), txtID.getText(), calendar.getDate());
-							nuevoEvento.verificarFin();
-							Empresa.getInstance().insertarEvento(nuevoEvento);
-							JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
-							dispose();
-							RegComision comi = new RegComision(nuevoEvento, false, null);
-							comi.setModal(true);
-							comi.setVisible(true);
+							if(modiEvento != null)
+							{
+								if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty() || 
+										participantes.size() < 1)
+								{
+									JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes", "Error", JOptionPane.WARNING_MESSAGE);
+								}
+								else
+								{
+									modiEvento.setFecha(calendar.getDate());
+									modiEvento.setLugar(txtLugar.getText());
+									modiEvento.setNombre(txtNombre.getText());
+									modiEvento.setParticipantes(participantes);
+									modiEvento.setRecursosUsados(recursos);
+									modiEvento.setTipo(cbxTipo.getSelectedItem().toString());
+									JOptionPane.showMessageDialog(null, "Modificación realizada de manera satisfactoria", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									dispose();
+									ListaEventos.loadEventos();
+								}
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar el evento", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+							}
 						}
 					}
 				});
@@ -457,6 +506,11 @@ public class CreandoEvento extends JDialog {
 				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						if(modificar)
+						{
+							Empresa.getInstance().returnAllResourcesBeforeModifyingEventCANCEL(modiEvento);
+						}
+						
 						dispose();
 					}
 				});

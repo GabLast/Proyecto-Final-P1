@@ -80,7 +80,7 @@ public class RegistrarTrabajo extends JDialog {
 				txtCedula.setEditable(false);
 				txtCedula.setText(duenio.getCedula());
 				txtCedula.setColumns(10);
-				txtCedula.setBounds(114, 24, 116, 20);
+				txtCedula.setBounds(114, 24, 234, 20);
 				panelParticipante.add(txtCedula);
 			}
 			{
@@ -94,7 +94,7 @@ public class RegistrarTrabajo extends JDialog {
 				txtParticipante.setEditable(false);
 				txtParticipante.setText(duenio.getNombre());
 				txtParticipante.setColumns(10);
-				txtParticipante.setBounds(114, 80, 116, 20);
+				txtParticipante.setBounds(114, 80, 234, 20);
 				panelParticipante.add(txtParticipante);
 			}
 		}

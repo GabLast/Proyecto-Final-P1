@@ -54,4 +54,9 @@ public class Recurso implements Serializable{
 	{
 		cantidad += usado;
 	}
+	
+	public void devolverRecursoTomadoCANCEL(int usado)
+	{
+		cantidad -= usado;
+	}
 }
