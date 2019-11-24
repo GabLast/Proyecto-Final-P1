@@ -302,8 +302,7 @@ public class CreandoEvento extends JDialog {
 						{
 							string = cbxRecurso.getSelectedItem().toString();
 							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
-							System.out.println(buscando.getCantidad());
-							System.out.println(buscando.getCantUsadaEvento());
+
 							if(cbxRecurso.getSelectedIndex() < 0)
 							{
 								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
@@ -374,9 +373,6 @@ public class CreandoEvento extends JDialog {
 								cbxRecurso.setModel(cbxModel);
 								
 								recursos.remove(buscando);
-								System.out.println(buscando.getCantidad());
-								System.out.println(buscando.getCantidad());
-								System.out.println(buscando.getCantUsadaEvento());
 								
 								//removiendo valor de la lista
 								if(modelRecElegidos.getSize() != 0)
@@ -434,9 +430,10 @@ public class CreandoEvento extends JDialog {
 				btnCrear = new JButton("Crear");
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty())
+						if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty() || 
+								participantes.size() < 1)
 						{
-							JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas y elegir el tipo de evento", "Error", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes", "Error", JOptionPane.WARNING_MESSAGE);
 						}
 						else
 						{
@@ -445,7 +442,10 @@ public class CreandoEvento extends JDialog {
 							nuevoEvento.verificarFin();
 							Empresa.getInstance().insertarEvento(nuevoEvento);
 							JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
-							clean();
+							dispose();
+							RegComision comi = new RegComision(nuevoEvento, false, null);
+							comi.setModal(true);
+							comi.setVisible(true);
 						}
 					}
 				});

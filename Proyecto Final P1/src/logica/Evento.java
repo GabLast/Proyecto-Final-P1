@@ -148,6 +148,18 @@ public class Evento implements Serializable{
 		return comi;
 	}
 	
+	public Recurso searchRecursoByTipo (String tipo) {
+		Recurso resource = null;
+		
+		for (Recurso aux : recursosUsados) {
+			if (aux.getTipo().equalsIgnoreCase(tipo)) {
+				resource = aux;
+				
+			}
+		}
+		return resource;
+	}
+	
 	public Trabajo buscandoTrabajoEntreMisParticipantesByName(String id)
 	{
 		Trabajo job = null;

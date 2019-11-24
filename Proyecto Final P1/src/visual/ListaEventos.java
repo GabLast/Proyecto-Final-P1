@@ -158,6 +158,14 @@ public class ListaEventos extends JDialog {
 				});
 				{
 					btnRecursosUtilizados = new JButton("Recursos utilizados");
+					btnRecursosUtilizados.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							Evento elEvento = Empresa.getInstance().searchEventoByID(id);
+							RecEvento window = new RecEvento(elEvento);
+							window.setModal(true);
+							window.setVisible(true);
+						}
+					});
 					btnRecursosUtilizados.setEnabled(false);
 					btnRecursosUtilizados.setActionCommand("OK");
 					buttonPane.add(btnRecursosUtilizados);

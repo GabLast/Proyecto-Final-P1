@@ -52,6 +52,6 @@ public class Recurso implements Serializable{
 
 	public void devolverRecursoTomado(int usado)
 	{
-		cantidad =+ usado;
+		cantidad += usado;
 	}
 }

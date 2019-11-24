@@ -220,4 +220,14 @@ public class Empresa implements Serializable{
 		return personas;
 	}
 	
+	public void retornoRecursosDesdeEvento(Recurso eventRec)
+	{
+		for(Recurso recs : recursos)
+		{
+			if(recs.getTipo().equalsIgnoreCase(eventRec.getTipo()))
+			{
+				recs.devolverRecursoTomado(eventRec.getCantUsadaEvento());
+			}
+		}
+	}
 }
