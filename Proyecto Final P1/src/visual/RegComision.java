@@ -475,7 +475,7 @@ public class RegComision extends JDialog {
 								{
 									JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
 								}
-								else if(trabajos.size() <= 0)
+								else if(trabajos.size() < 1)
 								{
 									JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
 								}
