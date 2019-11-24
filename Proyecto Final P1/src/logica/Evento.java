@@ -8,7 +8,6 @@ public class Evento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private static int genIDComision = 0;
-	private static int genIDRecursos = 0;
 	private ArrayList<Comision> misComisiones;
 	private ArrayList<Recurso> recursosUsados;
 	private ArrayList<Participante> participantes;
@@ -102,14 +101,6 @@ public class Evento implements Serializable{
 
 	public static void setGenIDComision(int genIDComision) {
 		Evento.genIDComision = genIDComision;
-	}
-
-	public static int getGenIDRecursos() {
-		return genIDRecursos;
-	}
-
-	public static void setGenIDRecursos(int genIDRecursos) {
-		Evento.genIDRecursos = genIDRecursos;
 	}
 
 	public String getTipo() {

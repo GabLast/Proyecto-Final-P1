@@ -75,10 +75,18 @@ public class RegistrarRecursos extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtNombre.getText().isEmpty())
 				{
-					Recurso nuevoRecurso = new Recurso(txtNombre.getText(), (Integer) spnCantidad.getValue());
-					Empresa.getInstance().insertarRecurso(nuevoRecurso);
-					JOptionPane.showMessageDialog(null, "Recurso Registrado satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
-					clean();
+					if(!Empresa.getInstance().verificarRecursoUnico(txtNombre.getText()))
+					{
+						Recurso nuevoRecurso = new Recurso(txtNombre.getText(), (Integer) spnCantidad.getValue());
+						Empresa.getInstance().insertarRecurso(nuevoRecurso);
+						JOptionPane.showMessageDialog(null, "Recurso Registrado satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+						clean();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Este tipo de recurso ya esta registrado.\nModifique su disponibilidad en el listado de recursos.", "Error", JOptionPane.WARNING_MESSAGE);
+					}
+					
 				}
 				else
 				{

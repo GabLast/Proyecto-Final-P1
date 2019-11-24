@@ -17,7 +17,6 @@ public class Empresa implements Serializable{
 	private ArrayList<Persona> personasRegistradas;
 	private ArrayList<Recurso> recursos;
 	private ArrayList<Evento> eventos;
-	//private ArrayList<Trabajo> trabajos;
 	private static int genIDEvento = 0;
 	
 	private  Empresa()
@@ -26,9 +25,7 @@ public class Empresa implements Serializable{
 		this.personasRegistradas = new ArrayList();
 		this.recursos = new ArrayList();
 		this.eventos = new ArrayList();
-		this.misUsers = new ArrayList();
-		//this.trabajos = new ArrayList();
-		
+		this.misUsers = new ArrayList();		
 	}
 	public static Empresa getInstance() 
 	{		
@@ -247,5 +244,36 @@ public class Empresa implements Serializable{
 				recs.devolverRecursoTomado(eventRec.getCantUsadaEvento());
 			}
 		}
+	}
+	
+	public void deleteEvento(Evento event) {
+
+		for(Recurso recs : recursos)
+		{
+			for(Recurso recEvento : event.getRecursosUsados())
+			{
+				if(recs.getTipo().equalsIgnoreCase(recEvento.getTipo()))
+				{
+					recs.devolverRecursoTomado(recEvento.getCantUsadaEvento());
+				}
+			}
+		}
+		eventos.remove(event);
+	}
+	
+	public boolean verificarRecursoUnico(String tipo)
+	{
+		boolean existe = false;
+		
+		for(Recurso recs : recursos)
+		{
+			if(recs.getTipo().equalsIgnoreCase(tipo))
+			{
+				existe = true;
+				return existe;
+			}
+		}
+		
+		return existe;
 	}
 }

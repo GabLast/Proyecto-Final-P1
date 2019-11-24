@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -38,6 +39,7 @@ public class ListaEventos extends JDialog {
 	JButton btnRecursosUtilizados;
 	JButton btnModifcar;
 	private JButton btnListarParticipantes;
+	private JButton btnEliminar;
 	/**
 	 * Launch the application.
 	 */
@@ -102,6 +104,7 @@ public class ListaEventos extends JDialog {
 								btnModifcar.setEnabled(true);
 								btnRecursosUtilizados.setEnabled(true);
 								btnListarParticipantes.setEnabled(true);
+								btnEliminar.setEnabled(true);
 								
 							}
 						}
@@ -131,6 +134,32 @@ public class ListaEventos extends JDialog {
 					btnModifcar = new JButton("Modificar");
 					buttonPane.add(btnModifcar);
 					btnModifcar.setEnabled(false);
+				}
+				{
+					btnEliminar = new JButton("Eliminar");
+					btnEliminar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(id != "")
+							{
+								Evento elEvento = Empresa.getInstance().searchEventoByID(id);
+								
+								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el evento: " 
+										   + elEvento.getNombre(), "Notificación",JOptionPane.WARNING_MESSAGE);
+								
+								if(option == JOptionPane.OK_OPTION && elEvento != null)
+								{
+									
+									Empresa.getInstance().deleteEvento(elEvento);
+									JOptionPane.showMessageDialog(null, "Evento eliminado satisfactoriamente"
+											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									ListaEventos.loadEventos();
+								}
+							}
+							
+						}
+					});
+					btnEliminar.setEnabled(false);
+					buttonPane.add(btnEliminar);
 				}
 				btnCrear.setActionCommand("OK");
 				buttonPane.add(btnCrear);

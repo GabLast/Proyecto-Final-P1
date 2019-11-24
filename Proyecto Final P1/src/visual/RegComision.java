@@ -55,6 +55,7 @@ public class RegComision extends JDialog {
 	
 	ArrayList<Jurado> jueces = new ArrayList();
 	ArrayList<Trabajo> trabajos = new ArrayList();
+	Evento eventoGL = null;
 	/**
 	 * Launch the application.
 	 */
@@ -74,6 +75,7 @@ public class RegComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegComision(Evento miEvento, boolean modificar, Comision aModificar) {
+		this.eventoGL = miEvento;
 		if(!modificar)
 			setTitle("Formando una comisi\u00F3n");
 		else
@@ -142,7 +144,7 @@ public class RegComision extends JDialog {
 						{
 							if(job.getArea().equalsIgnoreCase(cbxArea.getSelectedItem().toString()))
 							{
-								modelJobSelect.addElement(job.getTema());
+								modelJobDisp.addElement(job.getTema());
 							}
 						}
 						
@@ -336,7 +338,7 @@ public class RegComision extends JDialog {
 					//MOVIENDO IZQUIERDA A DERECHA
 					String string = (String) listTrabajosDisponibles.getSelectedValue();
 					
-					if(listJuecesDisponibles.getSelectedIndex() == -1)
+					if(listTrabajosDisponibles.getSelectedIndex() == -1)
 					{
 						JOptionPane.showMessageDialog(null, "Seleccione algún trabajo", "Notificación", JOptionPane.WARNING_MESSAGE);
 					}
@@ -522,7 +524,8 @@ public class RegComision extends JDialog {
 	}
 	
 	private void clean()
-	{		
+	{	
+		txtID.setText("COM"+eventoGL.getGenIDComision());
 		jueces = new ArrayList<>();
 		trabajos = new ArrayList<>();
 		modelJuecesDisp = new DefaultListModel();

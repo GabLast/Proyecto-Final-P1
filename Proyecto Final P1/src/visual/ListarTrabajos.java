@@ -124,7 +124,7 @@ public class ListarTrabajos extends JDialog {
 							Trabajo work= duenio.buscarTrabajoByName(id);
 							
 							//System.out.println(clienteModi.getCedula());
-							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar la cuenta: " 
+							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar el trabajo: " 
 									   + work.getId(),"Información",JOptionPane.WARNING_MESSAGE);
 							
 							if(option == JOptionPane.OK_OPTION && work != null)
