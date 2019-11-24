@@ -495,6 +495,7 @@ public class RegComision extends JDialog {
 									aModificar.setTrabajosParticipantes(trabajos);
 									aModificar.setArea(cbxArea.getSelectedItem().toString());
 									JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									dispose();
 									ListaComisiones.loadComision(miEvento.getMisComisiones());
 								}
 							}
@@ -526,6 +527,7 @@ public class RegComision extends JDialog {
 	private void clean()
 	{	
 		txtID.setText("COM"+eventoGL.getGenIDComision());
+		cbxArea.setSelectedIndex(0);
 		jueces = new ArrayList<>();
 		trabajos = new ArrayList<>();
 		modelJuecesDisp = new DefaultListModel();

@@ -61,7 +61,7 @@ public class ListaEventos extends JDialog {
 		setBounds(100, 100, 648, 407);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
-		dim.height *= .92;
+		dim.height *= .80;
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());

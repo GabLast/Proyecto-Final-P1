@@ -60,7 +60,7 @@ public class ListarPersonas extends JDialog {
 		setBounds(100, 100, 583, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
-		dim.height *= .92;
+		dim.height *= .80;
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());

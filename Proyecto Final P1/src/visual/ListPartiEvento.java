@@ -57,8 +57,8 @@ public class ListPartiEvento extends JDialog {
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
-		dim.height *= .92;
-		//super.setSize(dim.width, dim.height);
+		dim.height *= .70;
+		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

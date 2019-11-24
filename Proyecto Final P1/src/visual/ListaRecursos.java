@@ -56,7 +56,7 @@ public class ListaRecursos extends JDialog {
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
-		dim.height *= .92;
+		dim.height *= .80;
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		super.setSize(dim.width, dim.height);
