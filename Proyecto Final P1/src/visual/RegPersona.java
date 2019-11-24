@@ -362,7 +362,7 @@ public class RegPersona extends JDialog {
 				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancelar");
+				JButton cancelButton = new JButton("Salir");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

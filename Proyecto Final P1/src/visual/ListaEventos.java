@@ -35,6 +35,8 @@ public class ListaEventos extends JDialog {
 	String id = "";
 	private JButton btnCrear;
 	private JButton btnGestionarComisiones;
+	JButton btnRecursosUtilizados;
+	JButton btnModifcar;
 	/**
 	 * Launch the application.
 	 */
@@ -52,6 +54,7 @@ public class ListaEventos extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaEventos() {
+		setTitle("Lista de Eventos");
 		setBounds(100, 100, 648, 407);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
@@ -95,6 +98,8 @@ public class ListaEventos extends JDialog {
 								id = String.valueOf(table.getValueAt(index, 0));
 								btnCrear.setEnabled(true);
 								btnGestionarComisiones.setEnabled(true);
+								btnModifcar.setEnabled(true);
+								btnRecursosUtilizados.setEnabled(true);
 								
 							}
 						}
@@ -121,8 +126,9 @@ public class ListaEventos extends JDialog {
 					}
 				});
 				{
-					JButton btnModifcar = new JButton("Modifcar");
+					btnModifcar = new JButton("Modificar");
 					buttonPane.add(btnModifcar);
+					btnModifcar.setEnabled(false);
 				}
 				btnCrear.setActionCommand("OK");
 				buttonPane.add(btnCrear);
@@ -150,6 +156,12 @@ public class ListaEventos extends JDialog {
 						dispose();
 					}
 				});
+				{
+					btnRecursosUtilizados = new JButton("Recursos utilizados");
+					btnRecursosUtilizados.setEnabled(false);
+					btnRecursosUtilizados.setActionCommand("OK");
+					buttonPane.add(btnRecursosUtilizados);
+				}
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

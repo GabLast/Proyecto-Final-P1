@@ -57,7 +57,7 @@ public class RegistrarTrabajo extends JDialog {
 	{
 		this.duenioGlobal = duenio;
 		setTitle("Registrar trabajo");
-		setBounds(100, 100, 547, 446);
+		setBounds(100, 100, 418, 498);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,7 +66,7 @@ public class RegistrarTrabajo extends JDialog {
 		{
 			JPanel panelParticipante = new JPanel();
 			panelParticipante.setBorder(new TitledBorder(null, "Datos del autor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panelParticipante.setBounds(12, 13, 505, 126);
+			panelParticipante.setBounds(12, 13, 365, 126);
 			contentPanel.add(panelParticipante);
 			panelParticipante.setLayout(null);
 			{
@@ -101,49 +101,49 @@ public class RegistrarTrabajo extends JDialog {
 		
 		JPanel panelTrabajo = new JPanel();
 		panelTrabajo.setBorder(new TitledBorder(null, "Datos del trabajo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelTrabajo.setBounds(12, 152, 505, 212);
+		panelTrabajo.setBounds(12, 152, 365, 238);
 		contentPanel.add(panelTrabajo);
 		panelTrabajo.setLayout(null);
 		
 		JLabel lblCdigo = new JLabel("C\u00F3digo:");
 		lblCdigo.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblCdigo.setBounds(10, 20, 102, 43);
+		lblCdigo.setBounds(10, 15, 102, 43);
 		panelTrabajo.add(lblCdigo);
 		
 		txtIDTrabajo = new JTextField();
 		txtIDTrabajo.setEditable(false);
 		txtIDTrabajo.setText("TRAB"+duenio.getGenIdTrabajo());
-		txtIDTrabajo.setBounds(77, 31, 143, 20);
+		txtIDTrabajo.setBounds(96, 26, 261, 20);
 		panelTrabajo.add(txtIDTrabajo);
 		txtIDTrabajo.setColumns(10);
 		
 		JLabel lblNombre = new JLabel("Tema:");
 		lblNombre.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblNombre.setBounds(10, 83, 102, 43);
+		lblNombre.setBounds(10, 73, 102, 43);
 		panelTrabajo.add(lblNombre);
 		
 		txtTema = new JTextField();
-		txtTema.setBounds(77, 94, 143, 20);
+		txtTema.setBounds(96, 84, 261, 20);
 		panelTrabajo.add(txtTema);
 		txtTema.setColumns(10);
 		
 		JLabel lblrea = new JLabel("\u00C1rea:");
 		lblrea.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblrea.setBounds(10, 146, 59, 43);
+		lblrea.setBounds(10, 131, 59, 43);
 		panelTrabajo.add(lblrea);
 		
 		cbxArea = new JComboBox();
 		cbxArea.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-		cbxArea.setBounds(77, 157, 143, 20);
+		cbxArea.setBounds(96, 142, 261, 20);
 		panelTrabajo.add(cbxArea);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
 		lblDescripcin.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-		lblDescripcin.setBounds(232, 20, 102, 43);
+		lblDescripcin.setBounds(10, 189, 102, 31);
 		panelTrabajo.add(lblDescripcin);
 		
 		txtDescripcion = new JTextField();
-		txtDescripcion.setBounds(232, 55, 261, 122);
+		txtDescripcion.setBounds(96, 189, 261, 31);
 		panelTrabajo.add(txtDescripcion);
 		txtDescripcion.setColumns(10);
 		{
@@ -158,7 +158,7 @@ public class RegistrarTrabajo extends JDialog {
 								cbxArea.getSelectedIndex() < 1)
 						{
 							JOptionPane.showMessageDialog(null, "Llenar todas las casillas"
-									+ "y elegir un área de trabajo", "Error", JOptionPane.INFORMATION_MESSAGE);
+									+ " y elegir un área de trabajo", "Error", JOptionPane.INFORMATION_MESSAGE);
 						}
 						else
 						{
@@ -178,7 +178,7 @@ public class RegistrarTrabajo extends JDialog {
 				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Salir");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();

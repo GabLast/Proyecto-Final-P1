@@ -123,6 +123,22 @@ public class Login extends JFrame {
 		panel.add(lblClave);
 		
 		passwordField = new JPasswordField();
+		passwordField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(Empresa.getInstance().confirmLogin(txtUsuario.getText(),String.valueOf(passwordField.getPassword())))
+				{
+					Principal frame = new Principal();
+					dispose();
+					frame.setVisible(true);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "id: admin | clave: 123", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					
+				}
+			}
+		});
 		passwordField.setBounds(98, 74, 369, 29);
 		panel.add(passwordField);
 		btnLogIn.addActionListener(new ActionListener() {

@@ -7,6 +7,7 @@ public class Recurso implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String tipo; //Mesa, silla, proyector, microfono, bocina, laptop
 	private int cantidad;
+	private int cantUsadaEvento;
 	
 	public Recurso(String tipo, int cantidad) {
 		super();
@@ -25,6 +26,14 @@ public class Recurso implements Serializable{
 	}
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+	
+	public int getCantUsadaEvento() {
+		return cantUsadaEvento;
+	}
+
+	public void setCantUsadaEvento(int cantUsadaEvento) {
+		this.cantUsadaEvento = cantUsadaEvento;
 	}
 	
 	public boolean verificarDisponibilidad(int cantidadToUse)

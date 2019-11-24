@@ -65,7 +65,7 @@ public class RegistrarRecursos extends JDialog {
 		lblCantidad.setBounds(17, 77, 83, 17);
 		contentPanel.add(lblCantidad);
 		
-		JSpinner spnCantidad = new JSpinner();
+		spnCantidad = new JSpinner();
 		spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spnCantidad.setBounds(116, 74, 137, 23);
 		contentPanel.add(spnCantidad);
@@ -78,6 +78,7 @@ public class RegistrarRecursos extends JDialog {
 					Recurso nuevoRecurso = new Recurso(txtNombre.getText(), (Integer) spnCantidad.getValue());
 					Empresa.getInstance().insertarRecurso(nuevoRecurso);
 					JOptionPane.showMessageDialog(null, "Recurso Registrado satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+					clean();
 				}
 				else
 				{
@@ -96,5 +97,11 @@ public class RegistrarRecursos extends JDialog {
 		});
 		btnSalir.setBounds(164, 120, 89, 23);
 		contentPanel.add(btnSalir);
+	}
+	
+	public void clean()
+	{
+		txtNombre.setText("");
+		spnCantidad.setValue(1);
 	}
 }

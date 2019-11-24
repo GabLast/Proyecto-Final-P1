@@ -191,6 +191,7 @@ public class CreandoEvento extends JDialog {
 					}
 				}
 				{
+					modelPartiElegidos = new DefaultListModel();
 					btnDerechaParti = new JButton(">");
 					btnDerechaParti.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -301,24 +302,30 @@ public class CreandoEvento extends JDialog {
 						{
 							string = cbxRecurso.getSelectedItem().toString();
 							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
-							
+							System.out.println(buscando.getCantidad());
+							System.out.println(buscando.getCantUsadaEvento());
 							if(cbxRecurso.getSelectedIndex() < 0)
 							{
 								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
 							}
-							else if(!buscando.verificarDisponibilidad((Integer) spnCantidad.getValue()))
+							else if( buscando.getCantidad() < (Integer) spnCantidad.getValue())
 							{
-								JOptionPane.showMessageDialog(null, "No hay suficientes "+ buscando.getTipo()+ " disponibles", "Notificación", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "No hay suficientes ["  + buscando.getTipo()+ "] disponibles", "Notificación", JOptionPane.WARNING_MESSAGE);
+							}
+							else if(buscandoEstaEnLaLista(buscando))
+							{
+								JOptionPane.showMessageDialog(null, "Remueva ["+ buscando.getTipo()+ "] de la lista y añádalo nuevamente para alterar la cantidad a usar", "Notificación", JOptionPane.WARNING_MESSAGE);
 							}
 							else
 							{
 								//agregar valor a la lista derecha
 								
 								valorRecurso = (Integer) spnCantidad.getValue();
+								buscando.setCantUsadaEvento(valorRecurso);
 								modelRecElegidos.addElement(string);
 								listRecursosElegidos.setModel(modelRecElegidos);
 								
-								buscando.verificarDisponibilidad((Integer) spnCantidad.getValue());
+								buscando.verificarDisponibilidad(valorRecurso);
 								recursos.add(buscando);
 								
 								cbxModel = new DefaultComboBoxModel(); 
@@ -327,9 +334,15 @@ public class CreandoEvento extends JDialog {
 									cbxModel.addElement(recurso.getTipo());
 								}
 								cbxRecurso.setModel(cbxModel);
+								
+								spnCantidad.setValue(0);
+								txtCant.setText("");
+								
 									
 							}
 						}
+
+						
 					});
 					btnAgregarRec.setBounds(274, 71, 99, 31);
 					panelRecursos.add(btnAgregarRec);
@@ -341,6 +354,8 @@ public class CreandoEvento extends JDialog {
 							
 							String string = (String) listRecursosElegidos.getSelectedValue();
 							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
+							System.out.println(buscando.getCantidad());
+							System.out.println(buscando.getCantUsadaEvento());
 						
 							if(listRecursosElegidos.getSelectedIndex() == -1)
 							{
@@ -349,6 +364,7 @@ public class CreandoEvento extends JDialog {
 							else
 							{
 								int value = listRecursosElegidos.getSelectedIndex();
+								buscando.devolverRecursoTomado(buscando.getCantUsadaEvento());
 								
 								cbxModel = new DefaultComboBoxModel(); 
 								for(Recurso recurso : Empresa.getInstance().getRecursos())
@@ -358,6 +374,9 @@ public class CreandoEvento extends JDialog {
 								cbxRecurso.setModel(cbxModel);
 								
 								recursos.remove(buscando);
+								System.out.println(buscando.getCantidad());
+								System.out.println(buscando.getCantidad());
+								System.out.println(buscando.getCantUsadaEvento());
 								
 								//removiendo valor de la lista
 								if(modelRecElegidos.getSize() != 0)
@@ -366,6 +385,9 @@ public class CreandoEvento extends JDialog {
 								}
 								
 								listRecursosElegidos.setModel(modelRecElegidos);
+								
+								spnCantidad.setValue(0);
+								txtCant.setText("");
 							}
 						}
 					});
@@ -461,5 +483,21 @@ public class CreandoEvento extends JDialog {
 		listPartiElegidos.setModel(modelPartiElegidos);
 		listRecursosElegidos.setModel(modelRecElegidos);
 		
+	}
+	
+	private boolean buscandoEstaEnLaLista(Recurso buscando) 
+	{
+		boolean yaEsta = false;
+		
+		for(Recurso rec : recursos)
+		{
+			if(rec.getTipo().equalsIgnoreCase(buscando.getTipo()))
+			{
+				yaEsta = true;
+				return yaEsta;
+			}
+		}
+		
+		return yaEsta;
 	}
 }

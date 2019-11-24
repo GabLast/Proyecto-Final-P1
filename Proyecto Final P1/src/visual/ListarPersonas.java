@@ -98,8 +98,17 @@ public class ListarPersonas extends JDialog {
 							if(table.getSelectedRow()>-1){
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
-								btnLista.setEnabled(true);
-								btnAgregar.setEnabled(true);
+								Persona duenio = Empresa.getInstance().searchPersonabyCedula(id);
+								if(duenio instanceof Participante)
+								{
+									btnAgregar.setEnabled(true);
+									btnLista.setEnabled(true);
+								}
+								else
+								{
+									btnAgregar.setEnabled(false);
+									btnLista.setEnabled(false);
+								}
 								btnModificar.setEnabled(true);
 								
 							}
@@ -121,22 +130,6 @@ public class ListarPersonas extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
 						RegistrarTrabajo window = new RegistrarTrabajo(duenio);
-						window.setModal(true);
-						window.setVisible(true);
-						
-					}
-				});
-				btnAgregar.setActionCommand("OK");
-				btnAgregar.setEnabled(false);
-				buttonPane.add(btnAgregar);
-				getRootPane().setDefaultButton(btnAgregar);
-			}
-			{
-				btnLista = new JButton("Listar trabajos");
-				btnLista.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
-						ListarTrabajos window = new ListarTrabajos(duenio);
 						window.setModal(true);
 						window.setVisible(true);
 						
@@ -167,12 +160,28 @@ public class ListarPersonas extends JDialog {
 					btnModificar.setActionCommand("OK");
 					buttonPane.add(btnModificar);
 				}
+				btnAgregar.setActionCommand("OK");
+				btnAgregar.setEnabled(false);
+				buttonPane.add(btnAgregar);
+				getRootPane().setDefaultButton(btnAgregar);
+			}
+			{
+				btnLista = new JButton("Listar trabajos");
+				btnLista.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
+						ListarTrabajos window = new ListarTrabajos(duenio);
+						window.setModal(true);
+						window.setVisible(true);
+						
+					}
+				});
 				btnLista.setActionCommand("OK");
 				btnLista.setEnabled(false);
 				buttonPane.add(btnLista);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("Salir");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
