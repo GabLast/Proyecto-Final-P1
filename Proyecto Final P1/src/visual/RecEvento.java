@@ -55,8 +55,8 @@ public class RecEvento extends JDialog {
 		setTitle("Recursos del evento" + evento.getNombre());
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
-		dim.width *= .70;
-		dim.height *= .80;
+		dim.width *= .40;
+		dim.height *= .40;
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
