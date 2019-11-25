@@ -117,8 +117,8 @@ public class ListaRecursos extends JDialog {
 					}
 				});
 				{
-					JButton btnNewButton = new JButton("Modificar");
-					btnNewButton.addActionListener(new ActionListener() {
+					btnModificar = new JButton("Modificar");
+					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
 							if (Tipo != "") {
@@ -153,7 +153,7 @@ public class ListaRecursos extends JDialog {
 						});
 						buttonPane.add(btnEliminar);
 					}
-					buttonPane.add(btnNewButton);
+					buttonPane.add(btnModificar);
 				}
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
