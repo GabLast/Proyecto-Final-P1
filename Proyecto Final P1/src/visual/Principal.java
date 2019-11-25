@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Color;
+import java.awt.Insets;
 
 public class Principal extends JFrame {
 
@@ -79,6 +81,8 @@ public class Principal extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setForeground(Color.BLACK);
+		menuBar.setBackground(Color.WHITE);
 		setJMenuBar(menuBar);
 		
 		JMenu mnGestinDeEventos = new JMenu("Gesti\u00F3n de Eventos");
