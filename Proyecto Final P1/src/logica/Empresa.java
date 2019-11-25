@@ -311,37 +311,37 @@ public class Empresa implements Serializable{
 		return comi;
 	}
 
-	
-	
-public void deleteComision(Comision comi) {
+
+
+	public void deleteComision(Comision comi) {
 		comisiones.remove(comi);
 	}
-	
-
-
-public void deleteRecurso(Recurso rec) {
-           recursos.remove(rec);
-}
 
 
 
-	
-public void deletePersona(Persona persona) {
-	personasRegistradas.remove(persona);
-}
-
-
-public boolean verificarCedulaUnica (String id) {
-	boolean existe = false;
-	
-	for (Persona aux : personasRegistradas ) {
-		if (aux.getCedula().equalsIgnoreCase(id)) {
-			existe = true;
-			return existe;
-		}
+	public void deleteRecurso(Recurso rec) {
+		recursos.remove(rec);
 	}
-	return existe;
-}
+
+
+
+
+	public void deletePersona(Persona persona) {
+		personasRegistradas.remove(persona);
+	}
+
+
+	public boolean verificarCedulaUnica (String id) {
+		boolean existe = false;
+
+		for (Persona aux : personasRegistradas ) {
+			if (aux.getCedula().equalsIgnoreCase(id)) {
+				existe = true;
+				return existe;
+			}
+		}
+		return existe;
+	}
 
 
 
