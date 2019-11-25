@@ -12,6 +12,7 @@ import javax.swing.border.TitledBorder;
 import logica.Empresa;
 import logica.Jurado;
 import logica.Participante;
+import logica.Persona;
 
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
@@ -273,12 +274,13 @@ public class RegPersona extends JDialog {
 				JButton btnRegistrar = new JButton("Registrar");
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						if(rdbtnParticipante.isSelected())
 						{
 							if(txtCedulaParti.getText().isEmpty() || txtNombreParti.getText().isEmpty()
 									|| txtDireParti.getText().isEmpty() || txtTeleParti.getText().isEmpty()
 									|| !(rdnbtnFemParti.isSelected() || rdbtnMascParti.isSelected()) 
-									&& cbxGradoParti.getSelectedIndex() < 1)
+									&& cbxGradoParti.getSelectedIndex() < 1 )
 							{
 								JOptionPane.showMessageDialog(null, "Llene las casillas apropiadamente"
 										, "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -288,17 +290,30 @@ public class RegPersona extends JDialog {
 							{
 								if(rdbtnMascParti.isSelected())
 								{
-									Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
-											txtNombreParti.getText(), txtTeleParti.getText(), 
-											txtDireParti.getText(), "Masculino", 
-											cbxGradoParti.getSelectedItem().toString());
-									Empresa.getInstance().insertarPersona(nuevoParti);
+					
+									
+									if (Empresa.getInstance().verificarCedulaUnica(txtCedulaParti.getText())) {
+										JOptionPane.showMessageDialog(null, "Esta cédula ha sido registrada anteriormente", "Notificación", JOptionPane.WARNING_MESSAGE);
+										
+									}
+									else {
+										Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
+												txtNombreParti.getText(), txtTeleParti.getText(), 
+												txtDireParti.getText(), "Masculino", 
+												cbxGradoParti.getSelectedItem().toString());
+										Empresa.getInstance().insertarPersona(nuevoParti);
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									clean();
+								
+									}
 								}
 								else if(rdnbtnFemParti.isSelected())
 								{
+									if (Empresa.getInstance().verificarCedulaUnica(txtCedulaParti.getText())) {
+										JOptionPane.showMessageDialog(null, "Esta cédula ha sido registrada anteriormente", "Notificación", JOptionPane.WARNING_MESSAGE);
+									}
+									else {
 									Participante nuevoParti = new Participante(txtCedulaParti.getText(), 
 											txtNombreParti.getText(), txtTeleParti.getText(), 
 											txtDireParti.getText(), ""
@@ -307,7 +322,9 @@ public class RegPersona extends JDialog {
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									clean();
+									}
 								}
+							
 								else
 									JOptionPane.showMessageDialog(null, "Seleccione su género"
 											, "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -329,6 +346,10 @@ public class RegPersona extends JDialog {
 							{
 								if(rdbtnMasculin.isSelected())
 								{
+									if (Empresa.getInstance().verificarCedulaUnica(txtCedula.getText())) {
+										JOptionPane.showMessageDialog(null, "Esta cédula ha sido registrada anteriormente", "Notificación", JOptionPane.WARNING_MESSAGE);
+									}
+									else {
 									Jurado nuevoJuez = new Jurado(txtCedula.getText(), txtNombre.getText(), 
 											txtTelefono.getText(), txtDireccion.getText(), 
 											"Masculino", cbxGrado.getSelectedItem().toString(), 
@@ -338,9 +359,14 @@ public class RegPersona extends JDialog {
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									clean();
+									}
 								}
 								else if(rdbtnFemenino.isSelected())
 								{
+									if (Empresa.getInstance().verificarCedulaUnica(txtCedula.getText())) {
+										JOptionPane.showMessageDialog(null, "Esta cédula ha sido registrada anteriormente", "Notificación", JOptionPane.WARNING_MESSAGE);
+									}
+									else {
 									Jurado nuevoJuez = new Jurado(txtCedula.getText(), txtNombre.getText(), 
 											txtTelefono.getText(), txtDireccion.getText(), 
 											"Femenino", cbxGrado.getSelectedItem().toString(), 
@@ -349,6 +375,7 @@ public class RegPersona extends JDialog {
 									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									clean();
+									}
 								}
 								else
 									JOptionPane.showMessageDialog(null, "Seleccione su género"
