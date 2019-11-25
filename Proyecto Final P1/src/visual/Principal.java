@@ -82,12 +82,11 @@ public class Principal extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnGestinDeEventos = new JMenu("Gesti\u00F3n de Eventos");
-		mnGestinDeEventos.setIcon(new ImageIcon(Principal.class.getResource("/imagen/Eventos.png")));
+		mnGestinDeEventos.setIcon(new ImageIcon(Principal.class.getResource("/imagen/evento.png")));
 		mnGestinDeEventos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestinDeEventos);
 		
 		JMenuItem mntmRegistrarEvento = new JMenuItem("Registrar evento");
-		mntmRegistrarEvento.setIcon(new ImageIcon(Principal.class.getResource("/imagen/agregarevento.png")));
 		mntmRegistrarEvento.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,10 +96,10 @@ public class Principal extends JFrame {
 			}
 		});
 		mnGestinDeEventos.add(mntmRegistrarEvento);
-		mntmRegistrarEvento.setIcon(new ImageIcon(Principal.class.getResource("/imagen/agregarevento.png")));
+		mntmRegistrarEvento.setIcon(new ImageIcon(Principal.class.getResource("/imagen/add.png")));
 
 		JMenuItem mntmListarEventos = new JMenuItem("Listar eventos");
-		mntmListarEventos.setIcon(new ImageIcon(Principal.class.getResource("/imagen/eventorealizado.png")));
+		mntmListarEventos.setIcon(new ImageIcon(Principal.class.getResource("/imagen/listaeventos.png")));
 		mntmListarEventos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmListarEventos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
