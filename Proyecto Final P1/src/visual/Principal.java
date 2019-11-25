@@ -116,6 +116,7 @@ public class Principal extends JFrame {
 		menuBar.add(mnGestionDePersonal);
 		
 		JMenuItem mntmRegistrarPersona = new JMenuItem("Registrar persona");
+		mntmRegistrarPersona.setIcon(new ImageIcon(Principal.class.getResource("/Imagen/addPerson.png")));
 		mntmRegistrarPersona.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarPersona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -127,6 +128,7 @@ public class Principal extends JFrame {
 		mnGestionDePersonal.add(mntmRegistrarPersona);
 		
 		JMenuItem mntmListarPersonal = new JMenuItem("Listar personal");
+		mntmListarPersonal.setIcon(new ImageIcon(Principal.class.getResource("/Imagen/listPerson.png")));
 		mntmListarPersonal.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmListarPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
