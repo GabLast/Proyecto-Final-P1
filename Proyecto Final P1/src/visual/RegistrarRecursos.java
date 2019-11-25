@@ -45,7 +45,7 @@ public class RegistrarRecursos extends JDialog {
 	 */
 	public RegistrarRecursos() {
 		setTitle("Registrar recursos");
-		setBounds(100, 100, 285, 197);
+		setBounds(100, 100, 501, 213);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Informaci\u00F3n del recurso", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -54,24 +54,24 @@ public class RegistrarRecursos extends JDialog {
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
 		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
-		lblNewLabel.setBounds(17, 32, 83, 17);
+		lblNewLabel.setBounds(191, 36, 83, 17);
 		contentPanel.add(lblNewLabel);
 		
 		txtNombre = new JTextField();
 		txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 		txtNombre.setText("");
-		txtNombre.setBounds(116, 30, 137, 20);
+		txtNombre.setBounds(295, 34, 137, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
 		lblCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
-		lblCantidad.setBounds(17, 77, 83, 17);
+		lblCantidad.setBounds(191, 77, 83, 17);
 		contentPanel.add(lblCantidad);
 		
 		spnCantidad = new JSpinner();
 		spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spnCantidad.setBounds(116, 74, 137, 23);
+		spnCantidad.setBounds(295, 75, 137, 23);
 		contentPanel.add(spnCantidad);
 		
 		JButton btnRegistrar = new JButton("Registrar");
@@ -99,7 +99,7 @@ public class RegistrarRecursos extends JDialog {
 				}
 			}
 		});
-		btnRegistrar.setBounds(17, 120, 119, 23);
+		btnRegistrar.setBounds(260, 140, 119, 23);
 		contentPanel.add(btnRegistrar);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -109,8 +109,12 @@ public class RegistrarRecursos extends JDialog {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(164, 120, 89, 23);
+		btnSalir.setBounds(386, 140, 89, 23);
 		contentPanel.add(btnSalir);
+		
+		JLabel lblFoto = new JLabel("");
+		lblFoto.setBounds(47, 38, 46, 14);
+		contentPanel.add(lblFoto);
 	}
 	
 	public void clean()

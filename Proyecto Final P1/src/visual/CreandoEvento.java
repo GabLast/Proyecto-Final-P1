@@ -34,6 +34,7 @@ import javax.swing.SpinnerNumberModel;
 import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.Scrollbar;
 
 public class CreandoEvento extends JDialog {
 
@@ -97,16 +98,18 @@ public class CreandoEvento extends JDialog {
 			recBackUp = modiEvento.getRecursosUsados();
 			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
 		}
-		setBounds(100, 100, 769, 947);
+		setBounds(100, 100, 772, 887);
 		setLocationRelativeTo(null);
-		getContentPane().setLayout(new BorderLayout());
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 756, 716);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		getContentPane().add(contentPanel);
+		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
+			panel.setBounds(5, 5, 746, 706);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del Evento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			contentPanel.add(panel, BorderLayout.CENTER);
+			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
 				JPanel panel_1 = new JPanel();
@@ -458,8 +461,9 @@ public class CreandoEvento extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBounds(0, 716, 756, 33);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			getContentPane().add(buttonPane);
 			{
 				btnCrear = new JButton("Crear");
 				btnCrear.setFont(new Font("Roboto", Font.PLAIN, 12));
