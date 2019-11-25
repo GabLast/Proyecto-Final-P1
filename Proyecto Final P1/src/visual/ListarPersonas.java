@@ -27,6 +27,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class ListarPersonas extends JDialog {
 
@@ -59,6 +60,7 @@ public class ListarPersonas extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarPersonas() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarPersonas.class.getResource("/Imagen/listPerson.png")));
 		setTitle("Lista de personas registradas");
 		setBounds(100, 100, 583, 300);
 		dim = super.getToolkit().getScreenSize();

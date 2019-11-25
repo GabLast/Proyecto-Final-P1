@@ -4,10 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ColorUIResource;
 
 import logica.Empresa;
 
@@ -36,9 +41,15 @@ public class Principal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		//UIDefaults uiDefaults = UIManager.getDefaults();
+		//UIManager.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.white));
+		//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.red, 4));
+		//JFrame.setDefaultLookAndFeelDecorated(true);
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+				
 					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -80,6 +91,8 @@ public class Principal extends JFrame {
 		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		
+		
+		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setForeground(Color.BLACK);
 		menuBar.setBackground(Color.WHITE);
@@ -115,7 +128,7 @@ public class Principal extends JFrame {
 		mnGestinDeEventos.add(mntmListarEventos);
 		
 		JMenu mnGestionDePersonal = new JMenu("Gesti\u00F3n del personal");
-		mnGestionDePersonal.setIcon(new ImageIcon(Login.class.getResource("/Imagen/client.png")));
+		mnGestionDePersonal.setIcon(new ImageIcon(Login.class.getResource("/Imagen/Person.png")));
 		mnGestionDePersonal.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestionDePersonal);
 		

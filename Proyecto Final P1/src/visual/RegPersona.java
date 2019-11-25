@@ -23,6 +23,8 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.UIManager;
 import java.awt.Color;
 
@@ -66,6 +68,7 @@ public class RegPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPersona() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegPersona.class.getResource("/Imagen/addPerson.png")));
 		setTitle("Registrar Persona");
 		setBounds(100, 100, 446, 543);
 		setLocationRelativeTo(null);
