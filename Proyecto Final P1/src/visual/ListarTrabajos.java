@@ -37,6 +37,7 @@ public class ListarTrabajos extends JDialog {
 	String id = "";
 
 	JButton btnModificar;
+	JButton btnEliminar;
 	/**
 	 * Launch the application.
 	 */
@@ -98,7 +99,7 @@ public class ListarTrabajos extends JDialog {
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
 								btnModificar.setEnabled(true);
-								
+								btnEliminar.setEnabled(true);
 								
 							}
 						}
@@ -140,7 +141,7 @@ public class ListarTrabajos extends JDialog {
 					}
 					});
 				{
-					JButton btnEliminar = new JButton("Eliminar");
+					btnEliminar = new JButton("Eliminar");
 					btnEliminar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
@@ -161,7 +162,7 @@ public class ListarTrabajos extends JDialog {
 							}
 						}
 					});
-					btnEliminar.setEnabled(true);
+					btnEliminar.setEnabled(false);
 					buttonPane.add(btnEliminar);
 				}
 				

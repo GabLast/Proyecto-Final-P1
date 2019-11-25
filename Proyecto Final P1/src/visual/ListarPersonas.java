@@ -112,7 +112,7 @@ public class ListarPersonas extends JDialog {
 									btnLista.setEnabled(false);
 								}
 								btnModificar.setEnabled(true);
-								
+								btnEliminar.setEnabled(true);
 							}
 						}
 					});
@@ -181,6 +181,7 @@ public class ListarPersonas extends JDialog {
 							}
 						});
 						buttonPane.add(btnEliminar);
+						btnEliminar.setEnabled(false);
 					}
 					btnModificar.setEnabled(false);
 					btnModificar.setActionCommand("OK");

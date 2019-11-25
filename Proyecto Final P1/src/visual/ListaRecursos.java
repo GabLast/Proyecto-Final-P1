@@ -34,7 +34,8 @@ public class ListaRecursos extends JDialog {
 	private Dimension dim;
 	private static JTable table;
 	private String Tipo = "";
-	private JButton btnModificar ;
+	private JButton btnModificar;
+	JButton btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -94,6 +95,7 @@ public class ListaRecursos extends JDialog {
 								int index = table.getSelectedRow();
 								Tipo = String.valueOf(table.getValueAt(index, 0));
 								btnModificar.setEnabled(true);
+								btnEliminar.setEnabled(true);
 						}
 					}
 					});
@@ -130,7 +132,7 @@ public class ListaRecursos extends JDialog {
 						}
 					});
 					{
-						JButton btnEliminar = new JButton("Eliminar");
+						btnEliminar = new JButton("Eliminar");
 						btnEliminar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								if(Tipo != "")
@@ -152,6 +154,7 @@ public class ListaRecursos extends JDialog {
 							}
 						});
 						buttonPane.add(btnEliminar);
+						btnEliminar.setEnabled(false);
 					}
 					buttonPane.add(btnModificar);
 				}
