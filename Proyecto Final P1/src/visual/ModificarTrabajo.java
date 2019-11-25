@@ -105,7 +105,7 @@ public class ModificarTrabajo extends JDialog {
 				txtTema.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				txtTema.setColumns(10);
 				txtTema.setBounds(107, 84, 244, 29);
-				txtTema.setText(miTrabajo.getNombreTrabajo());
+				txtTema.setText(miTrabajo.getTema());
 				panel.add(txtTema);
 			}
 			{
@@ -139,7 +139,7 @@ public class ModificarTrabajo extends JDialog {
 							txtID.setText(txtID.getText());
 							
 							miTrabajo.setId(txtID.getText());
-							miTrabajo.setNombreTrabajo(txtTema.getText());
+							miTrabajo.setTema(txtTema.getText());
 							miTrabajo.setDescripcion(txtDescripcion.getText());
 							miTrabajo.setArea(comboBox.getSelectedItem().toString());
 

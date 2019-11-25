@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -122,6 +123,33 @@ public class ListaComisiones extends JDialog {
 						comi.setVisible(true);
 					}
 				});
+				{
+					JButton btnEliminar = new JButton("Eliminar");
+					btnEliminar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(id != "")
+							{
+								Comision laComision = Empresa.getInstance().searchComisionByID(id);
+								
+								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el comision: " 
+										   + laComision.getId(), "Notificación",JOptionPane.WARNING_MESSAGE);
+								
+								if(option == JOptionPane.OK_OPTION && laComision != null)
+								{
+									
+									Empresa.getInstance().deleteComision(laComision);
+									JOptionPane.showMessageDialog(null, "Comision eliminado satisfactoriamente"
+											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									ListaComisiones.loadComision(null);
+								}
+							}
+							
+						}
+						
+					});
+					btnEliminar.setEnabled(false);
+					buttonPane.add(btnEliminar);
+				}
 				btnModificar.setActionCommand("OK");
 				buttonPane.add(btnModificar);
 				getRootPane().setDefaultButton(btnModificar);

@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -128,6 +129,30 @@ public class ListaRecursos extends JDialog {
 						}
 						}
 					});
+					{
+						JButton btnEliminar = new JButton("Eliminar");
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								if(Tipo != "")
+								{
+									Recurso losrecursos = Empresa.getInstance().searchRecursoByTipo(Tipo);
+									
+									int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el recurso: " 
+											   + losrecursos.getTipo(), "Notificación",JOptionPane.WARNING_MESSAGE);
+									
+									if(option == JOptionPane.OK_OPTION && losrecursos != null)
+									{
+										
+										Empresa.getInstance().deleteRecurso(losrecursos);
+										JOptionPane.showMessageDialog(null, "Recurso eliminado satisfactoriamente"
+												, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+										ListaRecursos.loadRecursos();
+									}
+								}
+							}
+						});
+						buttonPane.add(btnEliminar);
+					}
 					buttonPane.add(btnNewButton);
 				}
 				cancelButton.setActionCommand("Cancel");

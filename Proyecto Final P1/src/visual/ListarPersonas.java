@@ -19,6 +19,7 @@ import logica.Evento;
 import logica.Jurado;
 import logica.Participante;
 import logica.Persona;
+import logica.Recurso;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -39,6 +40,7 @@ public class ListarPersonas extends JDialog {
 	JButton btnLista;
 	JButton btnAgregar;
 	JButton btnModificar;
+	private JButton btnEliminar;
 	/**
 	 * Launch the application.
 	 */
@@ -156,6 +158,30 @@ public class ListarPersonas extends JDialog {
 							}
 						}
 					});
+					{
+						btnEliminar = new JButton("Eliminar");
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								if(id != "")
+								{
+									Persona elParticipante = Empresa.getInstance().searchPersonabyCedula(id);
+									
+									int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar a: " 
+											   + elParticipante.getCedula(), "Notificación",JOptionPane.WARNING_MESSAGE);
+									
+									if(option == JOptionPane.OK_OPTION && elParticipante != null)
+									{
+										
+										Empresa.getInstance().deletePersona(elParticipante);
+										JOptionPane.showMessageDialog(null, "Ha sido eliminado satisfactoriamente"
+												, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+										ListarPersonas.loadPersonas();
+									}
+								}
+							}
+						});
+						buttonPane.add(btnEliminar);
+					}
 					btnModificar.setEnabled(false);
 					btnModificar.setActionCommand("OK");
 					buttonPane.add(btnModificar);

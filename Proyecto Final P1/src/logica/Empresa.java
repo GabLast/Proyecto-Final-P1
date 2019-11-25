@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class Empresa implements Serializable{
@@ -17,6 +18,7 @@ public class Empresa implements Serializable{
 	private ArrayList<Persona> personasRegistradas;
 	private ArrayList<Recurso> recursos;
 	private ArrayList<Evento> eventos;
+	private ArrayList<Comision> comisiones;
 	private static int genIDEvento = 0;
 	
 	private  Empresa()
@@ -296,4 +298,35 @@ public class Empresa implements Serializable{
 		
 		return existe;
 	}
+	
+	public Comision searchComisionByID (String id) {
+		Comision comi = null;
+		
+		for (Comision aux : comisiones) {
+			if (aux.getId().equalsIgnoreCase(id)) {
+				comi = aux;
+				
+			}
+		}
+		return comi;
+	}
+
+	
+	
+public void deleteComision(Comision comi) {
+		comisiones.remove(comi);
+	}
+	
+
+
+public void deleteRecurso(Recurso rec) {
+           recursos.remove(rec);
+}
+
+
+
+	
+public void deletePersona(Persona persona) {
+	personasRegistradas.remove(persona);
+}
 }
