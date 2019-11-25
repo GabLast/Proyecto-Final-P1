@@ -139,10 +139,12 @@ public class Principal extends JFrame {
 		mnGestionDePersonal.add(mntmListarPersonal);
 		
 		JMenu mnGestinDeRecursos = new JMenu("Gesti\u00F3n de Recursos");
+		mnGestinDeRecursos.setIcon(new ImageIcon(Principal.class.getResource("/imagen/recursos.png")));
 		mnGestinDeRecursos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestinDeRecursos);
 		
 		JMenuItem mntmRegistrarRecurso = new JMenuItem("Registrar recurso");
+		mntmRegistrarRecurso.setIcon(new ImageIcon(Principal.class.getResource("/imagen/agregarrecurso.png")));
 		mntmRegistrarRecurso.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarRecurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -154,6 +156,7 @@ public class Principal extends JFrame {
 		mnGestinDeRecursos.add(mntmRegistrarRecurso);
 		
 		JMenuItem mntmListarRecursos = new JMenuItem("Listar recursos");
+		mntmListarRecursos.setIcon(new ImageIcon(Principal.class.getResource("/imagen/redlist.png")));
 		mntmListarRecursos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmListarRecursos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
