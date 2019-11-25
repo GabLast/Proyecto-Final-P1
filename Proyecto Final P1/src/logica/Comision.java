@@ -90,4 +90,48 @@ public class Comision implements Serializable{
 		return hayPresidente;
 	}
 
+	public void deleteJuez(Jurado juez) {
+
+		if(juez.isPresidente())
+		{
+			miJurado.get(1).setPresidente(true);
+			presidente = miJurado.get(1);
+		}
+		miJurado.remove(juez);
+	}
+	
+	public Jurado buscarJuezBYID(String id) {
+		Jurado persona = null;
+		
+		for (Jurado aux : miJurado) {
+			if (aux.getCedula().equalsIgnoreCase(id)) 
+			{
+					persona = aux;
+					return persona;
+			}
+		}
+		return persona;
+		
+	}
+	
+	public Trabajo buscarTrabajoByName(String name) 
+	{
+		Trabajo job = null;
+		
+		for (Trabajo aux : trabajosParticipantes) 
+		{
+			if (aux.getTema().equalsIgnoreCase(name)) 
+			{
+				job = aux;
+				return job;
+			}
+		}
+		return job;
+		
+	}
+	
+	public void deleteTrabajo(Trabajo job) {
+
+		trabajosParticipantes.remove(job);
+	}
 }

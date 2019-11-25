@@ -3,46 +3,45 @@ package visual;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import logica.Comision;
 import logica.Empresa;
 import logica.Evento;
-
+import logica.Jurado;
+import logica.Participante;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
 
-public class ListaComisiones extends JDialog {
+public class ListarMiembrosComi extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private static JTable table;
 	private static Object[] row;
 	private static DefaultTableModel model;
 	private Dimension dim;
+	JButton btnEliminar;
 	String id = "";
-	JButton btnModificar;
-	JButton btnListarTrabajos;
-	JButton btnListarMiembros;
+
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			Evento miEvento = null;
-			ListaComisiones dialog = new ListaComisiones(miEvento);
+			Comision comi = null;
+			ListarMiembrosComi dialog = new ListarMiembrosComi(comi);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -53,21 +52,20 @@ public class ListaComisiones extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListaComisiones(Evento miEvento) {
-		setTitle("Comisiones");
+	public ListarMiembrosComi(Comision comi) {
+		setTitle("Lista de miembros");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;
 		dim.height *= .80;
 		super.setSize(dim.width, dim.height);
-		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Listado de comisiones", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(null, "Listado de integrantes de la comisi\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
 			{
@@ -83,12 +81,12 @@ public class ListaComisiones extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Área", "Presidente", "Fecha de creación", "Cantidad de trabajos"};
+					String[] header = {"Cédula", "Nombre", "Función en la comisión","Teléfono", "Dirección", "Sexo", "Grado Académico"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
 					
-					loadComision(miEvento.getMisComisiones());
+					loadPersonas(comi);
 					
 					table.addMouseListener(new MouseAdapter() {
 						@Override
@@ -96,7 +94,8 @@ public class ListaComisiones extends JDialog {
 							if(table.getSelectedRow()>-1){
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
-								btnModificar.setEnabled(true);
+								btnEliminar.setEnabled(true);
+								
 								
 							}
 						}
@@ -112,77 +111,70 @@ public class ListaComisiones extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnModificar = new JButton("Modificar");
-				btnModificar.setEnabled(false);
-				btnModificar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						Comision comiModificar = miEvento.buscarComisionByID(id);
-						RegComision comi = new RegComision(miEvento, true, comiModificar);
-						comi.setModal(true);
-						comi.setVisible(true);
+				btnEliminar = new JButton("Eliminar");
+				btnEliminar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						if(id != "")
+						{
+							Jurado juez = comi.buscarJuezBYID(id);
+							
+							int option = JOptionPane.showConfirmDialog(null, "¿Está seguro que desea sacar a [" 
+									   + juez.getNombre()+"] de la comisión?", "Notificación",JOptionPane.WARNING_MESSAGE);
+							
+							if(option == JOptionPane.OK_OPTION && juez != null)
+							{
+								comi.deleteJuez(juez);
+								JOptionPane.showMessageDialog(null, "Juez removido satisfactoriamente"
+										, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+								ListarMiembrosComi.loadPersonas(comi);
+							}
+						}
 					}
 				});
-				btnModificar.setActionCommand("OK");
-				buttonPane.add(btnModificar);
-				getRootPane().setDefaultButton(btnModificar);
+				btnEliminar.setActionCommand("OK");
+				btnEliminar.setEnabled(false);
+				buttonPane.add(btnEliminar);
+				getRootPane().setDefaultButton(btnEliminar);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
 				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
+					public void actionPerformed(ActionEvent arg0) {
 						dispose();
 					}
 				});
-				{
-					btnListarMiembros = new JButton("Listar miembros");
-					btnListarMiembros.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							Comision comi = miEvento.buscarComisionByID(id);
-							
-							ListarMiembrosComi window = new ListarMiembrosComi(comi);
-							window.setModal(true);
-							window.setVisible(true);
-						}
-					});
-					btnListarMiembros.setEnabled(false);
-					btnListarMiembros.setActionCommand("OK");
-					buttonPane.add(btnListarMiembros);
-				}
-				{
-					btnListarTrabajos = new JButton("Listar trabajos");
-					btnListarTrabajos.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							Comision comi = miEvento.buscarComisionByID(id);
-							
-							ListaTrabajosComi window = new ListaTrabajosComi(comi);
-							window.setModal(true);
-							window.setVisible(true);
-						}
-					});
-					btnListarTrabajos.setEnabled(false);
-					btnListarTrabajos.setActionCommand("OK");
-					buttonPane.add(btnListarTrabajos);
-				}
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 	}
-
-	public static void loadComision(ArrayList<Comision> comisionesEvento) 
+	
+	public static void loadPersonas(Comision comi) 
 	{
 		model.setRowCount(0);
 		
-		//{"ID", "Área", "Presidente", "Fecha de creación"};
+		//{"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
 		row = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < comisionesEvento.size(); i++) 
+		for (int i = 0; i < comi.getMiJurado().size(); i++) 
 		{
-			row[0] = comisionesEvento.get(i).getId();
-			row[1] = comisionesEvento.get(i).getArea();
-			row[2] = comisionesEvento.get(i).getPresidente().getNombre();
-			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(comisionesEvento.get(i).getFechaCreacion());
-			row[4] = comisionesEvento.get(i).getTrabajosParticipantes().size();
+			row[0] = comi.getMiJurado().get(i).getCedula();
+			row[1] = comi.getMiJurado().get(i).getNombre();
+			
+			if(comi.getMiJurado().get(i).isPresidente())
+			{
+				row[2] = "Presidente";
+			}
+			else
+			{
+				row[2] = "Miembro";
+			}
+			row[3] = comi.getMiJurado().get(i).getTelefono();
+			row[4] = comi.getMiJurado().get(i).getDireccion();
+			row[5] = comi.getMiJurado().get(i).getSexo();
+			row[6] = comi.getMiJurado().get(i).getGradoAcademico();
+			row[7] = comi.getMiJurado().get(i).getAreaEstudio();
+			
 			model.addRow(row);
 		}
 		
@@ -191,4 +183,5 @@ public class ListaComisiones extends JDialog {
 		table.getTableHeader().setReorderingAllowed(false);
 		
 	}
+
 }
