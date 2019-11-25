@@ -98,9 +98,9 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
-		setTitle("Iniciando Sesion");
+		setTitle("Iniciando sesi\u00F3n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 518, 335);
+		setBounds(100, 100, 502, 312);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -115,15 +115,18 @@ public class Login extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar sesión");
+		btnLogIn.setFont(new Font("Roboto", Font.PLAIN, 12));
 		btnLogIn.setBounds(176, 202, 141, 31);
 		panel.add(btnLogIn);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(98, 90, 369, 29);
+		txtUsuario.setFont(new Font("Roboto", Font.PLAIN, 12));
+		txtUsuario.setBounds(71, 90, 369, 29);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Roboto", Font.PLAIN, 12));
 		passwordField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(Empresa.getInstance().confirmLogin(txtUsuario.getText(),String.valueOf(passwordField.getPassword())))
@@ -134,13 +137,13 @@ public class Login extends JFrame {
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
-					JOptionPane.showMessageDialog(null, "id: admin | clave: 123", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrecta.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "id: admin | clave: 123", "Aviso", JOptionPane.INFORMATION_MESSAGE);
 					
 				}
 			}
 		});
-		passwordField.setBounds(98, 147, 369, 29);
+		passwordField.setBounds(71, 147, 369, 29);
 		panel.add(passwordField);
 		
 		JButton button = new JButton("");
@@ -150,7 +153,7 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		button.setBounds(66, 90, 33, 29);
+		button.setBounds(41, 90, 33, 29);
 		panel.add(button);
 		
 		JButton button_1 = new JButton("");
@@ -160,15 +163,17 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_1.setBounds(66, 147, 33, 29);
+		button_1.setBounds(41, 147, 33, 29);
 		panel.add(button_1);
 		
 		JLabel lblNewLabel = new JLabel("Olvido la contrase\u00F1a ? Click");
+		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
 		
 		lblNewLabel.setBounds(159, 237, 158, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblAqui = new JLabel("aqui");
+		lblAqui.setFont(new Font("Roboto", Font.PLAIN, 12));
 		lblAqui.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -176,16 +181,16 @@ public class Login extends JFrame {
 			}
 		});
 		lblAqui.setForeground(Color.BLUE);
-		lblAqui.setBounds(318, 237, 46, 14);
+		lblAqui.setBounds(313, 237, 46, 14);
 		panel.add(lblAqui);
 		
 		JLabel lblPucmm = new JLabel("PUCMM");
-		lblPucmm.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblPucmm.setFont(new Font("Roboto", Font.BOLD, 24));
 		lblPucmm.setBounds(200, 24, 127, 29);
 		panel.add(lblPucmm);
 		
 		JLabel lblPlanificadoraDeEventos = new JLabel("Planificadora de Eventos");
-		lblPlanificadoraDeEventos.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblPlanificadoraDeEventos.setFont(new Font("Roboto", Font.PLAIN, 16));
 		lblPlanificadoraDeEventos.setBounds(156, 53, 183, 14);
 		panel.add(lblPlanificadoraDeEventos);
 		btnLogIn.addActionListener(new ActionListener() {
@@ -198,11 +203,12 @@ public class Login extends JFrame {
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "Usuario y/o clave incorrecta", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Digite un usuario y/o contraseña.", "Error", JOptionPane.INFORMATION_MESSAGE);
 					
 					
 				}
 			}
 		});
 	}
+	
 }
