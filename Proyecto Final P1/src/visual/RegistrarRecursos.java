@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
+import java.awt.Font;
 
 public class RegistrarRecursos extends JDialog {
 
@@ -43,7 +44,7 @@ public class RegistrarRecursos extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarRecursos() {
-		setTitle("Registrar Recursos");
+		setTitle("Registrar recursos");
 		setBounds(100, 100, 285, 197);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -52,16 +53,19 @@ public class RegistrarRecursos extends JDialog {
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
+		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
 		lblNewLabel.setBounds(17, 32, 83, 17);
 		contentPanel.add(lblNewLabel);
 		
 		txtNombre = new JTextField();
+		txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 		txtNombre.setText("");
 		txtNombre.setBounds(116, 30, 137, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
+		lblCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
 		lblCantidad.setBounds(17, 77, 83, 17);
 		contentPanel.add(lblCantidad);
 		
@@ -71,6 +75,7 @@ public class RegistrarRecursos extends JDialog {
 		contentPanel.add(spnCantidad);
 		
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setFont(new Font("Roboto", Font.PLAIN, 12));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtNombre.getText().isEmpty())
@@ -98,6 +103,7 @@ public class RegistrarRecursos extends JDialog {
 		contentPanel.add(btnRegistrar);
 		
 		JButton btnSalir = new JButton("Salir");
+		btnSalir.setFont(new Font("Roboto", Font.PLAIN, 12));
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

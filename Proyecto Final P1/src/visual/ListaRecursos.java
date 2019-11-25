@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Font;
 
 public class ListaRecursos extends JDialog {
 
@@ -88,6 +89,7 @@ public class ListaRecursos extends JDialog {
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
+					table.setFont(new Font("Roboto", Font.PLAIN, 12));
 					table.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent arg0) {
@@ -113,6 +115,7 @@ public class ListaRecursos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
@@ -120,6 +123,7 @@ public class ListaRecursos extends JDialog {
 				});
 				{
 					btnModificar = new JButton("Modificar");
+					btnModificar.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
@@ -133,6 +137,7 @@ public class ListaRecursos extends JDialog {
 					});
 					{
 						btnEliminar = new JButton("Eliminar");
+						btnEliminar.setFont(new Font("Roboto", Font.PLAIN, 12));
 						btnEliminar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								if(Tipo != "")

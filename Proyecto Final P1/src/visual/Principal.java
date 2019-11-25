@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Principal extends JFrame {
 
@@ -80,9 +81,11 @@ public class Principal extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnGestinDeEventos = new JMenu("Gesti\u00F3n de Eventos");
+		mnGestinDeEventos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestinDeEventos);
 		
-		JMenuItem mntmRegistrarEvento = new JMenuItem("Registrar Evento");
+		JMenuItem mntmRegistrarEvento = new JMenuItem("Registrar evento");
+		mntmRegistrarEvento.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreandoEvento window = new CreandoEvento(null, false);
@@ -92,7 +95,8 @@ public class Principal extends JFrame {
 		});
 		mnGestinDeEventos.add(mntmRegistrarEvento);
 		
-		JMenuItem mntmListarEventos = new JMenuItem("Listar Eventos");
+		JMenuItem mntmListarEventos = new JMenuItem("Listar eventos");
+		mntmListarEventos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmListarEventos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ListaEventos window = new ListaEventos();
@@ -103,9 +107,11 @@ public class Principal extends JFrame {
 		mnGestinDeEventos.add(mntmListarEventos);
 		
 		JMenu mnGestionDePersonal = new JMenu("Gesti\u00F3n del personal");
+		mnGestionDePersonal.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestionDePersonal);
 		
-		JMenuItem mntmRegistrarPersona = new JMenuItem("Registrar Persona");
+		JMenuItem mntmRegistrarPersona = new JMenuItem("Registrar persona");
+		mntmRegistrarPersona.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarPersona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegPersona window = new RegPersona();
@@ -115,7 +121,8 @@ public class Principal extends JFrame {
 		});
 		mnGestionDePersonal.add(mntmRegistrarPersona);
 		
-		JMenuItem mntmListarPersonal = new JMenuItem("Listar Personal");
+		JMenuItem mntmListarPersonal = new JMenuItem("Listar personal");
+		mntmListarPersonal.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmListarPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -128,9 +135,11 @@ public class Principal extends JFrame {
 		mnGestionDePersonal.add(mntmListarPersonal);
 		
 		JMenu mnGestinDeRecursos = new JMenu("Gesti\u00F3n de Recursos");
+		mnGestinDeRecursos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestinDeRecursos);
 		
-		JMenuItem mntmRegistrarRecurso = new JMenuItem("Registrar Recurso");
+		JMenuItem mntmRegistrarRecurso = new JMenuItem("Registrar recurso");
+		mntmRegistrarRecurso.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarRecurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarRecursos window = new RegistrarRecursos();
@@ -140,7 +149,8 @@ public class Principal extends JFrame {
 		});
 		mnGestinDeRecursos.add(mntmRegistrarRecurso);
 		
-		JMenuItem mntmListarRecursos = new JMenuItem("Listar Recursos");
+		JMenuItem mntmListarRecursos = new JMenuItem("Listar recursos");
+		mntmListarRecursos.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmListarRecursos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListaRecursos window = new ListaRecursos();

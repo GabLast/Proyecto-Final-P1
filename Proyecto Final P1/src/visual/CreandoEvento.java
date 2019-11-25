@@ -31,6 +31,9 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import java.awt.Font;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class CreandoEvento extends JDialog {
 
@@ -102,7 +105,7 @@ public class CreandoEvento extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Información del Evento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del Evento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
@@ -113,25 +116,30 @@ public class CreandoEvento extends JDialog {
 				panel_1.setLayout(null);
 				{
 					JLabel lblNewLabel = new JLabel("Nombre:");
+					lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblNewLabel.setBounds(20, 53, 74, 23);
 					panel_1.add(lblNewLabel);
 				}
 				{
 					JLabel lblId = new JLabel("ID:");
+					lblId.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblId.setBounds(20, 15, 82, 23);
 					panel_1.add(lblId);
 				}
 				{
 					JLabel lblFecha = new JLabel("Fecha:");
+					lblFecha.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblFecha.setBounds(20, 91, 82, 23);
 					panel_1.add(lblFecha);
 				}
 				
 				calendar = new JCalendar();
+				calendar.getMonthChooser().getComboBox().setFont(new Font("Roboto", Font.PLAIN, 12));
 				calendar.setBounds(17, 129, 667, 162);
 				panel_1.add(calendar);
 				
 				txtID = new JTextField();
+				txtID.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtID.setEditable(false);
 				txtID.setText("EV"+Empresa.getInstance().getGenIDEvento());
 				txtID.setBounds(97, 12, 252, 29);
@@ -139,26 +147,31 @@ public class CreandoEvento extends JDialog {
 				txtID.setColumns(10);
 				
 				txtNombre = new JTextField();
+				txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtNombre.setColumns(10);
 				txtNombre.setBounds(97, 50, 252, 29);
 				panel_1.add(txtNombre);
 				{
 					JLabel lblTipo = new JLabel("Tipo:");
+					lblTipo.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblTipo.setBounds(366, 15, 74, 23);
 					panel_1.add(lblTipo);
 				}
 				{
 					cbxTipo = new JComboBox();
+					cbxTipo.setFont(new Font("Roboto", Font.PLAIN, 12));
 					cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Panel", "Ponencia", "Conferencia", "Jornada", "Mesa Redonda"}));
 					cbxTipo.setBounds(432, 12, 252, 29);
 					panel_1.add(cbxTipo);
 				}
 				
 				JLabel lblLugar = new JLabel("Lugar:");
+				lblLugar.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblLugar.setBounds(366, 53, 74, 23);
 				panel_1.add(lblLugar);
 				
 				txtLugar = new JTextField();
+				txtLugar.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtLugar.setColumns(10);
 				txtLugar.setBounds(432, 50, 252, 29);
 				panel_1.add(txtLugar);
@@ -175,6 +188,7 @@ public class CreandoEvento extends JDialog {
 					panelParticipantes.add(scrollPane);
 					{
 						listParticipantes = new JList();
+						listParticipantes.setFont(new Font("Roboto", Font.PLAIN, 12));
 						scrollPane.setViewportView(listParticipantes);
 						
 						modelPartis = new DefaultListModel();
@@ -192,6 +206,7 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					JLabel lblPosiblesParticipantes = new JLabel("Posibles participantes:");
+					lblPosiblesParticipantes.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblPosiblesParticipantes.setBounds(17, 31, 219, 23);
 					panelParticipantes.add(lblPosiblesParticipantes);
 				}
@@ -201,6 +216,7 @@ public class CreandoEvento extends JDialog {
 					panelParticipantes.add(scrollPane);
 					{
 						listPartiElegidos = new JList();
+						listPartiElegidos.setFont(new Font("Roboto", Font.PLAIN, 12));
 						scrollPane.setViewportView(listPartiElegidos);
 					}
 				}
@@ -279,6 +295,7 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					JLabel lblParticipantesSeleccionados = new JLabel("Participantes seleccionados:");
+					lblParticipantesSeleccionados.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblParticipantesSeleccionados.setBounds(389, 31, 295, 23);
 					panelParticipantes.add(lblParticipantesSeleccionados);
 				}
@@ -291,6 +308,7 @@ public class CreandoEvento extends JDialog {
 				panelRecursos.setLayout(null);
 				{
 					JLabel lblRecursosDisponibles = new JLabel("Recursos disponibles:");
+					lblRecursosDisponibles.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblRecursosDisponibles.setBounds(14, 29, 219, 23);
 					panelRecursos.add(lblRecursosDisponibles);
 				}
@@ -306,11 +324,13 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					JLabel lblRecursosAUtilizar = new JLabel("Recursos a utilizar:");
+					lblRecursosAUtilizar.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblRecursosAUtilizar.setBounds(386, 29, 219, 23);
 					panelRecursos.add(lblRecursosAUtilizar);
 				}
 				{
 					btnAgregarRec = new JButton("Agregar");						
+					btnAgregarRec.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnAgregarRec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) 
 						{
@@ -442,6 +462,7 @@ public class CreandoEvento extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnCrear = new JButton("Crear");
+				btnCrear.setFont(new Font("Roboto", Font.PLAIN, 12));
 				if(modificar)
 				{
 					btnCrear.setText("Modificar");
@@ -504,6 +525,7 @@ public class CreandoEvento extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(modificar)

@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class ListarPersonas extends JDialog {
 
@@ -91,6 +92,7 @@ public class ListarPersonas extends JDialog {
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
+					table.setFont(new Font("Roboto", Font.PLAIN, 12));
 					
 					loadPersonas();
 					
@@ -128,6 +130,7 @@ public class ListarPersonas extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnAgregar = new JButton("Agregar un trabajo");
+				btnAgregar.setFont(new Font("Roboto", Font.PLAIN, 12));
 				btnAgregar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
@@ -139,6 +142,7 @@ public class ListarPersonas extends JDialog {
 				});
 				{
 				 btnModificar = new JButton("Modificar");
+				 btnModificar.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 	
@@ -160,6 +164,7 @@ public class ListarPersonas extends JDialog {
 					});
 					{
 						btnEliminar = new JButton("Eliminar");
+						btnEliminar.setFont(new Font("Roboto", Font.PLAIN, 12));
 						btnEliminar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 								if(id != "")
@@ -194,6 +199,7 @@ public class ListarPersonas extends JDialog {
 			}
 			{
 				btnLista = new JButton("Listar trabajos");
+				btnLista.setFont(new Font("Roboto", Font.PLAIN, 12));
 				btnLista.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Participante duenio = (Participante) Empresa.getInstance().searchPersonabyCedula(id);
@@ -209,6 +215,7 @@ public class ListarPersonas extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
