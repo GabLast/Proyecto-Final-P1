@@ -112,6 +112,7 @@ public class Principal extends JFrame {
 		mnGestinDeEventos.add(mntmListarEventos);
 		
 		JMenu mnGestionDePersonal = new JMenu("Gesti\u00F3n del personal");
+		mnGestionDePersonal.setIcon(new ImageIcon(Login.class.getResource("/Imagen/client.png")));
 		mnGestionDePersonal.setFont(new Font("Roboto", Font.PLAIN, 14));
 		menuBar.add(mnGestionDePersonal);
 		
