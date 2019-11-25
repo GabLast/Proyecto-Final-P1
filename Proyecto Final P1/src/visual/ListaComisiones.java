@@ -55,7 +55,7 @@ public class ListaComisiones extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaComisiones(Evento miEvento) {
-		setTitle("Comisiones");
+		setTitle("Lista de comisiones");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;

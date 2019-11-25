@@ -102,10 +102,10 @@ public class Principal extends JFrame {
 		});
 		mnGestinDeEventos.add(mntmListarEventos);
 		
-		JMenu mnGestionDePersonal = new JMenu("Gestion de personal");
+		JMenu mnGestionDePersonal = new JMenu("Gesti\u00F3n del personal");
 		menuBar.add(mnGestionDePersonal);
 		
-		JMenuItem mntmRegistrarPersona = new JMenuItem("Registrar persona");
+		JMenuItem mntmRegistrarPersona = new JMenuItem("Registrar Persona");
 		mntmRegistrarPersona.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegPersona window = new RegPersona();
@@ -115,7 +115,7 @@ public class Principal extends JFrame {
 		});
 		mnGestionDePersonal.add(mntmRegistrarPersona);
 		
-		JMenuItem mntmListarPersonal = new JMenuItem("Listar personal");
+		JMenuItem mntmListarPersonal = new JMenuItem("Listar Personal");
 		mntmListarPersonal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -130,7 +130,7 @@ public class Principal extends JFrame {
 		JMenu mnGestinDeRecursos = new JMenu("Gesti\u00F3n de Recursos");
 		menuBar.add(mnGestinDeRecursos);
 		
-		JMenuItem mntmRegistrarRecurso = new JMenuItem("Registrar recurso");
+		JMenuItem mntmRegistrarRecurso = new JMenuItem("Registrar Recurso");
 		mntmRegistrarRecurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RegistrarRecursos window = new RegistrarRecursos();
@@ -140,7 +140,7 @@ public class Principal extends JFrame {
 		});
 		mnGestinDeRecursos.add(mntmRegistrarRecurso);
 		
-		JMenuItem mntmListarRecursos = new JMenuItem("Listar recursos");
+		JMenuItem mntmListarRecursos = new JMenuItem("Listar Recursos");
 		mntmListarRecursos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ListaRecursos window = new ListaRecursos();

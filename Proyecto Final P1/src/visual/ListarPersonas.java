@@ -58,7 +58,7 @@ public class ListarPersonas extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarPersonas() {
-		setTitle("Lista del personal");
+		setTitle("Lista de personas registradas");
 		setBounds(100, 100, 583, 300);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .70;

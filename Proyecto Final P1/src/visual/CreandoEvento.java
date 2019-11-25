@@ -85,7 +85,7 @@ public class CreandoEvento extends JDialog {
 			setTitle("Organizaci\u00F3n de un evento");
 		else
 		{
-			setTitle("Modificando el evento: " + modiEvento.getNombre());
+			setTitle("Replanificando el evento: " + modiEvento.getNombre());
 			txtID.setText(modiEvento.getId());
 			cbxTipo.setSelectedItem(modiEvento.getTipo());
 			txtNombre.setText(modiEvento.getNombre());

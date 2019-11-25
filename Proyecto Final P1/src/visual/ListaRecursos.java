@@ -156,6 +156,7 @@ public class ListaRecursos extends JDialog {
 						buttonPane.add(btnEliminar);
 						btnEliminar.setEnabled(false);
 					}
+					btnModificar.setEnabled(false);
 					buttonPane.add(btnModificar);
 				}
 				cancelButton.setActionCommand("Cancel");
