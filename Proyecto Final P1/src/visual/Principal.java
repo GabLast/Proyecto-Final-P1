@@ -12,6 +12,7 @@ import javax.swing.JRootPane;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 
 import logica.Empresa;
@@ -48,6 +49,7 @@ public class Principal extends JFrame {
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				 UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.black, 1));
 				try {
 				
 					Principal frame = new Principal();
@@ -63,6 +65,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setForeground(Color.LIGHT_GRAY);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {

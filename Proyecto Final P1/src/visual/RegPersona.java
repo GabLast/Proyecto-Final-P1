@@ -55,6 +55,10 @@ public class RegPersona extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		//UIDefaults uiDefaults = UIManager.getDefaults();
+				UIManager.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.red));
+				//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.red, 4));
+				JDialog.setDefaultLookAndFeelDecorated(true);
 		try {
 			RegPersona dialog = new RegPersona();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -68,6 +72,7 @@ public class RegPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPersona() {
+		setForeground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegPersona.class.getResource("/Imagen/addPerson.png")));
 		setTitle("Registrar Persona");
 		setBounds(100, 100, 446, 543);
