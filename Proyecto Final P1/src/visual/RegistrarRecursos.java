@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class RegistrarRecursos extends JDialog {
 
@@ -51,6 +52,7 @@ public class RegistrarRecursos extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Informaci\u00F3n del recurso", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarRecursos.class.getResource("/imagen/titleagregarrecurso.png")));
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");

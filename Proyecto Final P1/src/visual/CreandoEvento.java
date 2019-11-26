@@ -35,6 +35,7 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import java.awt.Color;
 import java.awt.Scrollbar;
+import java.awt.Toolkit;
 
 public class CreandoEvento extends JDialog {
 
@@ -85,6 +86,7 @@ public class CreandoEvento extends JDialog {
 	 * Create the dialog.
 	 */
 	public CreandoEvento(Evento modiEvento, boolean modificar) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CreandoEvento.class.getResource("/imagen/titleadd.png")));
 		if(!modificar)
 			setTitle("Organizaci\u00F3n de un evento");
 		else
@@ -97,6 +99,7 @@ public class CreandoEvento extends JDialog {
 			calendar.setDate(modiEvento.getFecha());
 			recBackUp = modiEvento.getRecursosUsados();
 			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
+			
 		}
 		setBounds(100, 100, 772, 887);
 		setLocationRelativeTo(null);

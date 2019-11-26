@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class ListaRecursos extends JDialog {
 
@@ -67,6 +68,7 @@ public class ListaRecursos extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaRecursos.class.getResource("/imagen/titleredlist.png")));
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Listado de recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
