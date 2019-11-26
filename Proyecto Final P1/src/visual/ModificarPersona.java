@@ -25,6 +25,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.CardLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class ModificarPersona extends JDialog {
@@ -35,11 +37,16 @@ public class ModificarPersona extends JDialog {
 	private JTextField txtNombre;
 	private JTextField txtDireccion;
 	private JTextField txtTelefono;
+	private JTextField txtCedulaJuez;
+	private JTextField txtNombreJuez;
+	private JTextField txtDireccionJuez;
+	private JTextField txtTelefonoJuez;
 	private JRadioButton rdbtnMasculin;
 	private JRadioButton rdbtnMasculin_1;
 	private JRadioButton rdbtnFemenino;
 	private JRadioButton rdbtnFemenino_1;
 	private JComboBox comboBox;
+	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
 	private JPanel panel;
 	private JPanel panelJuez;
@@ -50,6 +57,7 @@ public class ModificarPersona extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			
 			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -68,18 +76,8 @@ public class ModificarPersona extends JDialog {
 	 */
 	public ModificarPersona(Persona miPersona) {
 		this.miPersona = miPersona;
-		if (miPersona instanceof Participante) {
-			setTitle("Modificando participante");
-			//panelJuez.setVisible(false);
-			//panel.setVisible(true);
-			
-			
-		}
-		else if(miPersona instanceof Jurado) {
-			setTitle("Modificando juez");
-			//panelJuez.setVisible(true);
-			//panel.setVisible(false);
-		}
+		
+		
 		
 		//setTitle("Modificando participante");
 		setResizable(false);
@@ -184,6 +182,13 @@ public class ModificarPersona extends JDialog {
 			panel.add(label_1);
 			
 			comboBox = new JComboBox();
+			comboBox.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					miPersona.setGradoAcademico(comboBox.getSelectedItem().toString());
+				}
+				
+			});
+			
 			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
 			comboBox.setBounds(196, 339, 293, 22);
@@ -219,36 +224,36 @@ public class ModificarPersona extends JDialog {
 				panelJuez.add(label);
 			}
 			{
-				txtCedula = new JTextField();
-				txtCedula.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtCedula.setColumns(10);
-				txtCedula.setBounds(192, 29, 297, 29);
-				txtCedula.setText(miPersona.getCedula());
-				panelJuez.add(txtCedula);
+				txtCedulaJuez = new JTextField();
+				txtCedulaJuez.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtCedulaJuez.setColumns(10);
+				txtCedulaJuez.setBounds(192, 29, 297, 29);
+				txtCedulaJuez.setText(miPersona.getCedula());
+				panelJuez.add(txtCedulaJuez);
 			}
 			{
-				txtNombre = new JTextField();
-				txtNombre.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtNombre.setColumns(10);
-				txtNombre.setBounds(192, 84, 297, 29);
-				txtNombre.setText(miPersona.getNombre());
-				panelJuez.add(txtNombre);
+				txtNombreJuez = new JTextField();
+				txtNombreJuez.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtNombreJuez.setColumns(10);
+				txtNombreJuez.setBounds(192, 84, 297, 29);
+				txtNombreJuez.setText(miPersona.getNombre());
+				panelJuez.add(txtNombreJuez);
 			}
 			{
-				txtDireccion = new JTextField();
-				txtDireccion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtDireccion.setColumns(10);
-				txtDireccion.setBounds(192, 139, 297, 29);
-				txtDireccion.setText(miPersona.getDireccion());
-				panelJuez.add(txtDireccion);
+				txtDireccionJuez = new JTextField();
+				txtDireccionJuez.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtDireccionJuez.setColumns(10);
+				txtDireccionJuez.setBounds(192, 139, 297, 29);
+				txtDireccionJuez.setText(miPersona.getDireccion());
+				panelJuez.add(txtDireccionJuez);
 			}
 			{
-				txtTelefono = new JTextField();
-				txtTelefono.setFont(new Font("Times New Roman", Font.PLAIN, 19));
-				txtTelefono.setColumns(10);
-				txtTelefono.setBounds(192, 194, 297, 29);
-				txtTelefono.setText(miPersona.getTelefono());
-				panelJuez.add(txtTelefono);
+				txtTelefonoJuez = new JTextField();
+				txtTelefonoJuez.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtTelefonoJuez.setColumns(10);
+				txtTelefonoJuez.setBounds(192, 194, 297, 29);
+				txtTelefonoJuez.setText(miPersona.getTelefono());
+				panelJuez.add(txtTelefonoJuez);
 			}
 			
 			JLabel label = new JLabel("Sexo:");
@@ -284,6 +289,12 @@ public class ModificarPersona extends JDialog {
 			panelJuez.add(label_1);
 			
 			comboBox_2 = new JComboBox();
+			comboBox_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					miPersona.setGradoAcademico(comboBox_2.getSelectedItem().toString());
+				}
+			});
+			
 			comboBox_2.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
 			comboBox_2.setBounds(192, 297, 297, 22);
@@ -295,25 +306,40 @@ public class ModificarPersona extends JDialog {
 				panelJuez.add(label_2);
 			}
 			{
-				JComboBox comboBox_1 = new JComboBox();
+				comboBox_1 = new JComboBox();
+				comboBox_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Jurado aux = (Jurado)miPersona;
+						aux.setAreaEstudio(comboBox_1.getSelectedItem().toString());
+					}
+				});
+				
 				comboBox_1.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
 				comboBox_1.setBounds(192, 345, 297, 22);
 				panelJuez.add(comboBox_1);
 			}
 		}
+		
+		
 		if (miPersona instanceof Participante) {
-		//	setTitle("Modificando participante");
+			setTitle("Modificando participante");
 			panelJuez.setVisible(false);
 			panel.setVisible(true);
 			
 			
+			
+			
 		}
 		else if(miPersona instanceof Jurado) {
-			//setTitle("Modificando juez");
+			setTitle("Modificando juez");
 			panelJuez.setVisible(true);
 			panel.setVisible(false);
+			
 		}
+		String cedula = miPersona.getCedula();
+		String gradoAcademico = miPersona.getGradoAcademico();
+	
 		
 		
 		{
@@ -322,38 +348,176 @@ public class ModificarPersona extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnModi = new JButton("Modificar");
+				
 				btnModi.setFont(new Font("Tahoma", Font.PLAIN, 11));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txtCedula.getText().length() >=1 && txtNombre.getText().length() >= 1 && txtTelefono.getText().length() >= 1
-								&& txtDireccion.getText().length() >= 1)
-						{
-							
-							
-							miPersona.setCedula(txtCedula.getText());
-							miPersona.setNombre(txtNombre.getText());
-							miPersona.setTelefono(txtTelefono.getText());
-							miPersona.setDireccion(txtDireccion.getText());
-							miPersona.setGradoAcademico(comboBox.getSelectedItem().toString());
-							
-							{if (rdbtnMasculin.isSelected()) {
-									miPersona.setSexo("Masculino");
-							
-								}
-								else if(rdbtnFemenino.isSelected()) {
-									miPersona.setSexo("Femenino");
-								}
-							}
-								
-					
 						
-							
-							
-							JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-							ListarPersonas.loadPersonas();
-							dispose();
-						}
+								if(panel.isVisible() && txtCedula.getText().length() >=1 && txtNombre.getText().length() >= 1 && txtTelefono.getText().length() >= 1
+										&& txtDireccion.getText().length() >= 1)
+								{ 
+									
+										
+								if(cedula.equalsIgnoreCase(txtCedula.getText())) {
+									
+									miPersona.setCedula(txtCedula.getText());
+									miPersona.setNombre(txtNombre.getText());
+									miPersona.setTelefono(txtTelefono.getText());
+									miPersona.setDireccion(txtDireccion.getText());
+									
+									
+									{if (rdbtnMasculin.isSelected()) {
+											miPersona.setSexo("Masculino");
+											rdbtnFemenino.setSelected(false);
+									
+										}
+									if(rdbtnFemenino.isSelected()) {
+											miPersona.setSexo("Femenino");
+											rdbtnMasculin.setSelected(false);
+										}
+									}
+									
+										JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+										ListarPersonas.loadPersonas();
+									
+									dispose();
+								}
+								else if (cedula!= txtCedula.getText()){
+									if((Empresa.getInstance().verificarCedulaUnica(txtCedula.getText()))) {
+								}
+									JOptionPane.showMessageDialog(null, "Esta cédula ha sido registrada anteriormente", "Notificación", JOptionPane.WARNING_MESSAGE);
+									
+								}
+								else {
+									miPersona.setCedula(txtCedula.getText());
+									miPersona.setNombre(txtNombre.getText());
+									miPersona.setTelefono(txtTelefono.getText());
+									miPersona.setDireccion(txtDireccion.getText());
+									/*if(gradoAcademico!=comboBox.getSelectedItem().toString()) {
+										miPersona.setGradoAcademico(comboBox.getSelectedItem().toString());
+										}
+										else {
+											miPersona.setGradoAcademico(gradoAcademico);
+										}*/
+									
+									{if (rdbtnMasculin.isSelected()) {
+											miPersona.setSexo("Masculino");
+											rdbtnFemenino.setSelected(false);
+									
+										}
+									if(rdbtnFemenino.isSelected())  {
+											miPersona.setSexo("Femenino");
+											rdbtnMasculin.setSelected(false);
+										}
+									}
+									
+										JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+										ListarPersonas.loadPersonas();
+									
+									dispose();
+								}
+								
+								}
+								else if(panelJuez.isVisible() && txtCedulaJuez.getText().length() >=1 && txtNombreJuez.getText().length() >= 1 && txtTelefonoJuez.getText().length() >= 1
+										&& txtDireccionJuez.getText().length() >= 1)
+								{ 
+									Jurado aux = (Jurado) miPersona;
+									
+									String areaEstudio = aux.getAreaEstudio();
+										
+								if (cedula.equalsIgnoreCase(txtCedulaJuez.getText())){
+									aux.setCedula(txtCedulaJuez.getText());
+									aux.setNombre(txtNombreJuez.getText());
+									aux.setTelefono(txtTelefonoJuez.getText());
+									aux.setDireccion(txtDireccionJuez.getText());
+									//aux.setGradoAcademico(comboBox_2.getSelectedItem().toString());
+									//aux.setAreaEstudio(comboBox_1.getSelectedItem().toString());
+									
+									/*if(gradoAcademico!=comboBox_2.getSelectedItem().toString()) {
+										aux.setGradoAcademico(comboBox_2.getSelectedItem().toString());
+										}
+										else {
+											aux.setGradoAcademico(gradoAcademico);
+										}*/
+									
+									/*{
+										if(areaEstudio.equalsIgnoreCase(comboBox_1.getSelectedItem().toString())){
+											aux.setAreaEstudio(comboBox_1.getSelectedItem().toString());
+										}
+										else{
+											aux.setAreaEstudio(areaEstudio);
+										}
+									}*/
+									
+									{if (rdbtnMasculin_1.isSelected()) {
+											miPersona.setSexo("Masculino");
+											rdbtnFemenino_1.setSelected(false);
+									
+										}
+									if(rdbtnFemenino_1.isSelected()) {
+											miPersona.setSexo("Femenino");
+											rdbtnMasculin_1.setSelected(false);
+										}
+									}
+									
+									
+									
+									JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									ListarPersonas.loadPersonas();
+									dispose();
+								}
+								
+								else if(cedula!= txtCedulaJuez.getText()) {
+									if (Empresa.getInstance().verificarCedulaUnica(txtCedulaJuez.getText())) {
+									JOptionPane.showMessageDialog(null, "Esta cédula ha sido registrada anteriormente", "Notificación", JOptionPane.WARNING_MESSAGE);
+									
+								}
+									else {
+										aux.setCedula(txtCedulaJuez.getText());
+										aux.setNombre(txtNombreJuez.getText());
+										aux.setTelefono(txtTelefonoJuez.getText());
+										aux.setDireccion(txtDireccionJuez.getText());
+										//aux.setGradoAcademico(comboBox_2.getSelectedItem().toString());
+										//aux.setAreaEstudio(comboBox_1.getSelectedItem().toString());
+									
+										
+										/*if(gradoAcademico!=comboBox_2.getSelectedItem().toString()) {
+											aux.setGradoAcademico(comboBox_2.getSelectedItem().toString());
+											}
+											else {
+												aux.setGradoAcademico(gradoAcademico);
+											}*/
+										/*{
+											if(areaEstudio.equalsIgnoreCase(comboBox_1.getSelectedItem().toString())){
+												aux.setAreaEstudio(comboBox_1.getSelectedItem().toString());
+											}
+											else{
+												aux.setAreaEstudio(areaEstudio);
+											}
+										}*/
+										
+									 
+										{if (rdbtnMasculin_1.isSelected()) {
+											miPersona.setSexo("Masculino");
+											rdbtnFemenino_1.setSelected(false);
+									
+										}
+									if(rdbtnFemenino_1.isSelected()) {
+											miPersona.setSexo("Femenino");
+											rdbtnMasculin_1.setSelected(false);
+										}
+									}
+										
+										
+										
+										JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+										ListarPersonas.loadPersonas();
+										dispose();
+									}
+							}
+							}
 					}
+					
 				});
 				btnModi.setActionCommand("OK");
 				buttonPane.add(btnModi);
