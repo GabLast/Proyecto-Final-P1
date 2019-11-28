@@ -51,11 +51,11 @@ public class Principal extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				FileOutputStream EmpresaOn;
+				FileOutputStream EmpresaOut;
 				ObjectOutputStream EmpresaWrite;
 				try {
-					EmpresaOn = new  FileOutputStream("empresa.dat");
-					EmpresaWrite = new ObjectOutputStream(EmpresaOn);
+					EmpresaOut = new  FileOutputStream("empresa.dat");
+					EmpresaWrite = new ObjectOutputStream(EmpresaOut);
 					EmpresaWrite.writeObject(Empresa.getInstance());
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
