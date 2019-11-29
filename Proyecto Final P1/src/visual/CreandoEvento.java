@@ -29,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import java.awt.Font;
@@ -101,22 +102,21 @@ public class CreandoEvento extends JDialog {
 			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
 			
 		}
-		setBounds(100, 100, 772, 887);
+		setBounds(100, 100, 1235, 693);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		contentPanel.setBounds(0, 0, 756, 716);
+		contentPanel.setBounds(0, 0, 753, 604);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel);
-		contentPanel.setLayout(null);
+		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBounds(5, 5, 746, 706);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del Evento", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
 				JPanel panel_1 = new JPanel();
-				panel_1.setBounds(17, 31, 701, 306);
+				panel_1.setBounds(17, 21, 701, 306);
 				panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel.add(panel_1);
 				panel_1.setLayout(null);
@@ -185,7 +185,7 @@ public class CreandoEvento extends JDialog {
 			{
 				JPanel panelParticipantes = new JPanel();
 				panelParticipantes.setBorder(new TitledBorder(null, "Registro de Participantes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panelParticipantes.setBounds(17, 356, 701, 247);
+				panelParticipantes.setBounds(17, 336, 701, 247);
 				panel.add(panelParticipantes);
 				panelParticipantes.setLayout(null);
 				{
@@ -307,164 +307,23 @@ public class CreandoEvento extends JDialog {
 				}
 			}
 			{
-				JPanel panelRecursos = new JPanel();
-				panelRecursos.setBounds(17, 607, 701, 225);
-				panelRecursos.setBorder(new TitledBorder(null, "Registro de Recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-				panel.add(panelRecursos);
-				panelRecursos.setLayout(null);
 				{
-					JLabel lblRecursosDisponibles = new JLabel("Recursos disponibles:");
-					lblRecursosDisponibles.setFont(new Font("Roboto", Font.PLAIN, 12));
-					lblRecursosDisponibles.setBounds(14, 29, 219, 23);
-					panelRecursos.add(lblRecursosDisponibles);
-				}
-				{
-					JScrollPane scrollPane = new JScrollPane();
-					scrollPane.setBounds(387, 60, 298, 102);
-					panelRecursos.add(scrollPane);
 					{
-						listRecursosElegidos = new JList();
 						modelRecElegidos = new DefaultListModel();
-						scrollPane.setViewportView(listRecursosElegidos);
 					}
 				}
 				{
-					JLabel lblRecursosAUtilizar = new JLabel("Recursos a utilizar:");
-					lblRecursosAUtilizar.setFont(new Font("Roboto", Font.PLAIN, 12));
-					lblRecursosAUtilizar.setBounds(386, 29, 219, 23);
-					panelRecursos.add(lblRecursosAUtilizar);
-				}
-				{
-					btnAgregarRec = new JButton("Agregar");						
-					btnAgregarRec.setFont(new Font("Roboto", Font.PLAIN, 12));
-					btnAgregarRec.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) 
-						{
-							string = cbxRecurso.getSelectedItem().toString();
-							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
-
-							if(cbxRecurso.getSelectedIndex() < 0)
-							{
-								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
-							}
-							else if( buscando.getCantidad() < (Integer) spnCantidad.getValue())
-							{
-								JOptionPane.showMessageDialog(null, "No hay suficientes ["  + buscando.getTipo()+ "] disponibles", "Notificación", JOptionPane.WARNING_MESSAGE);
-							}
-							else if(buscandoEstaEnLaLista(buscando))
-							{
-								JOptionPane.showMessageDialog(null, "Remueva ["+ buscando.getTipo()+ "] de la lista y añádalo nuevamente para alterar la cantidad a usar", "Notificación", JOptionPane.WARNING_MESSAGE);
-							}
-							else
-							{
-								//agregar valor a la lista derecha
-								
-								valorRecurso = (Integer) spnCantidad.getValue();
-								buscando.setCantUsadaEvento(valorRecurso);
-								modelRecElegidos.addElement(string);
-								listRecursosElegidos.setModel(modelRecElegidos);
-								
-								buscando.verificarDisponibilidad(valorRecurso);
-								recursos.add(buscando);
-								
-								cbxModel = new DefaultComboBoxModel(); 
-								for(Recurso recurso : Empresa.getInstance().getRecursos())
-								{
-									cbxModel.addElement(recurso.getTipo());
-								}
-								cbxRecurso.setModel(cbxModel);
-								
-								spnCantidad.setValue(0);
-								txtCant.setText("");
-								
-									
-							}
-						}
-
-						
-					});
-					btnAgregarRec.setBounds(274, 71, 99, 31);
-					panelRecursos.add(btnAgregarRec);
-				}
-				{
-					btnRemover = new JButton("Remover recurso seleccionado");
-					btnRemover.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							
-							String string = (String) listRecursosElegidos.getSelectedValue();
-							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
-							System.out.println(buscando.getCantidad());
-							System.out.println(buscando.getCantUsadaEvento());
-						
-							if(listRecursosElegidos.getSelectedIndex() == -1)
-							{
-								JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
-							}
-							else
-							{
-								int value = listRecursosElegidos.getSelectedIndex();
-								buscando.devolverRecursoTomado(buscando.getCantUsadaEvento());
-								
-								cbxModel = new DefaultComboBoxModel(); 
-								for(Recurso recurso : Empresa.getInstance().getRecursos())
-								{
-									cbxModel.addElement(recurso.getTipo());
-								}
-								cbxRecurso.setModel(cbxModel);
-								
-								recursos.remove(buscando);
-								
-								//removiendo valor de la lista
-								if(modelRecElegidos.getSize() != 0)
-								{
-									modelRecElegidos.removeElementAt(value);
-								}
-								
-								listRecursosElegidos.setModel(modelRecElegidos);
-								
-								spnCantidad.setValue(0);
-								txtCant.setText("");
-							}
-						}
-					});
-					btnRemover.setBounds(387, 175, 298, 31);
-					panelRecursos.add(btnRemover);
-				}
-				{
-					cbxRecurso = new JComboBox();
-					cbxRecurso.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							string = cbxRecurso.getSelectedItem().toString();
-							Recurso aux = Empresa.getInstance().searchRecursoByTipo(string);
-							txtCant.setText("x"+ aux.getCantidad());
-						}
-					});
-					cbxRecurso.setBounds(14, 71, 134, 29);
 					cbxModel = new DefaultComboBoxModel(); 
 					for(Recurso recurso : Empresa.getInstance().getRecursos())
 					{
 						cbxModel.addElement(recurso.getTipo());
 					}
-					cbxRecurso.setModel(cbxModel);
-					panelRecursos.add(cbxRecurso);
-				}
-				
-				spnCantidad = new JSpinner();
-				spnCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				spnCantidad.setBounds(208, 71, 63, 30);
-				panelRecursos.add(spnCantidad);
-				{
-					txtCant = new JTextField();
-					txtCant.setEditable(false);
-					txtCant.setColumns(10);
-					txtCant.setBounds(153, 71, 50, 29);
-					panelRecursos.add(txtCant);
 				}
 			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 716, 756, 33);
+			buttonPane.setBounds(0, 615, 1219, 33);
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane);
 			{
@@ -546,6 +405,153 @@ public class CreandoEvento extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+		}
+		JPanel panelRecursos = new JPanel();
+		panelRecursos.setBounds(763, 247, 416, 324);
+		getContentPane().add(panelRecursos);
+		panelRecursos.setBorder(new TitledBorder(null, "Registro de Recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelRecursos.setLayout(null);
+		{
+			JLabel lblRecursosDisponibles = new JLabel("Recursos disponibles:");
+			lblRecursosDisponibles.setFont(new Font("Roboto", Font.PLAIN, 12));
+			lblRecursosDisponibles.setBounds(14, 29, 219, 23);
+			panelRecursos.add(lblRecursosDisponibles);
+		}
+		{
+			JLabel lblRecursosAUtilizar = new JLabel("Recursos a utilizar:");
+			lblRecursosAUtilizar.setFont(new Font("Roboto", Font.PLAIN, 12));
+			lblRecursosAUtilizar.setBounds(14, 123, 219, 23);
+			panelRecursos.add(lblRecursosAUtilizar);
+		}
+		{
+			btnAgregarRec = new JButton("Agregar");						
+			btnAgregarRec.setFont(new Font("Roboto", Font.PLAIN, 12));
+			btnAgregarRec.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) 
+				{
+					string = cbxRecurso.getSelectedItem().toString();
+					Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
+
+					if(cbxRecurso.getSelectedIndex() < 0)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else if( buscando.getCantidad() < (Integer) spnCantidad.getValue())
+					{
+						JOptionPane.showMessageDialog(null, "No hay suficientes ["  + buscando.getTipo()+ "] disponibles", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else if(buscandoEstaEnLaLista(buscando))
+					{
+						JOptionPane.showMessageDialog(null, "Remueva ["+ buscando.getTipo()+ "] de la lista y añádalo nuevamente para alterar la cantidad a usar", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+					{
+						//agregar valor a la lista derecha
+						
+						valorRecurso = (Integer) spnCantidad.getValue();
+						buscando.setCantUsadaEvento(valorRecurso);
+						modelRecElegidos.addElement(string);
+						listRecursosElegidos.setModel(modelRecElegidos);
+						
+						buscando.verificarDisponibilidad(valorRecurso);
+						recursos.add(buscando);
+						
+						cbxModel = new DefaultComboBoxModel(); 
+						for(Recurso recurso : Empresa.getInstance().getRecursos())
+						{
+							cbxModel.addElement(recurso.getTipo());
+						}
+						cbxRecurso.setModel(cbxModel);
+						
+						spnCantidad.setValue(0);
+						txtCant.setText("");
+						
+							
+					}
+				}
+
+				
+			});
+			btnAgregarRec.setBounds(274, 71, 99, 31);
+			panelRecursos.add(btnAgregarRec);
+		}
+		{
+			btnRemover = new JButton("Remover recurso seleccionado");
+			btnRemover.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					String string = (String) listRecursosElegidos.getSelectedValue();
+					Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
+					System.out.println(buscando.getCantidad());
+					System.out.println(buscando.getCantUsadaEvento());
+				
+					if(listRecursosElegidos.getSelectedIndex() == -1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione algún recurso", "Notificación", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+					{
+						int value = listRecursosElegidos.getSelectedIndex();
+						buscando.devolverRecursoTomado(buscando.getCantUsadaEvento());
+						
+						cbxModel = new DefaultComboBoxModel(); 
+						for(Recurso recurso : Empresa.getInstance().getRecursos())
+						{
+							cbxModel.addElement(recurso.getTipo());
+						}
+						cbxRecurso.setModel(cbxModel);
+						
+						recursos.remove(buscando);
+						
+						//removiendo valor de la lista
+						if(modelRecElegidos.getSize() != 0)
+						{
+							modelRecElegidos.removeElementAt(value);
+						}
+						
+						listRecursosElegidos.setModel(modelRecElegidos);
+						
+						spnCantidad.setValue(0);
+						txtCant.setText("");
+					}
+				}
+			});
+			btnRemover.setBounds(108, 282, 298, 31);
+			panelRecursos.add(btnRemover);
+		}
+		cbxRecurso = new JComboBox();
+		cbxRecurso.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				string = cbxRecurso.getSelectedItem().toString();
+				Recurso aux = Empresa.getInstance().searchRecursoByTipo(string);
+				txtCant.setText("x"+ aux.getCantidad());
+			}
+		});
+		cbxRecurso.setBounds(14, 71, 134, 29);
+		cbxRecurso.setModel(cbxModel);
+		panelRecursos.add(cbxRecurso);
+		
+		spnCantidad = new JSpinner();
+		spnCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+		spnCantidad.setBounds(208, 71, 63, 30);
+		panelRecursos.add(spnCantidad);
+		{
+			txtCant = new JTextField();
+			txtCant.setEditable(false);
+			txtCant.setColumns(10);
+			txtCant.setBounds(153, 71, 50, 29);
+			panelRecursos.add(txtCant);
+		}
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(14, 155, 298, 102);
+		panelRecursos.add(scrollPane);
+		listRecursosElegidos = new JList();
+		scrollPane.setColumnHeaderView(listRecursosElegidos);
+		{
+			JLabel label = new JLabel("");
+			label.setBounds(805, 11, 384, 225);
+			label.setIcon(new ImageIcon(Login.class.getResource("/imagen/eventplan.png")));
+			getContentPane().add(label);
 		}
 	}
 	
