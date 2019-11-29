@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class RegComision extends JDialog {
 
@@ -87,29 +89,33 @@ public class RegComision extends JDialog {
 			
 		}
 			
-		setBounds(100, 100, 571, 767);
+		setBounds(100, 100, 571, 740);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new BorderLayout(0, 0));
+		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
-			contentPanel.add(panel, BorderLayout.CENTER);
+			panel.setBounds(5, 5, 550, 661);
+			contentPanel.add(panel);
 			panel.setBorder(new TitledBorder(null, "Información", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setLayout(null);
 			{
 				JLabel lblId = new JLabel("ID:");
+				lblId.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblId.setBounds(12, 31, 56, 16);
 				panel.add(lblId);
 			}
 			{
 				JLabel lblTipo = new JLabel("\u00C1rea:");
+				lblTipo.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblTipo.setBounds(12, 77, 56, 16);
 				panel.add(lblTipo);
 			}
 			
 			cbxArea = new JComboBox();
+			cbxArea.setFont(new Font("Roboto", Font.PLAIN, 12));
 			
 			modelJuecesSelect = new DefaultListModel();
 			modelJobSelect = new DefaultListModel();
@@ -165,6 +171,7 @@ public class RegComision extends JDialog {
 			panel.add(cbxArea);
 			
 			txtID = new JTextField();
+			txtID.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtID.setEditable(false);
 			txtID.setBounds(156, 28, 166, 22);
 			if(!modificar)
@@ -175,10 +182,12 @@ public class RegComision extends JDialog {
 			txtID.setColumns(10);
 			
 			JLabel lblFechaDeCreacin = new JLabel("Fecha de creaci\u00F3n:");
+			lblFechaDeCreacin.setFont(new Font("Roboto", Font.PLAIN, 12));
 			lblFechaDeCreacin.setBounds(12, 122, 166, 16);
 			panel.add(lblFechaDeCreacin);
 			
 			txtFechaCreacion = new JTextField();
+			txtFechaCreacion.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtFechaCreacion.setEditable(false);
 			txtFechaCreacion.setColumns(10);
 			txtFechaCreacion.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
@@ -188,7 +197,7 @@ public class RegComision extends JDialog {
 			
 			JPanel panelJurado = new JPanel();
 			panelJurado.setBorder(new TitledBorder(null, "Selección del jurado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panelJurado.setBounds(12, 157, 508, 255);
+			panelJurado.setBounds(12, 165, 508, 255);
 			panel.add(panelJurado);
 			panelJurado.setLayout(null);
 			
@@ -197,9 +206,11 @@ public class RegComision extends JDialog {
 			panelJurado.add(scrollPane);
 			
 			listJuecesDisponibles = new JList();
+			listJuecesDisponibles.setFont(new Font("Roboto", Font.PLAIN, 12));
 			scrollPane.setViewportView(listJuecesDisponibles);
 			
 			JLabel label = new JLabel("Jueces disponibles:");
+			label.setFont(new Font("Roboto", Font.PLAIN, 12));
 			label.setBounds(17, 26, 184, 16);
 			panelJurado.add(label);
 			
@@ -304,18 +315,22 @@ public class RegComision extends JDialog {
 			panelJurado.add(scrollPane_1);
 			
 			listJuecesSeleccionados = new JList();
+			listJuecesSeleccionados.setFont(new Font("Roboto", Font.PLAIN, 12));
 			scrollPane_1.setViewportView(listJuecesSeleccionados);
 			
 			JLabel lblPresidente = new JLabel("Presidente:");
+			lblPresidente.setFont(new Font("Roboto", Font.PLAIN, 12));
 			lblPresidente.setBounds(17, 213, 94, 16);
 			panelJurado.add(lblPresidente);
 			
 			cbxPresidente = new JComboBox();
+			cbxPresidente.setFont(new Font("Roboto", Font.PLAIN, 12));
 			cbxPresidente.setBounds(116, 210, 374, 22);
 			panelJurado.add(cbxPresidente);
 			
 			
 			JLabel lblJuecesSeleccionados = new JLabel("Jueces seleccionados:");
+			lblJuecesSeleccionados.setFont(new Font("Roboto", Font.PLAIN, 12));
 			lblJuecesSeleccionados.setBounds(306, 26, 184, 16);
 			panelJurado.add(lblJuecesSeleccionados);
 			
@@ -326,6 +341,7 @@ public class RegComision extends JDialog {
 			panel.add(panel_1);
 			
 			JLabel lblTrabajosDelrea = new JLabel("Trabajos del \u00E1rea:");
+			lblTrabajosDelrea.setFont(new Font("Roboto", Font.PLAIN, 12));
 			lblTrabajosDelrea.setBounds(17, 26, 152, 23);
 			panel_1.add(lblTrabajosDelrea);
 			
@@ -404,6 +420,7 @@ public class RegComision extends JDialog {
 			panel_1.add(btnLeftTrabajos);
 			
 			JLabel lblTrabajosSeleccionados = new JLabel("Trabajos seleccionados:");
+			lblTrabajosSeleccionados.setFont(new Font("Roboto", Font.PLAIN, 12));
 			lblTrabajosSeleccionados.setBounds(306, 26, 152, 16);
 			panel_1.add(lblTrabajosSeleccionados);
 			
@@ -412,6 +429,7 @@ public class RegComision extends JDialog {
 			panel_1.add(scrollPane_3);
 			
 			listTrabajosDisponibles = new JList();
+			listTrabajosDisponibles.setFont(new Font("Roboto", Font.PLAIN, 12));
 			scrollPane_3.setViewportView(listTrabajosDisponibles);
 			
 			JScrollPane scrollPane_2 = new JScrollPane();
@@ -419,107 +437,116 @@ public class RegComision extends JDialog {
 			panel_1.add(scrollPane_2);
 			
 			listTrabajosSeleccionados = new JList();
+			listTrabajosSeleccionados.setFont(new Font("Roboto", Font.PLAIN, 12));
 			scrollPane_2.setViewportView(listTrabajosSeleccionados);
+			
+			JLabel label_1 = new JLabel("");
+			label_1.setBounds(332, 0, 208, 170);
+			label_1.setIcon(new ImageIcon(Login.class.getResource("/imagen/RegCom.png")));
+			panel.add(label_1);
 		}
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				btnRegistrar = new JButton("Registrar");
-				if(modificar)
-				{
-					btnRegistrar.setText("Modificar");
-				}
-					
+		JPanel buttonPane = new JPanel();
+		buttonPane.setBounds(0, 662, 555, 33);
+		contentPanel.add(buttonPane);
+		buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setFont(new Font("Roboto", Font.PLAIN, 12));
+		
 				btnRegistrar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						
-						if(!modificar)
+		public void actionPerformed(ActionEvent e) {
+			
+			if(!modificar)
+			{
+				if(jueces.size() > 0 && trabajos.size() > 0 && cbxArea.getSelectedIndex() > 0)
+				{
+					Jurado presidente = null;
+					
+					for(Jurado juez : jueces)
+					{
+						if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
 						{
-							if(jueces.size() > 0 && trabajos.size() > 0 && cbxArea.getSelectedIndex() > 0)
-							{
-								Jurado presidente = null;
-								
-								for(Jurado juez : jueces)
-								{
-									if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
-									{
-										presidente = juez;
-									}
-								}
-								Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
-								miEvento.insertarComision(nuevaComision);
-								clean();
-								JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
-							}
-							else
-							{
-								if(jueces.size() < 1)
-								{
-									JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
-								}
-								else if(trabajos.size() <= 0)
-								{
-									JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
-								}
-								else
-									JOptionPane.showMessageDialog(null, "Operación Errónea. Revise los campos nuevamente.", "Error de registro", JOptionPane.WARNING_MESSAGE);
-							}
+							presidente = juez;
 						}
-						else
-						{
-							if(aModificar != null)
-							{
-								if(jueces.size() < 1)
-								{
-									JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
-								}
-								else if(trabajos.size() < 1)
-								{
-									JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
-								}
-								else
-								{
-									
-									aModificar.setMiJurado(jueces);
-									Jurado presidente = null;
-									for(Jurado juez : jueces)
-									{
-										if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
-										{
-											presidente = juez;
-										}
-									}
-									aModificar.setPresidente(presidente);
-									aModificar.setTrabajosParticipantes(trabajos);
-									aModificar.setArea(cbxArea.getSelectedItem().toString());
-									JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-									dispose();
-									ListaComisiones.loadComision(miEvento.getMisComisiones());
-								}
-							}
-							else
-							{
-								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar la comisión", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-							}
-						}
-						
 					}
+					Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
+					miEvento.insertarComision(nuevaComision);
+					clean();
+					JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+				}
+				else
+				{
+					if(jueces.size() < 1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
+					}
+					else if(trabajos.size() <= 0)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+						JOptionPane.showMessageDialog(null, "Operación Errónea. Revise los campos nuevamente.", "Error de registro", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+			else
+			{
+				if(aModificar != null)
+				{
+					if(jueces.size() < 1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione más jueces", "Error de registro", JOptionPane.WARNING_MESSAGE);
+					}
+					else if(trabajos.size() < 1)
+					{
+						JOptionPane.showMessageDialog(null, "Seleccione más trabajos", "Error de registro", JOptionPane.WARNING_MESSAGE);
+					}
+					else
+					{
+						
+						aModificar.setMiJurado(jueces);
+						Jurado presidente = null;
+						for(Jurado juez : jueces)
+						{
+							if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
+							{
+								presidente = juez;
+							}
+						}
+						aModificar.setPresidente(presidente);
+						aModificar.setTrabajosParticipantes(trabajos);
+						aModificar.setArea(cbxArea.getSelectedItem().toString());
+						JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+						dispose();
+						ListaComisiones.loadComision(miEvento.getMisComisiones());
+					}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar la comisión", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			
+		}
 				});
 				btnRegistrar.setActionCommand("OK");
 				buttonPane.add(btnRegistrar);
 				getRootPane().setDefaultButton(btnRegistrar);
-			}
+				{
+					JButton btnCancel = new JButton("Cancelar");
+					btnCancel.setFont(new Font("Roboto", Font.PLAIN, 12));
+					btnCancel.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							dispose();
+						}
+					});
+					btnCancel.setActionCommand("Cancel");
+					buttonPane.add(btnCancel);
+				}
+		{
 			{
-				JButton btnCancel = new JButton("Cancelar");
-				btnCancel.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				btnCancel.setActionCommand("Cancel");
-				buttonPane.add(btnCancel);
+				if(modificar)
+				{
+					btnRegistrar.setText("Modificar");
+				}
 			}
 		}
 	}

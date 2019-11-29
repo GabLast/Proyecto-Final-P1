@@ -52,4 +52,8 @@ public class Participante extends Persona {
 		return aBuscar;
 	}
 	
+	public void deleteTrabajo(Trabajo trabajo) {
+		misTrabajos.remove(trabajo);
+	}
+	
 }

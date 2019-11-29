@@ -21,6 +21,7 @@ import logica.Persona;
 import logica.Trabajo;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 
 public class ModificarTrabajo extends JDialog {
 
@@ -54,9 +55,9 @@ public class ModificarTrabajo extends JDialog {
 	 */
 	public ModificarTrabajo (Trabajo miTrabajo) {
 		this.miTrabajo = miTrabajo;
-		setTitle("Modificando Cliente");
+		setTitle("Modificando un trabajo");
 		setResizable(false);
-		setBounds(100, 100, 399, 349);
+		setBounds(100, 100, 387, 335);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,7 +66,7 @@ public class ModificarTrabajo extends JDialog {
 		{
 			JPanel panel = new JPanel();
 			panel.setLayout(null);
-			panel.setBorder(new TitledBorder(null, "Cliente", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del trabajo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			{
 				JLabel lblCdigo = new JLabel("C\u00F3digo:");
@@ -96,7 +97,7 @@ public class ModificarTrabajo extends JDialog {
 				txtID.setEditable(false);
 				txtID.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				txtID.setColumns(10);
-				txtID.setBounds(107, 29, 244, 29);
+				txtID.setBounds(124, 29, 235, 29);
 				txtID.setText(miTrabajo.getId());
 				panel.add(txtID);
 			}
@@ -104,22 +105,23 @@ public class ModificarTrabajo extends JDialog {
 				txtTema = new JTextField();
 				txtTema.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				txtTema.setColumns(10);
-				txtTema.setBounds(107, 84, 244, 29);
-				txtTema.setText(miTrabajo.getNombreTrabajo());
+				txtTema.setBounds(124, 84, 235, 29);
+				txtTema.setText(miTrabajo.getTema());
 				panel.add(txtTema);
 			}
 			{
 				txtDescripcion = new JTextField();
 				txtDescripcion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				txtDescripcion.setColumns(10);
-				txtDescripcion.setBounds(124, 194, 227, 29);
+				txtDescripcion.setBounds(124, 194, 235, 29);
 				txtDescripcion.setText(miTrabajo.getArea());
 				panel.add(txtDescripcion);
 			}
 			
 			comboBox = new JComboBox();
+			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-			comboBox.setBounds(109, 146, 143, 20);
+			comboBox.setBounds(124, 146, 235, 25);
 			panel.add(comboBox);
 		}
 		{
@@ -139,7 +141,7 @@ public class ModificarTrabajo extends JDialog {
 							txtID.setText(txtID.getText());
 							
 							miTrabajo.setId(txtID.getText());
-							miTrabajo.setNombreTrabajo(txtTema.getText());
+							miTrabajo.setTema(txtTema.getText());
 							miTrabajo.setDescripcion(txtDescripcion.getText());
 							miTrabajo.setArea(comboBox.getSelectedItem().toString());
 

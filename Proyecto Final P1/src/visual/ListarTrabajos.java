@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import logica.Empresa;
 import logica.Participante;
 import logica.Persona;
+import logica.Recurso;
 import logica.Trabajo;
 
 import java.awt.event.ActionListener;
@@ -36,6 +37,7 @@ public class ListarTrabajos extends JDialog {
 	String id = "";
 
 	JButton btnModificar;
+	JButton btnEliminar;
 	/**
 	 * Launch the application.
 	 */
@@ -97,7 +99,7 @@ public class ListarTrabajos extends JDialog {
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
 								btnModificar.setEnabled(true);
-								
+								btnEliminar.setEnabled(true);
 								
 							}
 						}
@@ -138,6 +140,31 @@ public class ListarTrabajos extends JDialog {
 					}
 					}
 					});
+				{
+					btnEliminar = new JButton("Eliminar");
+					btnEliminar.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							if(id != "")
+							{
+								Trabajo losTrabajos = duenio.buscarTrabajoByName(id);
+								
+								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Trabajo: " 
+										   + losTrabajos.getId(), "Notificación",JOptionPane.WARNING_MESSAGE);
+								
+								if(option == JOptionPane.OK_OPTION && losTrabajos != null)
+								{
+									
+									duenio.deleteTrabajo(losTrabajos);
+									JOptionPane.showMessageDialog(null, "Trabajo eliminado satisfactoriamente"
+											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									ListarTrabajos.loadTrabajos(duenio);
+								}
+							}
+						}
+					});
+					btnEliminar.setEnabled(false);
+					buttonPane.add(btnEliminar);
+				}
 				
 				btnModificar.setActionCommand("OK");
 				btnModificar.setEnabled(false);

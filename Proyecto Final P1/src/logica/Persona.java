@@ -71,5 +71,6 @@ public abstract class Persona implements Serializable{
 		this.gradoAcademico = gradoAcademico;
 	}
 	
+
 	
 }

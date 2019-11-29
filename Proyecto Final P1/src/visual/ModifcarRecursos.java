@@ -52,7 +52,7 @@ public class ModifcarRecursos extends JDialog {
 		this.miRecurso = miRecurso;
 		setTitle("Modificando Recurso");
 		setResizable(false);
-		setBounds(100, 100, 401, 263);
+		setBounds(100, 100, 401, 227);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

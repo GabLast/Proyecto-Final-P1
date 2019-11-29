@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
@@ -24,6 +25,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 public class ListaRecursos extends JDialog {
 
@@ -33,7 +36,8 @@ public class ListaRecursos extends JDialog {
 	private Dimension dim;
 	private static JTable table;
 	private String Tipo = "";
-	private JButton btnModificar ;
+	private JButton btnModificar;
+	JButton btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -64,6 +68,7 @@ public class ListaRecursos extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaRecursos.class.getResource("/imagen/titleredlist.png")));
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "Listado de recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -86,6 +91,7 @@ public class ListaRecursos extends JDialog {
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
+					table.setFont(new Font("Roboto", Font.PLAIN, 12));
 					table.addMouseListener(new MouseAdapter() {
 						@Override
 						public void mouseClicked(MouseEvent arg0) {
@@ -93,6 +99,7 @@ public class ListaRecursos extends JDialog {
 								int index = table.getSelectedRow();
 								Tipo = String.valueOf(table.getValueAt(index, 0));
 								btnModificar.setEnabled(true);
+								btnEliminar.setEnabled(true);
 						}
 					}
 					});
@@ -110,14 +117,16 @@ public class ListaRecursos extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
 					}
 				});
 				{
-					JButton btnNewButton = new JButton("Modificar");
-					btnNewButton.addActionListener(new ActionListener() {
+					btnModificar = new JButton("Modificar");
+					btnModificar.setFont(new Font("Roboto", Font.PLAIN, 12));
+					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
 							if (Tipo != "") {
@@ -128,7 +137,34 @@ public class ListaRecursos extends JDialog {
 						}
 						}
 					});
-					buttonPane.add(btnNewButton);
+					{
+						btnEliminar = new JButton("Eliminar");
+						btnEliminar.setFont(new Font("Roboto", Font.PLAIN, 12));
+						btnEliminar.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								if(Tipo != "")
+								{
+									Recurso losrecursos = Empresa.getInstance().searchRecursoByTipo(Tipo);
+									
+									int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el recurso: " 
+											   + losrecursos.getTipo(), "Notificación",JOptionPane.WARNING_MESSAGE);
+									
+									if(option == JOptionPane.OK_OPTION && losrecursos != null)
+									{
+										
+										Empresa.getInstance().deleteRecurso(losrecursos);
+										JOptionPane.showMessageDialog(null, "Recurso eliminado satisfactoriamente"
+												, "Notificación", JOptionPane.INFORMATION_MESSAGE);
+										ListaRecursos.loadRecursos();
+									}
+								}
+							}
+						});
+						buttonPane.add(btnEliminar);
+						btnEliminar.setEnabled(false);
+					}
+					btnModificar.setEnabled(false);
+					buttonPane.add(btnModificar);
 				}
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);

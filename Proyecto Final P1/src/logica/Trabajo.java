@@ -1,6 +1,7 @@
 package logica;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Trabajo implements Serializable{
 
@@ -11,6 +12,8 @@ public class Trabajo implements Serializable{
 	private String tema;
 	private String area;
 	private String descripcion;
+	
+	private ArrayList<Trabajo> trabajos;
 	
 	public Trabajo(Participante duenio, String id, String tema, String area, String descripcion) {
 		super();
@@ -60,5 +63,7 @@ public class Trabajo implements Serializable{
 	public static void setIdTrabajo(int idTrabajo) {
 		Trabajo.idTrabajo = idTrabajo;
 	}
+	
+	
 	
 }
