@@ -100,7 +100,7 @@ public class Login extends JFrame {
 	public Login() {
 		setTitle("Iniciando sesi\u00F3n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 502, 312);
+		setBounds(100, 100, 502, 329);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -203,7 +203,7 @@ public class Login extends JFrame {
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "Digite un usuario y/o contraseña.", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Digite un usuario y/o contraseña.", "Error", JOptionPane.WARNING_MESSAGE);
 					
 					
 				}
