@@ -43,6 +43,22 @@ public class Participante extends Persona {
 		return aBuscar;
 	}
 	
+	public Trabajo buscarTrabajoByID(String ID)
+	{
+		Trabajo aBuscar = null;
+		
+		for(Trabajo job : misTrabajos)
+		{
+			if(job.getId().equalsIgnoreCase(ID))
+			{
+				aBuscar = job;
+				return aBuscar;
+			}
+		}
+		
+		return aBuscar;
+	}
+	
 	public void deleteTrabajo(Trabajo trabajo) {
 		misTrabajos.remove(trabajo);
 	}

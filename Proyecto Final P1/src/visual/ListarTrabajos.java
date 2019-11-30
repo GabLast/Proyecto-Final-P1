@@ -123,16 +123,13 @@ public class ListarTrabajos extends JDialog {
 							
 							
 							
-							Trabajo work= duenio.buscarTrabajoByName(id);
-							
-							//System.out.println(clienteModi.getCedula());
+							Trabajo work= duenio.buscarTrabajoByID(id);
+
 							int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea modificar el trabajo: " 
 									   + work.getId(),"Información",JOptionPane.WARNING_MESSAGE);
 							
 							if(option == JOptionPane.OK_OPTION && work != null)
 							{
-								//new ModificarTrabajo(work).setVisible(true);
-								//new Facturar(true, clienteModi);
 								ModificarTrabajo v1 = new ModificarTrabajo(work);
 								v1.setModal(true);
 								v1.setVisible(true);
@@ -146,7 +143,7 @@ public class ListarTrabajos extends JDialog {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
 							{
-								Trabajo losTrabajos = duenio.buscarTrabajoByName(id);
+								Trabajo losTrabajos = duenio.buscarTrabajoByID(id);
 								
 								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el Trabajo: " 
 										   + losTrabajos.getId(), "Notificación",JOptionPane.WARNING_MESSAGE);

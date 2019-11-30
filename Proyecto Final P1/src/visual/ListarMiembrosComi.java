@@ -154,7 +154,7 @@ public class ListarMiembrosComi extends JDialog {
 	{
 		model.setRowCount(0);
 		
-		//{"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
+		//{"Cédula", "Nombre", "Función en la comisión","Teléfono", "Dirección", "Sexo", "Grado Académico", "Área de estudio"};
 		row = new Object[model.getColumnCount()];
 		
 		System.out.println("ListaMiembrosComi Jueces: " + comi.getMiJurado().size());

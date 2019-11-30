@@ -82,10 +82,6 @@ public class RegComision extends JDialog {
 		else
 		{
 			setTitle("Modificando la comisión" + aModificar.getId());
-			aModificar.setPresidente(null);
-			aModificar.setTrabajosParticipantes(null);
-			aModificar.setMiJurado(null);
-			
 		}
 			
 		setBounds(100, 100, 559, 735);
@@ -392,7 +388,7 @@ public class RegComision extends JDialog {
 						listTrabajosDisponibles.setModel(modelJobDisp);
 						
 						Trabajo buscando = miEvento.buscandoTrabajoEntreMisParticipantesByName(string);
-						trabajos.add(buscando);
+						trabajos.remove(buscando);
 						
 						//removiendo valor de la lista de la derecha
 						if(modelJobSelect.getSize() != 0)
@@ -456,18 +452,51 @@ public class RegComision extends JDialog {
 									if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
 									{
 										presidente = juez;
+										juez.setPresidente(true);
 									}
 								}
-								System.out.println("Reg Comision: 1st :Trabajos: " + trabajos.size()
-								+"\t\tJueces: " + jueces.size());
-								System.out.println("Reg Comision: 2nd: Trabajos: " + trabajos.get(0).getTema());
+								
+								System.out.println("BEFORE INSERTING Reg Comision - Trabajos:");
+								for(Trabajo job : trabajos)
+								{
+									System.out.println(job.getTema());
+									//System.out.println(job.getDuenio().getNombre());
+									//System.out.println(job.getArea());
+									//System.out.println(job.getDescripcion());
+								}
+								
+								System.out.println("BEFORE INSERTING Reg Comision - Jueces:");
+								for(Jurado juez : jueces)
+								{
+									//System.out.println(juez.getCedula());
+									System.out.println(juez.getNombre());
+									//System.out.println(juez.getSexo());
+									//System.out.println(juez.getAreaEstudio());
+								}
 								
 								Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
 								
-								System.out.println("Reg Comision: PostCreation: Trabajos: " + nuevaComision.getTrabajosParticipantes().get(0).getTema());
-								System.out.println("Reg Comision: Juez: " + nuevaComision.getMiJurado().get(0).getNombre());
-								miEvento.insertarComision(nuevaComision);
+								System.out.println("AFTER INSERTING Reg Comision - Trabajos: " + nuevaComision.getTrabajosParticipantes().size());
+								for(Trabajo job : nuevaComision.getTrabajosParticipantes())
+								{
+									System.out.println(job.getTema());
+									//System.out.println(job.getDuenio().getNombre());
+									//System.out.println(job.getArea());
+									//System.out.println(job.getDescripcion());
+								}
 								
+								System.out.println("AFTER INSERTING Reg Comision - Jueces: " + nuevaComision.getMiJurado().size());
+								for(Jurado juez : nuevaComision.getMiJurado())
+								{
+									//System.out.println(juez.getCedula());
+									System.out.println(juez.getNombre());
+									//System.out.println(juez.getSexo());
+									//System.out.println(juez.getAreaEstudio());
+								}
+								
+								miEvento.insertarComision(nuevaComision);
+								new ListaTrabajosComi(nuevaComision).setVisible(true);
+								new ListarMiembrosComi(nuevaComision).setVisible(true);
 								
 								clean();
 								JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
@@ -508,6 +537,7 @@ public class RegComision extends JDialog {
 										if((juez.getNombre()).equalsIgnoreCase(cbxPresidente.getSelectedItem().toString()))
 										{
 											presidente = juez;
+											juez.setPresidente(true);
 										}
 									}
 									aModificar.setPresidente(presidente);

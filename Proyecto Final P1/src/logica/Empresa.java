@@ -29,12 +29,12 @@ public class Empresa implements Serializable{
 	private  Empresa()
 	{
 		super();
-		this.personasRegistradas = new ArrayList();
-		this.recursos = new ArrayList();
-		this.eventos = new ArrayList();
-		this.misUsers = new ArrayList();	
-		this.comisiones = new ArrayList();
-		this.trabajos = new ArrayList();
+		this.personasRegistradas = new ArrayList<>();
+		this.recursos = new ArrayList<>();
+		this.eventos = new ArrayList<>();
+		this.misUsers = new ArrayList<>();	
+		this.comisiones = new ArrayList<>();
+		this.trabajos = new ArrayList<>();
 		genIDEvento = 0;
 		genIDComision = 0;
 	}

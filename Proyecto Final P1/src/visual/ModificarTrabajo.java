@@ -114,7 +114,7 @@ public class ModificarTrabajo extends JDialog {
 				txtDescripcion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				txtDescripcion.setColumns(10);
 				txtDescripcion.setBounds(124, 194, 235, 29);
-				txtDescripcion.setText(miTrabajo.getArea());
+				txtDescripcion.setText(miTrabajo.getDescripcion());
 				panel.add(txtDescripcion);
 			}
 			
@@ -134,20 +134,21 @@ public class ModificarTrabajo extends JDialog {
 				btnModi.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(txtID.getText().length() >=1 && txtTema.getText().length() >= 1 && txtDescripcion.getText().length() >= 1 && comboBox.getSelectedIndex() > 1)
+						if(!txtTema.getText().isEmpty() && !txtDescripcion.getText().isEmpty() && comboBox.getSelectedIndex() > 0)
 						{
 							
-							miTrabajo.setId(txtID.getText());
+							
 							miTrabajo.setTema(txtTema.getText());
 							miTrabajo.setDescripcion(txtDescripcion.getText());
 							miTrabajo.setArea(comboBox.getSelectedItem().toString());
 
 							
 							
-							JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Modificación realizada.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 							ListarTrabajos.loadTrabajos(miTrabajo.getDuenio());
 							dispose();
-						}
+						}else
+							JOptionPane.showMessageDialog(null, "Revise las casillas nuevamente.", "Notificación", JOptionPane.WARNING_MESSAGE);
 					}
 				});
 				btnModi.setActionCommand("OK");

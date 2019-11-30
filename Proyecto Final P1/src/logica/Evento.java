@@ -17,9 +17,9 @@ public class Evento implements Serializable{
 	private Date fecha;
 	private boolean estado;
 	
-	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String tipo, String lugar, String id, Date fecha) {
+	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String id, String tipo, String lugar, Date fecha) {
 		super();
-		misComisiones = new ArrayList<>();
+		
 		this.recursosUsados = recursosUsados;
 		this.participantes = participantes;
 		this.nombre = nombre;
@@ -28,8 +28,9 @@ public class Evento implements Serializable{
 		this.lugar = lugar;
 		this.fecha = fecha;
 		this.estado = true;
+		misComisiones = new ArrayList<Comision>();
 	}
-
+	
 	public ArrayList<Comision> getMisComisiones() {
 		return misComisiones;
 	}
@@ -70,6 +71,22 @@ public class Evento implements Serializable{
 		this.id = id;
 	}
 
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getLugar() {
+		return lugar;
+	}
+
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -82,26 +99,10 @@ public class Evento implements Serializable{
 		return estado;
 	}
 
-	public String getLugar() {
-		return lugar;
-	}
-
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
-	}
-
 	public void setEstado(boolean estado) {
 		this.estado = estado;
-	}	
-
-	public String getTipo() {
-		return tipo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	
 	public void insertarComision(Comision c1) {
 
 		misComisiones.add(c1);
@@ -157,6 +158,10 @@ public class Evento implements Serializable{
 		for(Participante parti : participantes)
 		{
 			job = parti.buscarTrabajoByName(id);
+			if(job != null)
+			{
+				return job;
+			}
 		}
 		
 		return job;
@@ -198,3 +203,88 @@ public class Evento implements Serializable{
 	}
 
 }
+
+/*	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String tipo, String lugar, String id, Date fecha) {
+super();
+misComisiones = new ArrayList<>();
+this.recursosUsados = recursosUsados;
+this.participantes = participantes;
+this.nombre = nombre;
+this.id = id;
+this.tipo = tipo;
+this.lugar = lugar;
+this.fecha = fecha;
+this.estado = true;
+}
+
+public ArrayList<Comision> getMisComisiones() {
+return misComisiones;
+}
+
+public void setMisComisiones(ArrayList<Comision> misComisiones) {
+this.misComisiones = misComisiones;
+}
+
+public ArrayList<Recurso> getRecursosUsados() {
+return recursosUsados;
+}
+
+public void setRecursosUsados(ArrayList<Recurso> recursosUsados) {
+this.recursosUsados = recursosUsados;
+}
+
+public ArrayList<Participante> getParticipantes() {
+return participantes;
+}
+
+public void setParticipantes(ArrayList<Participante> participantes) {
+this.participantes = participantes;
+}
+
+public String getNombre() {
+return nombre;
+}
+
+public void setNombre(String nombre) {
+this.nombre = nombre;
+}
+
+public String getId() {
+return id;
+}
+
+public void setId(String id) {
+this.id = id;
+}
+
+public Date getFecha() {
+return fecha;
+}
+
+public void setFecha(Date fecha) {
+this.fecha = fecha;
+}
+
+public boolean isEstado() {
+return estado;
+}
+
+public String getLugar() {
+return lugar;
+}
+
+public void setLugar(String lugar) {
+this.lugar = lugar;
+}
+
+public void setEstado(boolean estado) {
+this.estado = estado;
+}	
+
+public String getTipo() {
+return tipo;
+}
+
+public void setTipo(String tipo) {
+this.tipo = tipo;
+}*/

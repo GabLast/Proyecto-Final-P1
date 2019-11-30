@@ -484,8 +484,9 @@ public class CreandoEvento extends JDialog {
 							}
 							else
 							{
-								Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), cbxTipo.getSelectedItem().toString(), 
-										txtLugar.getText(), txtID.getText(), calendar.getDate());
+								Evento nuevoEvento = new Evento(recursos, participantes, txtNombre.getText(), txtID.getText(), 
+										cbxTipo.getSelectedItem().toString(), txtLugar.getText(), calendar.getDate());
+								
 								nuevoEvento.verificarFin();
 								Empresa.getInstance().insertarEvento(nuevoEvento);
 								JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.INFORMATION_MESSAGE);
