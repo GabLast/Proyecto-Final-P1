@@ -97,7 +97,7 @@ public class RegistrarRecursos extends JDialog {
 				}
 			}
 		});
-		btnRegistrar.setBounds(134, 139, 119, 23);
+		btnRegistrar.setBounds(17, 139, 119, 23);
 		contentPanel.add(btnRegistrar);
 		
 		JButton btnSalir = new JButton("Salir");
@@ -106,7 +106,7 @@ public class RegistrarRecursos extends JDialog {
 				dispose();
 			}
 		});
-		btnSalir.setBounds(17, 139, 89, 23);
+		btnSalir.setBounds(164, 139, 89, 23);
 		contentPanel.add(btnSalir);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
