@@ -12,14 +12,14 @@ public class Comision implements Serializable{
 	private ArrayList<Jurado> miJurado;
 	private Jurado presidente;
 	private ArrayList<Trabajo> trabajosParticipantes;
-	private String area; //investigacion y practica
+	private String area; 
 	private Date fechaCreacion;
 
-	public Comision(String id, ArrayList<Jurado> miJurado, Jurado presidente, ArrayList<Trabajo> trabajosParticipantes,
-			String area) {
+	public Comision(String id, ArrayList<Jurado> miJurado, Jurado presidente, 
+			ArrayList<Trabajo> trabajosParticipantes,	String area) {
 		super();
 		this.id = id;
-		this.miJurado = miJurado; //max es 4
+		this.miJurado = miJurado; 
 		this.presidente = presidente;
 		this.trabajosParticipantes = trabajosParticipantes;
 		this.area = area;

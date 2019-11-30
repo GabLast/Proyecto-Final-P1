@@ -243,7 +243,7 @@ public class ListaEventos extends JDialog {
 
 	public static void loadEventos() 
 	{
-		Empresa.getInstance().insertionSort();
+		//Empresa.getInstance().insertionSort();
 		model.setRowCount(0);
 		Empresa miEmpresa = Empresa.getInstance();
 		//{"ID", "Nombre", "Tipo", "lugar", "Fecha de la actividad", "Estado"};

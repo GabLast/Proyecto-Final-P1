@@ -55,8 +55,8 @@ public class RegComision extends JDialog {
 	DefaultListModel modelJobDisp;
 	DefaultListModel modelJobSelect;
 
-	ArrayList<Jurado> jueces = new ArrayList();
-	ArrayList<Trabajo> trabajos = new ArrayList();
+	ArrayList<Jurado> jueces = new ArrayList<>();
+	ArrayList<Trabajo> trabajos = new ArrayList<>();
 	//Evento eventoGL = null;
 	/**
 	 * Launch the application.
@@ -467,7 +467,7 @@ public class RegComision extends JDialog {
 						System.out.println("Trabajos: " + trabajos.size()
 						+"\nJueces: " + jueces.size());
 						Comision nuevaComision = new Comision(txtID.getText(),jueces, presidente, trabajos, cbxArea.getSelectedItem().toString());
-						nuevaComision.setTrabajosParticipantes(trabajos);
+
 						miEvento.insertarComision(nuevaComision);
 						clean();
 						JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
