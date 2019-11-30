@@ -37,6 +37,7 @@ public class ListaComisiones extends JDialog {
 	JButton btnModificar;
 	JButton btnListarTrabajos;
 	JButton btnListarMiembros;
+	JButton btnEliminar;
 	/**
 	 * Launch the application.
 	 */
@@ -98,6 +99,9 @@ public class ListaComisiones extends JDialog {
 								int index = table.getSelectedRow();
 								id = String.valueOf(table.getValueAt(index, 0));
 								btnModificar.setEnabled(true);
+								btnListarMiembros.setEnabled(true);
+								btnListarTrabajos.setEnabled(true);
+								btnEliminar.setEnabled(true);
 								
 							}
 						}
@@ -124,7 +128,7 @@ public class ListaComisiones extends JDialog {
 					}
 				});
 				{
-					JButton btnEliminar = new JButton("Eliminar");
+					btnEliminar = new JButton("Eliminar");
 					btnEliminar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
@@ -137,10 +141,10 @@ public class ListaComisiones extends JDialog {
 								if(option == JOptionPane.OK_OPTION && laComision != null)
 								{
 									
-									Empresa.getInstance().deleteComision(laComision);
+									miEvento.deleteComision(laComision);
 									JOptionPane.showMessageDialog(null, "Comision eliminado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
-									ListaComisiones.loadComision(null);
+									ListaComisiones.loadComision(miEvento.getMisComisiones());
 								}
 							}
 							

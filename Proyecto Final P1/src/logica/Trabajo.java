@@ -6,14 +6,11 @@ import java.util.ArrayList;
 public class Trabajo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private static int idTrabajo = 0;
 	private Participante duenio;
 	private String id;
 	private String tema;
 	private String area;
 	private String descripcion;
-	
-	private ArrayList<Trabajo> trabajos;
 	
 	public Trabajo(Participante duenio, String id, String tema, String area, String descripcion) {
 		super();
@@ -22,7 +19,6 @@ public class Trabajo implements Serializable{
 		this.tema = tema;
 		this.area = area;
 		this.descripcion = descripcion;
-		idTrabajo++;
 	}
 	
 	public Participante getDuenio() {
@@ -54,16 +50,7 @@ public class Trabajo implements Serializable{
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public static int getIdTrabajo() {
-		return idTrabajo;
-	}
-
-	public static void setIdTrabajo(int idTrabajo) {
-		Trabajo.idTrabajo = idTrabajo;
-	}
-	
+	}	
 	
 	
 }

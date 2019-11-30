@@ -112,7 +112,7 @@ public class RegistrarTrabajo extends JDialog {
 		
 		txtIDTrabajo = new JTextField();
 		txtIDTrabajo.setEditable(false);
-		txtIDTrabajo.setText("TRAB"+duenio.getGenIdTrabajo());
+		txtIDTrabajo.setText("TRAB"+Empresa.getInstance().getGenIDTrabajo());
 		txtIDTrabajo.setBounds(96, 26, 261, 20);
 		panelTrabajo.add(txtIDTrabajo);
 		txtIDTrabajo.setColumns(10);
@@ -193,7 +193,7 @@ public class RegistrarTrabajo extends JDialog {
 	private void clean()
 	{		
 		txtDescripcion.setText("");
-		txtIDTrabajo.setText("TRAB"+duenioGlobal.getGenIdTrabajo());
+		txtIDTrabajo.setText("TRAB"+Empresa.getInstance().getGenIDTrabajo());
 		cbxArea.setSelectedIndex(0);
 		txtTema.setText("");
 		

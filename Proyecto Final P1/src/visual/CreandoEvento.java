@@ -40,12 +40,12 @@ public class CreandoEvento extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	JButton btnCrear;
-	private JTextField txtID = new JTextField();;
-	private JTextField txtNombre = new JTextField();
+	private JTextField txtID;
+	private JTextField txtNombre;
 	private JComboBox cbxRecurso;
-	private JComboBox cbxTipo = new JComboBox();;
+	private JComboBox cbxTipo;
 	JSpinner spnCantidad;
-	JCalendar calendar = new JCalendar();;
+	JCalendar calendar;
 	JList listRecursosElegidos;
 	JList listPartiElegidos;
 	JList listParticipantes;
@@ -91,11 +91,6 @@ public class CreandoEvento extends JDialog {
 		else
 		{
 			setTitle("Modificando el evento: " + modiEvento.getNombre());
-			txtID.setText(modiEvento.getId());
-			cbxTipo.setSelectedItem(modiEvento.getTipo());
-			txtNombre.setText(modiEvento.getNombre());
-			txtLugar.setText(modiEvento.getLugar());
-			calendar.setDate(modiEvento.getFecha());
 			recBackUp = modiEvento.getRecursosUsados();
 			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
 		}
@@ -133,17 +128,27 @@ public class CreandoEvento extends JDialog {
 				}
 				
 				calendar = new JCalendar();
+				if(modificar)
+					calendar.setDate(modiEvento.getFecha());
 				calendar.setBounds(20, 137, 540, 162);
 				panel_1.add(calendar);
 				
 				txtID = new JTextField();
 				txtID.setEditable(false);
-				txtID.setText("EV"+Empresa.getInstance().getGenIDEvento());
+				if(modificar)
+				{
+					txtID.setText(modiEvento.getId());
+				}else
+					txtID.setText("EV"+Empresa.getInstance().getGenIDEvento());
 				txtID.setBounds(80, 16, 203, 29);
 				panel_1.add(txtID);
 				txtID.setColumns(10);
 				
 				txtNombre = new JTextField();
+				if(modificar)
+				{
+					txtNombre.setText(modiEvento.getNombre());
+				}
 				txtNombre.setColumns(10);
 				txtNombre.setBounds(80, 56, 203, 29);
 				panel_1.add(txtNombre);
@@ -153,9 +158,13 @@ public class CreandoEvento extends JDialog {
 					panel_1.add(lblTipo);
 				}
 				{
-					cbxTipo = new JComboBox();
+					cbxTipo = new JComboBox();	
 					cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Panel", "Ponencia", "Conferencia", "Jornada", "Mesa Redonda"}));
 					cbxTipo.setBounds(357, 16, 203, 29);
+					if(modificar)
+					{
+						cbxTipo.setSelectedItem(modiEvento.getTipo());
+					}
 					panel_1.add(cbxTipo);
 				}
 				
@@ -164,6 +173,8 @@ public class CreandoEvento extends JDialog {
 				panel_1.add(lblLugar);
 				
 				txtLugar = new JTextField();
+				if(modificar)
+					txtLugar.setText(modiEvento.getLugar());
 				txtLugar.setColumns(10);
 				txtLugar.setBounds(357, 56, 203, 29);
 				panel_1.add(txtLugar);

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Comision implements Serializable{
-	
-	
+
+
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private ArrayList<Jurado> miJurado;
@@ -73,11 +73,11 @@ public class Comision implements Serializable{
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	
+
 	public boolean verificarPresidente()
 	{
 		boolean hayPresidente = false;
-		
+
 		for(Jurado jur : miJurado)
 		{
 			if(jur.isPresidente())
@@ -86,7 +86,7 @@ public class Comision implements Serializable{
 				return hayPresidente;
 			}
 		}
-		
+
 		return hayPresidente;
 	}
 
@@ -99,25 +99,25 @@ public class Comision implements Serializable{
 		}
 		miJurado.remove(juez);
 	}
-	
+
 	public Jurado buscarJuezBYID(String id) {
 		Jurado persona = null;
-		
+
 		for (Jurado aux : miJurado) {
 			if (aux.getCedula().equalsIgnoreCase(id)) 
 			{
-					persona = aux;
-					return persona;
+				persona = aux;
+				return persona;
 			}
 		}
 		return persona;
-		
+
 	}
-	
+
 	public Trabajo buscarTrabajoByName(String name) 
 	{
 		Trabajo job = null;
-		
+
 		for (Trabajo aux : trabajosParticipantes) 
 		{
 			if (aux.getTema().equalsIgnoreCase(name)) 
@@ -127,9 +127,9 @@ public class Comision implements Serializable{
 			}
 		}
 		return job;
-		
+
 	}
-	
+
 	public void deleteTrabajo(Trabajo job) {
 
 		trabajosParticipantes.remove(job);

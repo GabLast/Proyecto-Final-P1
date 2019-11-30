@@ -180,7 +180,7 @@ public class ListarPersonas extends JDialog {
 									{
 										
 										Empresa.getInstance().deletePersona(elParticipante);
-										JOptionPane.showMessageDialog(null, "Ha sido eliminado satisfactoriamente"
+										JOptionPane.showMessageDialog(null, "Se ha sido eliminado satisfactoriamente"
 												, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 										ListarPersonas.loadPersonas();
 									}

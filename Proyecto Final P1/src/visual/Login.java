@@ -55,6 +55,17 @@ public class Login extends JFrame {
 					
 					Empresa temp = (Empresa)empresaRead.readObject();
 					
+					int cantidadesEventosTrabajosComisiones;
+					
+					cantidadesEventosTrabajosComisiones = temp.getComisiones().size();
+					temp.setGenIDComision(cantidadesEventosTrabajosComisiones);
+					
+					cantidadesEventosTrabajosComisiones = temp.getTrabajos().size();
+					temp.setGenIDTrabajo(cantidadesEventosTrabajosComisiones);
+					
+					cantidadesEventosTrabajosComisiones = temp.getEventos().size();
+					temp.setGenIDEvento(cantidadesEventosTrabajosComisiones);
+					
 					Empresa.setMiEmpresa(temp);
 					empresaIn.close();
 					empresaRead.close();

@@ -15,6 +15,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.ColorUIResource;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
+
 import logica.Empresa;
 
 import javax.swing.JMenuBar;
@@ -31,6 +38,12 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Insets;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.GridLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JLabel;
 
 public class Principal extends JFrame {
 
@@ -87,14 +100,12 @@ public class Principal extends JFrame {
 		});
 		setTitle("Planificaci\u00F3n de eventos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 800, 800);
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .92;
 		dim.height *= .92;
-		super.setSize(dim.width, dim.height);
+		//super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
-		
-		
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setForeground(Color.BLACK);
@@ -171,7 +182,7 @@ public class Principal extends JFrame {
 		mntmRegistrarRecurso.setFont(new Font("Roboto", Font.PLAIN, 14));
 		mntmRegistrarRecurso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarRecursos window = new RegistrarRecursos();
+				RegRecurso window = new RegRecurso();
 				window.setModal(true);
 				window.setVisible(true);
 			}
@@ -191,8 +202,58 @@ public class Principal extends JFrame {
 		mnGestinDeRecursos.add(mntmListarRecursos);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		JPanel panel = new JPanel();
+		
+		contentPane.add(panel, BorderLayout.CENTER);
+//**********************************************************************************************************************************************************************************		
+		JPanel panelEventosPopu = new JPanel();
+		panelEventosPopu.setBounds(10, 11, 359, 307);
+		//.setBounds(10, 11, panel.getSize().width/4, panel.getSize().height/4);
+		panel.setLayout(null);
+		panel.add(panelEventosPopu);
+		panelEventosPopu.setLayout(new BorderLayout(0, 0));
+//**********************************************************************************************************************************************************************************		
+		JPanel panelGeneros = new JPanel();
+		panelGeneros.setBounds(405, 11, 359, 307);
+		panel.add(panelGeneros);
+		panelGeneros.setLayout(new BorderLayout(0, 0));
+//**********************************************************************************************************************************************************************************		
+		JPanel panelAreaYTrabajo = new JPanel();
+		panelAreaYTrabajo.setBounds(10, 390, 359, 307);
+		//panelAreaYTrabajo.setBounds(10, 390, panel.getSize().width/4, panel.getSize().height/4);
+		panel.add(panelAreaYTrabajo);
+		panelAreaYTrabajo.setLayout(new BorderLayout(0, 0));
+		
+		int[] totales = Empresa.getInstance().cantidadTrabajosPorArea();
+		
+		// Fuente de Datos
+        DefaultPieDataset defaultpiedataset = new DefaultPieDataset(); 
+        defaultpiedataset.setValue("Matemáticas", totales[0]); 
+        defaultpiedataset.setValue("Química", totales[1]); 
+        defaultpiedataset.setValue("Biología", totales[2]); 
+        defaultpiedataset.setValue("Historia", totales[3]); 
+        defaultpiedataset.setValue("Física", totales[4]); 
+        defaultpiedataset.setValue("Ingeniería", totales[5]); 
+        
+ 
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart3D("Número de trabajos por área de investigación", defaultpiedataset, true, true, false); 
+        PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot(); 
+        pieplot3d.setDepthFactor(0.5); 
+        pieplot3d.setStartAngle(290D); 
+        pieplot3d.setDirection(Rotation.CLOCKWISE); 
+        pieplot3d.setForegroundAlpha(0.5F); 
+        
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        panelAreaYTrabajo.add(chartPanel);
+//**********************************************************************************************************************************************************************************		
+		JPanel panelJuecesPopulares = new JPanel();
+		panelJuecesPopulares.setBounds(405, 390, 359, 307);
+		panel.add(panelJuecesPopulares);
+		panelJuecesPopulares.setLayout(new BorderLayout(0, 0));
 	}
-
 }

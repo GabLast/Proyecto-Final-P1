@@ -7,7 +7,6 @@ import java.util.Date;
 public class Evento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private static int genIDComision = 0;
 	private ArrayList<Comision> misComisiones;
 	private ArrayList<Recurso> recursosUsados;
 	private ArrayList<Participante> participantes;
@@ -94,14 +93,6 @@ public class Evento implements Serializable{
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}	
-	
-	public static int getGenIDComision() {
-		return genIDComision;
-	}
-
-	public static void setGenIDComision(int genIDComision) {
-		Evento.genIDComision = genIDComision;
-	}
 
 	public String getTipo() {
 		return tipo;
@@ -114,7 +105,13 @@ public class Evento implements Serializable{
 	public void insertarComision(Comision c1) {
 
 		misComisiones.add(c1);
-		genIDComision++;
+		Empresa.getInstance().getComisiones().add(c1);
+		Empresa.getInstance().setGenIDComision(Empresa.getInstance().getComisiones().size());
+	}
+	
+	public void deleteComision(Comision c1) {
+
+		misComisiones.remove(c1);
 	}
 	
 	public void verificarFin() 
@@ -124,6 +121,8 @@ public class Evento implements Serializable{
 		{
 			estado = false;
 		}
+		else
+			estado = true;
 		
 	}
 	
@@ -163,5 +162,39 @@ public class Evento implements Serializable{
 		return job;
 	}
 
+	public int[] cantidadPersonasPorGenero()
+	{	
+		int hombres = 0;
+		int mujeres = 0;
+		
+		
+		for(Participante parti : participantes)
+		{
+			if(parti.getSexo().equalsIgnoreCase("Masculino"))
+			{
+				hombres++;
+			}
+			else
+			{
+				mujeres++;
+			}
+		}
+		
+		int[] totales = {hombres, mujeres};
+		
+		return totales;
+	}
+	
+	public int totalTrabajos()
+	{
+		int total = 0;
+		
+		for(Comision comi : misComisiones)
+		{
+			total += comi.getTrabajosParticipantes().size();
+		}
+		
+		return total;
+	}
 
 }

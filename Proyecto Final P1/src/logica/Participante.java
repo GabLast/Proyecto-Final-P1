@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class Participante extends Persona {
 
 	private ArrayList<Trabajo> misTrabajos;
-	private static int genIdTrabajo;
 
 	public Participante(String cedula, String nombre, String telefono, String direccion, String sexo,
 			String gradoAcademico) {
 		super(cedula, nombre, telefono, direccion, sexo, gradoAcademico);
 		misTrabajos = new ArrayList<>();
-		this.genIdTrabajo = 0;
 	}
 
 	public ArrayList<Trabajo> getMisTrabajos() {
@@ -22,18 +20,11 @@ public class Participante extends Persona {
 		this.misTrabajos = misTrabajos;
 	}
 	
-	public static int getGenIdTrabajo() {
-		return genIdTrabajo;
-	}
-
-	public static void setGenIdTrabajo(int genIdTrabajo) {
-		Participante.genIdTrabajo = genIdTrabajo;
-	}
-	
 	public void insertarTrabajo(Trabajo t) {
 
 		misTrabajos.add(t);
-		genIdTrabajo++;
+		Empresa.getInstance().getTrabajos().add(t);
+		Empresa.getInstance().setGenIDTrabajo(Empresa.getInstance().getTrabajos().size());
 	}
 	
 	public Trabajo buscarTrabajoByName(String id)

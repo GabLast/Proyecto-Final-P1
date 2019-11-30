@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -19,7 +20,11 @@ public class Empresa implements Serializable{
 	private ArrayList<Recurso> recursos;
 	private ArrayList<Evento> eventos;
 	private ArrayList<Comision> comisiones;
-	private static int genIDEvento = 0;
+	private ArrayList<Trabajo> trabajos;
+	
+	private static int genIDEvento;
+	private static int genIDComision;
+	private static int genIDTrabajo;
 	
 	private  Empresa()
 	{
@@ -27,7 +32,11 @@ public class Empresa implements Serializable{
 		this.personasRegistradas = new ArrayList();
 		this.recursos = new ArrayList();
 		this.eventos = new ArrayList();
-		this.misUsers = new ArrayList();		
+		this.misUsers = new ArrayList();	
+		this.comisiones = new ArrayList();
+		this.trabajos = new ArrayList();
+		genIDEvento = 0;
+		genIDComision = 0;
 	}
 	public static Empresa getInstance() 
 	{		
@@ -54,6 +63,14 @@ public class Empresa implements Serializable{
 	public void setRecursos(ArrayList<Recurso> recursos) {
 		this.recursos = recursos;
 	}
+	
+	public ArrayList<Comision> getComisiones() {
+		return comisiones;
+	}
+	public void setComisiones(ArrayList<Comision> comisiones) {
+		this.comisiones = comisiones;
+	}
+
 	public ArrayList<Evento> getEventos() {
 		return eventos;
 	}
@@ -68,6 +85,19 @@ public class Empresa implements Serializable{
 		Empresa.genIDEvento = genIDEvento;
 	}
 	
+	public static int getGenIDComision() {
+		return genIDComision;
+	}
+	public static void setGenIDComision(int genIDComision) {
+		Empresa.genIDComision = genIDComision;
+	}
+	public static int getGenIDTrabajo() {
+		return genIDTrabajo;
+	}
+	public static void setGenIDTrabajo(int genIDTrabajo) {
+		Empresa.genIDTrabajo = genIDTrabajo;
+	}
+
 	public void insertarPersona(Persona person) {
 
 		personasRegistradas.add(person);
@@ -100,6 +130,12 @@ public class Empresa implements Serializable{
 		Empresa.loginUser = loginUser;
 	}
 
+	public ArrayList<Trabajo> getTrabajos() {
+		return trabajos;
+	}
+	public void setTrabajos(ArrayList<Trabajo> trabajos) {
+		this.trabajos = trabajos;
+	}
 	public void regUser(User user) {
 		misUsers.add(user);
 
@@ -342,7 +378,81 @@ public class Empresa implements Serializable{
 		}
 		return existe;
 	}
-
-
+	
+	public int[] cantidadTrabajosPorArea()
+	{	
+		int mate = 0;
+		int quimi = 0;
+		int bio = 0;
+		int hist = 0;
+		int fisi = 0;
+		int ing = 0;
+		int i;
+		
+		
+		for(Persona parti : personasRegistradas)
+		{
+			if(parti instanceof Participante)
+			{	
+				for(i = 0; i < ((Participante)parti).getMisTrabajos().size(); i++)
+				{
+					if(((Participante) parti).getMisTrabajos().get(i).getArea().equalsIgnoreCase("Matemáticas"))
+					{
+						++mate;
+					}
+					if(((Participante) parti).getMisTrabajos().get(i).getArea().equalsIgnoreCase("Química"))
+					{
+						++quimi;
+					}
+					if(((Participante) parti).getMisTrabajos().get(i).getArea().equalsIgnoreCase("Biología"))
+					{
+						++bio;
+					}
+					if(((Participante) parti).getMisTrabajos().get(i).getArea().equalsIgnoreCase("Historia"))
+					{
+						++hist;
+					}
+					if(((Participante) parti).getMisTrabajos().get(i).getArea().equalsIgnoreCase("Física"))
+					{
+						++fisi;
+					}
+					if(((Participante) parti).getMisTrabajos().get(i).getArea().equalsIgnoreCase("Ingeniería"))
+					{
+						++ing;
+					}
+				}
+			}
+		}
+		
+		int[] totales = {mate, quimi, bio, hist, fisi, ing};
+		
+		return totales;
+	}
+	
+	public  void insertionSort() 
+	{
+	    for (int i = 1; i < eventos.size(); i++) 
+	    {
+	        Evento current = eventos.get(i);
+	        
+	        int j = i - 1;
+	       
+	        while(j >= 0 && current.totalTrabajos() < eventos.get(j).totalTrabajos()) 
+	        {
+	            eventos.set(j+1, eventos.get(j));
+	            j--;
+	        }
+	        
+	        eventos.set(j+1, current);
+	    }
+	}
+	
+	public ArrayList<Evento> eventosMasPopularesRespectoTrabajos()
+	{
+		ArrayList<Evento> evePopulares = new ArrayList<>();
+		
+		
+		return evePopulares;
+	}
 
 }
