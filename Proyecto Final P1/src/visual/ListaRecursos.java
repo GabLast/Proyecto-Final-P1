@@ -130,7 +130,7 @@ public class ListaRecursos extends JDialog {
 					}
 				});
 				{
-					btnModificar = new JButton("Modificar");
+					btnModificar = new JButton("Modificar recurso");
 					btnModificar.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -144,7 +144,7 @@ public class ListaRecursos extends JDialog {
 						}
 					});
 					{
-						btnEliminar = new JButton("Eliminar");
+						btnEliminar = new JButton("Eliminar recurso");
 						btnEliminar.setFont(new Font("Roboto", Font.PLAIN, 12));
 						btnEliminar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {

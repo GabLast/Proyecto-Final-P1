@@ -57,7 +57,7 @@ public class RegComision extends JDialog {
 	
 	private static ArrayList<Jurado> jueces = new ArrayList<>();
 	private static ArrayList<Trabajo> trabajos = new ArrayList<>();
-	//Evento eventoGL = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -82,7 +82,6 @@ public class RegComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegComision(Evento miEvento, boolean modificar, Comision aModificar) {
-		//this.eventoGL = miEvento;
 		if(!modificar)
 			setTitle("Formando una comisi\u00F3n");
 		else
@@ -169,12 +168,12 @@ public class RegComision extends JDialog {
 				}
 			});
 			cbxArea.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-			cbxArea.setBounds(156, 74, 166, 22);
+			cbxArea.setBounds(156, 73, 166, 24);
 			panel.add(cbxArea);
 			
 			txtID = new JTextField();
 			txtID.setEditable(false);
-			txtID.setBounds(156, 28, 166, 22);
+			txtID.setBounds(156, 27, 166, 24);
 			if(!modificar)
 				txtID.setText("COM"+Empresa.getInstance().getGenIDComision());
 			else
@@ -190,7 +189,7 @@ public class RegComision extends JDialog {
 			txtFechaCreacion.setEditable(false);
 			txtFechaCreacion.setColumns(10);
 			txtFechaCreacion.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-			txtFechaCreacion.setBounds(156, 119, 166, 22);
+			txtFechaCreacion.setBounds(156, 118, 166, 24);
 			
 			panel.add(txtFechaCreacion);
 			
@@ -261,7 +260,7 @@ public class RegComision extends JDialog {
 					}
 				}
 			});
-			btnRightJurado.setBounds(218, 68, 71, 31);
+			btnRightJurado.setBounds(218, 78, 71, 24);
 			panelJurado.add(btnRightJurado);
 			
 			JButton btnLeftJurado = new JButton("<");
@@ -285,6 +284,7 @@ public class RegComision extends JDialog {
 						listJuecesDisponibles.setModel(modelJuecesDisp);
 						
 						Jurado buscando = Empresa.getInstance().buscarJuezByName(string);
+						System.out.println("Print desde boton LeftJueces:" + buscando.getNombre());
 						jueces.remove(buscando);
 						
 						cbxModel = new DefaultComboBoxModel(); 
@@ -305,7 +305,7 @@ public class RegComision extends JDialog {
 					}
 				}
 			});
-			btnLeftJurado.setBounds(218, 151, 71, 31);
+			btnLeftJurado.setBounds(218, 151, 71, 24);
 			panelJurado.add(btnLeftJurado);
 			
 			JScrollPane scrollPane_1 = new JScrollPane();
@@ -320,7 +320,7 @@ public class RegComision extends JDialog {
 			panelJurado.add(lblPresidente);
 			
 			cbxPresidente = new JComboBox();
-			cbxPresidente.setBounds(116, 210, 374, 22);
+			cbxPresidente.setBounds(116, 209, 374, 24);
 			panelJurado.add(cbxPresidente);
 			
 			
@@ -373,7 +373,7 @@ public class RegComision extends JDialog {
 					}
 				}
 			});
-			btnRightTrabajos.setBounds(218, 68, 71, 31);
+			btnRightTrabajos.setBounds(218, 74, 71, 24);
 			panel_1.add(btnRightTrabajos);
 			
 			JButton btnLeftTrabajos = new JButton("<");
@@ -397,6 +397,7 @@ public class RegComision extends JDialog {
 						listTrabajosDisponibles.setModel(modelJobDisp);
 						
 						Trabajo buscando = miEvento.buscandoTrabajoEntreMisParticipantesByName(string);
+						System.out.println("Print desde boton LeftTrabajos:" + buscando.getTema());
 						trabajos.remove(buscando);
 						
 						//removiendo valor de la lista de la derecha
@@ -410,7 +411,7 @@ public class RegComision extends JDialog {
 					
 				}
 			});
-			btnLeftTrabajos.setBounds(218, 151, 71, 31);
+			btnLeftTrabajos.setBounds(218, 151, 71, 24);
 			panel_1.add(btnLeftTrabajos);
 			
 			JLabel lblTrabajosSeleccionados = new JLabel("Trabajos seleccionados:");
@@ -442,6 +443,7 @@ public class RegComision extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.setSize(77, 24);
 				if(modificar)
 				{
 					btnRegistrar.setText("Modificar");
@@ -482,10 +484,12 @@ public class RegComision extends JDialog {
 //									//System.out.println(juez.getSexo());
 //									//System.out.println(juez.getAreaEstudio());
 //								}
-								
+								System.out.println("BEFORE INSERTING Reg Comision - Jueces/Trabajos: " + jueces.size() + "/" + trabajos.size());
 								Comision nuevaComision = new Comision(txtID.getText(), presidente, cbxArea.getSelectedItem().toString());
 								nuevaComision.setTrabajosParticipantes(trabajos);
 								nuevaComision.setMiJurado(jueces);
+								
+								System.out.println("AFTER INSERTING Reg Comision - Jueces/Trabajos: " + nuevaComision.getMiJurado().size() + "/" + nuevaComision.getTrabajosParticipantes().size());
 //								System.out.println("AFTER INSERTING Reg Comision - Trabajos: " + nuevaComision.getTrabajosParticipantes().size());
 //								for(Trabajo job : nuevaComision.getTrabajosParticipantes())
 //								{
@@ -508,9 +512,10 @@ public class RegComision extends JDialog {
 								//new ListaEventos().setVisible(true);
 								//new ListaTrabajosComi(miEvento.getMisComisiones().get(0)).setVisible(true);
 								//new ListarMiembrosComi(miEvento.getMisComisiones().get(0)).setVisible(true);
-								
-								clean();
 								JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+								dispose();
+								//clean();
+								
 							}
 							else
 							{
@@ -577,6 +582,7 @@ public class RegComision extends JDialog {
 			}
 			{
 				JButton btnCancel = new JButton("Cancelar");
+				btnCancel.setSize(75, 24);
 				btnCancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

@@ -150,7 +150,7 @@ public class ListarPersonas extends JDialog {
 					}
 				});
 				{
-				 btnModificar = new JButton("Modificar");
+				 btnModificar = new JButton("Modificar persona");
 				 btnModificar.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnModificar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -172,7 +172,7 @@ public class ListarPersonas extends JDialog {
 						}
 					});
 					{
-						btnEliminar = new JButton("Eliminar");
+						btnEliminar = new JButton("Eliminar persona");
 						btnEliminar.setFont(new Font("Roboto", Font.PLAIN, 12));
 						btnEliminar.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {

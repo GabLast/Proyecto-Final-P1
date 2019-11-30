@@ -485,7 +485,7 @@ public class CreandoEvento extends JDialog {
 							if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty() || 
 									participantes.size() < 1)
 							{
-								JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes", "Error", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes.", "Error", JOptionPane.WARNING_MESSAGE);
 							}
 							else
 							{
@@ -494,7 +494,7 @@ public class CreandoEvento extends JDialog {
 								
 								nuevoEvento.verificarFin();
 								Empresa.getInstance().insertarEvento(nuevoEvento);
-								JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Evento Registrado.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 								dispose();
 								RegComision comi = new RegComision(nuevoEvento, false, null);
 								comi.setModal(true);
@@ -508,7 +508,7 @@ public class CreandoEvento extends JDialog {
 								if(txtNombre.getText().isEmpty() || cbxTipo.getSelectedIndex() < 1 || txtLugar.getText().isEmpty() || 
 										participantes.size() < 1)
 								{
-									JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes", "Error", JOptionPane.WARNING_MESSAGE);
+									JOptionPane.showMessageDialog(null, "Asegúrese de llenar las casillas, elegir el tipo de evento y sus participantes.", "Error", JOptionPane.WARNING_MESSAGE);
 								}
 								else
 								{
@@ -519,14 +519,14 @@ public class CreandoEvento extends JDialog {
 									modiEvento.setRecursosUsados(recursos);
 									modiEvento.setTipo(cbxTipo.getSelectedItem().toString());
 									modiEvento.verificarFin();
-									JOptionPane.showMessageDialog(null, "Modificación realizada de manera satisfactoria", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+									JOptionPane.showMessageDialog(null, "Modificación realizada de manera satisfactoria.", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									dispose();
 									ListaEventos.loadEventos();
 								}
 							}
 							else
 							{
-								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar el evento", "Notificación", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar el evento.", "Notificación", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					}
@@ -557,8 +557,8 @@ public class CreandoEvento extends JDialog {
 	{		
 		txtID.setText("EV"+Empresa.getInstance().getGenIDEvento());
 		txtNombre.setText("");
-		cbxTipo.setSelectedIndex(-1);
-		cbxRecurso.setSelectedIndex(-1);
+		cbxTipo.setSelectedIndex(0);
+		cbxRecurso.setSelectedIndex(0);
 		spnCantidad.setValue(0);
 		txtLugar.setText("");
 		

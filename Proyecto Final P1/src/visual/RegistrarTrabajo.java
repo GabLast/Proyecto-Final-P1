@@ -63,7 +63,7 @@ public class RegistrarTrabajo extends JDialog {
 	{
 		this.duenioGlobal = duenio;
 		setTitle("Registrar trabajo");
-		setBounds(100, 100, 418, 498);
+		setBounds(100, 100, 404, 478);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,7 +78,7 @@ public class RegistrarTrabajo extends JDialog {
 			{
 				JLabel lblIdcdula = new JLabel("ID/C\u00E9dula:");
 				lblIdcdula.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-				lblIdcdula.setBounds(21, 13, 102, 43);
+				lblIdcdula.setBounds(10, 13, 102, 43);
 				panelParticipante.add(lblIdcdula);
 			}
 			{
@@ -86,13 +86,13 @@ public class RegistrarTrabajo extends JDialog {
 				txtCedula.setEditable(false);
 				txtCedula.setText(duenio.getCedula());
 				txtCedula.setColumns(10);
-				txtCedula.setBounds(114, 24, 234, 20);
+				txtCedula.setBounds(114, 19, 234, 31);
 				panelParticipante.add(txtCedula);
 			}
 			{
 				JLabel lblParticipante = new JLabel("Participante:");
 				lblParticipante.setFont(new Font("Roboto Medium", Font.PLAIN, 14));
-				lblParticipante.setBounds(21, 69, 102, 43);
+				lblParticipante.setBounds(10, 69, 102, 43);
 				panelParticipante.add(lblParticipante);
 			}
 			{
@@ -100,7 +100,7 @@ public class RegistrarTrabajo extends JDialog {
 				txtParticipante.setEditable(false);
 				txtParticipante.setText(duenio.getNombre());
 				txtParticipante.setColumns(10);
-				txtParticipante.setBounds(114, 80, 234, 20);
+				txtParticipante.setBounds(114, 75, 234, 31);
 				panelParticipante.add(txtParticipante);
 			}
 		}
@@ -119,7 +119,7 @@ public class RegistrarTrabajo extends JDialog {
 		txtIDTrabajo = new JTextField();
 		txtIDTrabajo.setEditable(false);
 		txtIDTrabajo.setText("TRAB"+Empresa.getInstance().getGenIDTrabajo());
-		txtIDTrabajo.setBounds(96, 26, 261, 20);
+		txtIDTrabajo.setBounds(96, 21, 261, 31);
 		panelTrabajo.add(txtIDTrabajo);
 		txtIDTrabajo.setColumns(10);
 		
@@ -129,7 +129,7 @@ public class RegistrarTrabajo extends JDialog {
 		panelTrabajo.add(lblNombre);
 		
 		txtTema = new JTextField();
-		txtTema.setBounds(96, 84, 261, 20);
+		txtTema.setBounds(96, 79, 261, 31);
 		panelTrabajo.add(txtTema);
 		txtTema.setColumns(10);
 		
@@ -140,7 +140,7 @@ public class RegistrarTrabajo extends JDialog {
 		
 		cbxArea = new JComboBox();
 		cbxArea.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-		cbxArea.setBounds(96, 142, 261, 20);
+		cbxArea.setBounds(96, 137, 261, 31);
 		panelTrabajo.add(cbxArea);
 		
 		JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");

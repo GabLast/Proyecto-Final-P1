@@ -62,7 +62,7 @@ public class Principal extends JFrame {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.black, 1));
+				//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.black, 1));
 				try {
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 				} catch (Throwable e) {

@@ -128,7 +128,7 @@ public class ListaEventos extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnCrear = new JButton("Crear Comisi\u00F3n");
+				btnCrear = new JButton("Crear comisi\u00F3n");
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(id != "")
@@ -143,7 +143,7 @@ public class ListaEventos extends JDialog {
 					}
 				});
 				{
-					btnModifcar = new JButton("Modificar");
+					btnModifcar = new JButton("Modificar evento");
 					btnModifcar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
@@ -166,7 +166,7 @@ public class ListaEventos extends JDialog {
 					btnModifcar.setEnabled(false);
 				}
 				{
-					btnEliminar = new JButton("Eliminar");
+					btnEliminar = new JButton("Eliminar evento");
 					btnEliminar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
@@ -197,7 +197,7 @@ public class ListaEventos extends JDialog {
 				getRootPane().setDefaultButton(btnCrear);
 			}
 			{
-				btnGestionarComisiones = new JButton("Listar Comisiones");
+				btnGestionarComisiones = new JButton("Listar comisiones");
 				btnGestionarComisiones.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						Evento elEvento = Empresa.getInstance().searchEventoByID(id);
@@ -232,7 +232,7 @@ public class ListaEventos extends JDialog {
 					buttonPane.add(btnRecursosUtilizados);
 				}
 				{
-					btnListarParticipantes = new JButton("Listar Participantes");
+					btnListarParticipantes = new JButton("Listar participantes");
 					btnListarParticipantes.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							Evento elEvento = Empresa.getInstance().searchEventoByID(id);

@@ -80,7 +80,7 @@ public class RegPersona extends JDialog {
 		setForeground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegPersona.class.getResource("/Imagen/addPerson.png")));
 		setTitle("Registrar Persona");
-		setBounds(100, 100, 446, 543);
+		setBounds(100, 100, 446, 538);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,7 +105,7 @@ public class RegPersona extends JDialog {
 					
 				}
 			});
-			rdbtnParticipante.setBounds(78, 40, 127, 25);
+			rdbtnParticipante.setBounds(68, 40, 127, 25);
 			panel.add(rdbtnParticipante);
 			
 			rdbtnJuez = new JRadioButton("Juez");
@@ -119,7 +119,7 @@ public class RegPersona extends JDialog {
 					panelParticipante.setVisible(false);
 				}
 			});
-			rdbtnJuez.setBounds(231, 40, 127, 25);
+			rdbtnJuez.setBounds(245, 40, 127, 25);
 			panel.add(rdbtnJuez);
 			
 			panelJuez = new JPanel();
@@ -167,7 +167,7 @@ public class RegPersona extends JDialog {
 					rdbtnFemenino.setSelected(false);
 				}
 			});
-			rdbtnMasculin.setBounds(139, 210, 100, 25);
+			rdbtnMasculin.setBounds(139, 210, 100, 24);
 			panelJuez.add(rdbtnMasculin);
 			
 			rdbtnFemenino = new JRadioButton("Femenino");
@@ -178,44 +178,44 @@ public class RegPersona extends JDialog {
 					rdbtnFemenino.setSelected(true);
 				}
 			});
-			rdbtnFemenino.setBounds(262, 210, 112, 25);
+			rdbtnFemenino.setBounds(262, 210, 112, 24);
 			panelJuez.add(rdbtnFemenino);
 			
 			
 			txtCedula = new JTextField();
 			txtCedula.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtCedula.setColumns(10);
-			txtCedula.setBounds(136, 28, 238, 20);
+			txtCedula.setBounds(136, 26, 238, 24);
 			panelJuez.add(txtCedula);
 			
 			txtNombre = new JTextField();
 			txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtNombre.setColumns(10);
-			txtNombre.setBounds(136, 74, 238, 20);
+			txtNombre.setBounds(136, 72, 238, 24);
 			panelJuez.add(txtNombre);
 			
 			txtTelefono = new JTextField();
 			txtTelefono.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtTelefono.setColumns(10);
-			txtTelefono.setBounds(136, 120, 238, 20);
+			txtTelefono.setBounds(136, 118, 238, 24);
 			panelJuez.add(txtTelefono);
 			
 			txtDireccion = new JTextField();
 			txtDireccion.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtDireccion.setColumns(10);
-			txtDireccion.setBounds(136, 166, 238, 20);
+			txtDireccion.setBounds(136, 164, 238, 24);
 			panelJuez.add(txtDireccion);
 			
 			cbxGrado = new JComboBox();
 			cbxGrado.setFont(new Font("Roboto", Font.PLAIN, 12));
 			cbxGrado.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
-			cbxGrado.setBounds(136, 257, 238, 22);
+			cbxGrado.setBounds(136, 256, 238, 24);
 			panelJuez.add(cbxGrado);
 			
 			cbxAreaEstudio = new JComboBox();
 			cbxAreaEstudio.setFont(new Font("Roboto", Font.PLAIN, 12));
 			cbxAreaEstudio.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
-			cbxAreaEstudio.setBounds(136, 303, 238, 22);
+			cbxAreaEstudio.setBounds(136, 302, 238, 24);
 			panelJuez.add(cbxAreaEstudio);
 			
 			JLabel label_7 = new JLabel("\u00C1rea de estudio:");
@@ -285,30 +285,30 @@ public class RegPersona extends JDialog {
 			txtCedulaParti = new JTextField();
 			txtCedulaParti.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtCedulaParti.setColumns(10);
-			txtCedulaParti.setBounds(136, 35, 238, 20);
+			txtCedulaParti.setBounds(136, 33, 238, 25);
 			panelParticipante.add(txtCedulaParti);
 			
 			txtNombreParti = new JTextField();
 			txtNombreParti.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtNombreParti.setColumns(10);
-			txtNombreParti.setBounds(136, 88, 238, 20);
+			txtNombreParti.setBounds(136, 86, 238, 25);
 			panelParticipante.add(txtNombreParti);
 			
 			txtTeleParti = new JTextField();
 			txtTeleParti.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtTeleParti.setColumns(10);
-			txtTeleParti.setBounds(136, 141, 238, 20);
+			txtTeleParti.setBounds(136, 139, 238, 25);
 			panelParticipante.add(txtTeleParti);
 			
 			txtDireParti = new JTextField();
 			txtDireParti.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtDireParti.setColumns(10);
-			txtDireParti.setBounds(136, 194, 238, 20);
+			txtDireParti.setBounds(136, 192, 238, 25);
 			panelParticipante.add(txtDireParti);
 			
 			cbxGradoParti = new JComboBox();
 			cbxGradoParti.setFont(new Font("Roboto", Font.PLAIN, 12));
-			cbxGradoParti.setBounds(136, 299, 238, 22);
+			cbxGradoParti.setBounds(136, 298, 238, 25);
 			cbxGradoParti.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
 			panelParticipante.add(cbxGradoParti);
 		}
@@ -403,7 +403,7 @@ public class RegPersona extends JDialog {
 											null, cbxAreaEstudio.getSelectedItem().toString(), false);
 									
 									Empresa.getInstance().insertarPersona(nuevoJuez);
-									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
+									JOptionPane.showMessageDialog(null, "Juez registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									clean();
 									}
@@ -419,7 +419,7 @@ public class RegPersona extends JDialog {
 											"Femenino", cbxGrado.getSelectedItem().toString(), 
 											null, cbxAreaEstudio.getSelectedItem().toString(), false);
 									Empresa.getInstance().insertarPersona(nuevoJuez);
-									JOptionPane.showMessageDialog(null, "Participante registrado satisfactoriamente"
+									JOptionPane.showMessageDialog(null, "Juez registrado satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									clean();
 									}

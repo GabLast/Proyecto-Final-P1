@@ -190,6 +190,7 @@ public class ModificarPersona extends JDialog {
 			
 			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
+			comboBox.setSelectedItem(miPersona.getGradoAcademico());
 			comboBox.setBounds(196, 339, 293, 22);
 			panel.add(comboBox);
 		}
@@ -296,6 +297,7 @@ public class ModificarPersona extends JDialog {
 			
 			comboBox_2.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
+			comboBox_2.setSelectedItem(miPersona.getGradoAcademico());
 			comboBox_2.setBounds(192, 297, 297, 22);
 			panelJuez.add(comboBox_2);
 			{
@@ -315,6 +317,8 @@ public class ModificarPersona extends JDialog {
 				
 				comboBox_1.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 				comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
+				if(miPersona instanceof Jurado)
+					comboBox_1.setSelectedItem(((Jurado) miPersona).getAreaEstudio());
 				comboBox_1.setBounds(192, 345, 297, 22);
 				panelJuez.add(comboBox_1);
 			}

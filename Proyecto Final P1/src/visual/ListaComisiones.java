@@ -123,7 +123,7 @@ public class ListaComisiones extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				btnModificar = new JButton("Modificar");
+				btnModificar = new JButton("Modificar comisi\u00F3n");
 				btnModificar.setEnabled(false);
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -134,7 +134,7 @@ public class ListaComisiones extends JDialog {
 					}
 				});
 				{
-					btnEliminar = new JButton("Eliminar");
+					btnEliminar = new JButton("Eliminar comisi\u00F3n");
 					btnEliminar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
