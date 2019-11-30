@@ -2,6 +2,7 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,8 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
-import java.awt.Font;
-import java.awt.Toolkit;
 
 public class RegistrarRecursos extends JDialog {
 
@@ -46,59 +45,35 @@ public class RegistrarRecursos extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegistrarRecursos() {
-		setTitle("Registrar recursos");
-		setBounds(100, 100, 469, 264);
+		setTitle("Registrar Recursos");
+		setBounds(100, 100, 437, 216);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new TitledBorder(null, "Informaci\u00F3n del recurso", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarRecursos.class.getResource("/imagen/titleagregarrecurso.png")));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre:");
-		lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
-		lblNewLabel.setBounds(34, 73, 83, 17);
+		lblNewLabel.setBounds(17, 35, 83, 17);
 		contentPanel.add(lblNewLabel);
 		
 		txtNombre = new JTextField();
-		txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 		txtNombre.setText("");
-		txtNombre.setBounds(105, 71, 137, 20);
+		txtNombre.setBounds(116, 33, 137, 20);
 		contentPanel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		JLabel lblCantidad = new JLabel("Cantidad:");
-		lblCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
-		lblCantidad.setBounds(34, 127, 83, 17);
+		lblCantidad.setBounds(17, 87, 83, 17);
 		contentPanel.add(lblCantidad);
 		
 		spnCantidad = new JSpinner();
 		spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
-		spnCantidad.setBounds(105, 125, 137, 23);
+		spnCantidad.setBounds(116, 86, 137, 23);
 		contentPanel.add(spnCantidad);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(Login.class.getResource("/imagen/boxes.png")));
-		label.setBounds(272, 29, 148, 152);
-		contentPanel.add(label);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 185, 453, 40);
-		contentPanel.add(panel);
-		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		
 		JButton btnRegistrar = new JButton("Registrar");
-		panel.add(btnRegistrar);
-		btnRegistrar.setFont(new Font("Roboto", Font.PLAIN, 12));
-		
-		JButton btnSalir = new JButton("Salir");
-		panel.add(btnSalir);
-		btnSalir.setFont(new Font("Roboto", Font.PLAIN, 12));
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!txtNombre.getText().isEmpty())
@@ -107,7 +82,7 @@ public class RegistrarRecursos extends JDialog {
 					{
 						Recurso nuevoRecurso = new Recurso(txtNombre.getText(), (Integer) spnCantidad.getValue());
 						Empresa.getInstance().insertarRecurso(nuevoRecurso);
-						JOptionPane.showMessageDialog(null, "Recurso Registrado satisfactoriamente", "Notificación", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Recurso Registrado satisfactoriamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 						clean();
 					}
 					else
@@ -122,6 +97,22 @@ public class RegistrarRecursos extends JDialog {
 				}
 			}
 		});
+		btnRegistrar.setBounds(134, 139, 119, 23);
+		contentPanel.add(btnRegistrar);
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnSalir.setBounds(17, 139, 89, 23);
+		contentPanel.add(btnSalir);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/imagen/boxes.png")));
+		lblNewLabel_1.setBounds(263, 11, 148, 155);
+		contentPanel.add(lblNewLabel_1);
 	}
 	
 	public void clean()
