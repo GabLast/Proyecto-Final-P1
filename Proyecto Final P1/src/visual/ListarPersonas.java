@@ -24,6 +24,8 @@ import logica.Recurso;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -47,6 +49,11 @@ public class ListarPersonas extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		try {
 			ListarPersonas dialog = new ListarPersonas();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

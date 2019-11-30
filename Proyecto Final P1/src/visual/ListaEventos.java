@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +46,11 @@ public class ListaEventos extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		try {
 			ListaEventos dialog = new ListaEventos();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -125,11 +131,15 @@ public class ListaEventos extends JDialog {
 				btnCrear = new JButton("Crear Comisi\u00F3n");
 				btnCrear.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Evento elEvento = Empresa.getInstance().searchEventoByID(id);
+						if(id != "")
+						{
+							Evento elEvento = Empresa.getInstance().searchEventoByID(id);
+							
+							RegComision comi = new RegComision(elEvento, false, null);
+							comi.setModal(true);
+							comi.setVisible(true);
+						}
 						
-						RegComision comi = new RegComision(elEvento, false, null);
-						comi.setModal(true);
-						comi.setVisible(true);
 					}
 				});
 				{
@@ -249,16 +259,16 @@ public class ListaEventos extends JDialog {
 		//{"ID", "Nombre", "Tipo", "lugar", "Fecha de la actividad", "Estado"};
 		row = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < miEmpresa.getEventos().size(); i++) 
+		for (Evento eve : miEmpresa.getEventos()) 
 		{
-			row[0] = miEmpresa.getEventos().get(i).getId();
-			row[1] = miEmpresa.getEventos().get(i).getNombre();
-			row[2] = miEmpresa.getEventos().get(i).getTipo();
-			row[3] = miEmpresa.getEventos().get(i).getLugar();
-			row[4] = new SimpleDateFormat("dd/MM/yyyy").format(miEmpresa.getEventos().get(i).getFecha());
-			row[5] = miEmpresa.getEventos().get(i).getParticipantes().size();
+			row[0] = eve.getId();
+			row[1] = eve.getNombre();
+			row[2] = eve.getTipo();
+			row[3] = eve.getLugar();
+			row[4] = new SimpleDateFormat("dd/MM/yyyy").format(eve.getFecha());
+			row[5] = eve.getParticipantes().size();
 			
-			if(miEmpresa.getEventos().get(i).isEstado())
+			if(eve.isEstado())
 			{
 				row[6] = "Disponible";
 			}

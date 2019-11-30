@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 
 public class ListarTrabajos extends JDialog {
 
@@ -42,6 +43,11 @@ public class ListarTrabajos extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		try {
 			Participante duenio = null;
 			ListarTrabajos dialog = new ListarTrabajos(duenio);

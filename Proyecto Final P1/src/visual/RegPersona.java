@@ -56,9 +56,14 @@ public class RegPersona extends JDialog {
 	 */
 	public static void main(String[] args) {
 		//UIDefaults uiDefaults = UIManager.getDefaults();
-				UIManager.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.red));
-				//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.red, 4));
-				JDialog.setDefaultLookAndFeelDecorated(true);
+		UIManager.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.red));
+		//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.red, 4));
+		JDialog.setDefaultLookAndFeelDecorated(true);
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		try {
 			RegPersona dialog = new RegPersona();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

@@ -94,6 +94,11 @@ public class Login extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				try {
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				} catch (Throwable e) {
+					e.printStackTrace();
+				}
 				
 				try {
 					Login frame = new Login();

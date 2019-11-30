@@ -59,12 +59,17 @@ public class Principal extends JFrame {
 		//UIManager.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.white));
 		//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.red, 4));
 		//JFrame.setDefaultLookAndFeelDecorated(true);
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				 UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.black, 1));
+				UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.black, 1));
 				try {
-				
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+				} catch (Throwable e) {
+					e.printStackTrace();
+				}
+				try {
+
 					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -240,7 +245,7 @@ public class Principal extends JFrame {
         
  
         // Creando el Grafico
-        JFreeChart chart = ChartFactory.createPieChart3D("Número de trabajos por área de investigación", defaultpiedataset, true, true, false); 
+        JFreeChart chart = ChartFactory.createPieChart3D("Trabajos por área de investigación", defaultpiedataset, true, true, false); 
         PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot(); 
         pieplot3d.setDepthFactor(0.5); 
         pieplot3d.setStartAngle(290D); 

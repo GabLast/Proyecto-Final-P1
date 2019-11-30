@@ -72,6 +72,11 @@ public class CreandoEvento extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		try {
 			Evento modi = null;
 			CreandoEvento dialog = new CreandoEvento(modi, false);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

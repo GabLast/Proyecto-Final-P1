@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +43,11 @@ public class ListaComisiones extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		try {
 			Evento miEvento = null;
 			ListaComisiones dialog = new ListaComisiones(miEvento);
@@ -85,7 +91,7 @@ public class ListaComisiones extends JDialog {
 					};
 					
 					
-					String[] header = {"ID", "Área", "Presidente", "Fecha de creación", "Cantidad de trabajos"};
+					String[] header = {"ID", "Área", "Presidente", "Fecha de creación", "Cantidad de trabajos", "Cantidad de jueces"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -133,7 +139,7 @@ public class ListaComisiones extends JDialog {
 						public void actionPerformed(ActionEvent e) {
 							if(id != "")
 							{
-								Comision laComision = Empresa.getInstance().searchComisionByID(id);
+								Comision laComision = miEvento.buscarComisionByID(id);
 								
 								int option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el comision: " 
 										   + laComision.getId(), "Notificación",JOptionPane.WARNING_MESSAGE);
@@ -142,7 +148,7 @@ public class ListaComisiones extends JDialog {
 								{
 									
 									miEvento.deleteComision(laComision);
-									JOptionPane.showMessageDialog(null, "Comision eliminado satisfactoriamente"
+									JOptionPane.showMessageDialog(null, "Comisión eliminada satisfactoriamente"
 											, "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									ListaComisiones.loadComision(miEvento.getMisComisiones());
 								}
@@ -205,17 +211,20 @@ public class ListaComisiones extends JDialog {
 	public static void loadComision(ArrayList<Comision> comisionesEvento) 
 	{
 		model.setRowCount(0);
-		
-		//{"ID", "Área", "Presidente", "Fecha de creación"};
+//		System.out.println("Lista Comisiones: cantComi: " + comisionesEvento.size() + "cantJueces: "	+ comisionesEvento.get(0).getMiJurado().size() + " || cantTrab: " + 
+//		comisionesEvento.get(0).getTrabajosParticipantes().size());
+		// {"ID", "Área", "Presidente", "Fecha de creación", "Cantidad de trabajos", "Cantidad de jueces"};
 		row = new Object[model.getColumnCount()];
+
 		
-		for (int i = 0; i < comisionesEvento.size(); i++) 
+		for(Comision comi : comisionesEvento)
 		{
-			row[0] = comisionesEvento.get(i).getId();
-			row[1] = comisionesEvento.get(i).getArea();
-			row[2] = comisionesEvento.get(i).getPresidente().getNombre();
-			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(comisionesEvento.get(i).getFechaCreacion());
-			row[4] = comisionesEvento.get(i).getTrabajosParticipantes().size();
+			row[0] = comi.getId();
+			row[1] = comi.getArea();
+			row[2] = comi.getPresidente().getNombre();
+			row[3] = new SimpleDateFormat("dd/MM/yyyy").format(comi.getFechaCreacion());
+			row[4] = comi.getTrabajosParticipantes().size();
+			row[5] = comi.getMiJurado().size();
 			model.addRow(row);
 		}
 		
