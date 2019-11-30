@@ -158,7 +158,7 @@ public class RegistrarTrabajo extends JDialog {
 								cbxArea.getSelectedIndex() < 1)
 						{
 							JOptionPane.showMessageDialog(null, "Llenar todas las casillas"
-									+ " y elegir un área de trabajo", "Error", JOptionPane.INFORMATION_MESSAGE);
+									+ " y elegir un área de trabajo", "Error", JOptionPane.WARNING_MESSAGE);
 						}
 						else
 						{

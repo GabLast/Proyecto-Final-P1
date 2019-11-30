@@ -27,13 +27,13 @@ public class Participante extends Persona {
 		Empresa.getInstance().setGenIDTrabajo(Empresa.getInstance().getTrabajos().size());
 	}
 	
-	public Trabajo buscarTrabajoByName(String id)
+	public Trabajo buscarTrabajoByName(String name)
 	{
 		Trabajo aBuscar = null;
 		
 		for(Trabajo job : misTrabajos)
 		{
-			if(job.getId().equalsIgnoreCase(id))
+			if(job.getTema().equalsIgnoreCase(name))
 			{
 				aBuscar = job;
 				return aBuscar;

@@ -66,7 +66,7 @@ public class CreandoEvento extends JDialog {
 	int valorRecurso;
 	String string;
 	private JTextField txtCant;
-	private JTextField txtLugar = new JTextField();;
+	private JTextField txtLugar;
 	/**
 	 * Launch the application.
 	 */

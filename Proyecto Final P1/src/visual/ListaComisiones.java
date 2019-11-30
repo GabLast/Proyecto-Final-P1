@@ -185,7 +185,8 @@ public class ListaComisiones extends JDialog {
 					btnListarTrabajos.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							Comision comi = miEvento.buscarComisionByID(id);
-							
+							System.out.println("ListaComisiones: Trabajos: " + comi.getTrabajosParticipantes().size() 
+							+"\t\tJueces: " + comi.getMiJurado().size());
 							ListaTrabajosComi window = new ListaTrabajosComi(comi);
 							window.setModal(true);
 							window.setVisible(true);

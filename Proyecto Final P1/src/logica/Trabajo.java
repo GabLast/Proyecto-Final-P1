@@ -20,37 +20,47 @@ public class Trabajo implements Serializable{
 		this.area = area;
 		this.descripcion = descripcion;
 	}
-	
+
 	public Participante getDuenio() {
 		return duenio;
 	}
+
 	public void setDuenio(Participante duenio) {
 		this.duenio = duenio;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getTema() {
 		return tema;
 	}
-	public void setTema(String nombreTrabajo) {
-		this.tema = nombreTrabajo;
+
+	public void setTema(String tema) {
+		this.tema = tema;
 	}
+
 	public String getArea() {
 		return area;
 	}
+
 	public void setArea(String area) {
 		this.area = area;
 	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}	
+	}
+	
 	
 	
 }

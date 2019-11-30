@@ -59,6 +59,7 @@ public class ListarMiembrosComi extends JDialog {
 		dim.width *= .70;
 		dim.height *= .80;
 		super.setSize(dim.width, dim.height);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -81,7 +82,7 @@ public class ListarMiembrosComi extends JDialog {
 					};
 					
 					
-					String[] header = {"Cédula", "Nombre", "Función en la comisión","Teléfono", "Dirección", "Sexo", "Grado Académico"};
+					String[] header = {"Cédula", "Nombre", "Función en la comisión","Teléfono", "Dirección", "Sexo", "Grado Académico", "Área de estudio"};
 					model.setColumnIdentifiers(header);
 					
 					table = new JTable();
@@ -155,6 +156,8 @@ public class ListarMiembrosComi extends JDialog {
 		
 		//{"Cédula", "Nombre", "Teléfono", "Dirección", "Sexo", "Grado Académico"};
 		row = new Object[model.getColumnCount()];
+		
+		System.out.println("ListaMiembrosComi Jueces: " + comi.getMiJurado().size());
 		
 		for (int i = 0; i < comi.getMiJurado().size(); i++) 
 		{

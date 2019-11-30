@@ -154,18 +154,28 @@ public class ListaTrabajosComi extends JDialog {
 		model.setRowCount(0);
 		//{"ID", "Nombre", "Área", "Descripción"};
 		row = new Object[model.getColumnCount()];
+		System.out.println("ListaTrabajosComi Trabajos: " + comi.getTrabajosParticipantes().size() 
+				+"\t\tJueces: " + comi.getMiJurado().size());
+//		for (int i = 0; i < comi.getTrabajosParticipantes().size(); i++) 
+//		{
+//			
+//			row[0] = comi.getTrabajosParticipantes().get(i).getTema();
+//			row[1] = comi.getTrabajosParticipantes().get(i).getDuenio().getNombre();
+//			row[2] = comi.getTrabajosParticipantes().get(i).getArea();
+//			row[3] = comi.getTrabajosParticipantes().get(i).getDescripcion();
+//			
+//			model.addRow(row);
+//		}
 		
-		for (int i = 0; i < comi.getTrabajosParticipantes().size(); i++) 
+		
+		for(Trabajo job : comi.getTrabajosParticipantes())
 		{
-			
-			row[0] = comi.getTrabajosParticipantes().get(i).getTema();
-			row[1] = comi.getTrabajosParticipantes().get(i).getDuenio().getNombre();
-			row[2] = comi.getTrabajosParticipantes().get(i).getArea();
-			row[3] = comi.getTrabajosParticipantes().get(i).getDescripcion();
-			
+			row[0] = job.getTema();
+			row[1] = job.getDuenio().getNombre();
+			row[2] = job.getArea();
+			row[3] = job.getDescripcion();
 			model.addRow(row);
 		}
-		
 		table.setModel(model);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.getTableHeader().setReorderingAllowed(false);
