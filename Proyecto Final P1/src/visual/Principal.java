@@ -19,10 +19,13 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.util.Rotation;
 
 import logica.Empresa;
+import logica.Evento;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -34,6 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
@@ -220,11 +224,51 @@ public class Principal extends JFrame {
 		panel.setLayout(null);
 		panel.add(panelEventosPopu);
 		panelEventosPopu.setLayout(new BorderLayout(0, 0));
+		
+		ArrayList<Evento> evePops = new ArrayList<>();
+		evePops = Empresa.getInstance().eventosMasPopularesRespectoTrabajos();
+		
+		// Fuente de Datos
+        DefaultCategoryDataset line_chart_dataset = new DefaultCategoryDataset();
+        line_chart_dataset.addValue(evePops.get(0).totalTrabajos(), "Trabajos", evePops.get(0).getNombre());
+        line_chart_dataset.addValue(evePops.get(1).totalTrabajos(), "Trabajos", evePops.get(1).getNombre());
+        line_chart_dataset.addValue(evePops.get(2).totalTrabajos(), "Trabajos", evePops.get(2).getNombre());
+        line_chart_dataset.addValue(evePops.get(3).totalTrabajos(), "Trabajos", evePops.get(3).getNombre());
+        line_chart_dataset.addValue(evePops.get(4).totalTrabajos(), "Trabajos", evePops.get(4).getNombre()); 
+ 
+        // Creando el Grafico
+        JFreeChart chart1=ChartFactory.createLineChart("Eventos más populares",
+                "Nombre","Trabajos",line_chart_dataset,PlotOrientation.VERTICAL,
+                true,true,false); 
+        chart1.setBackgroundPaint(Color.gray);
+        chart1.getTitle().setPaint(Color.black); 
+        // Mostrar Grafico
+        ChartPanel chartPanel1 = new ChartPanel(chart1);
+        panelEventosPopu.add(chartPanel1);
 //**********************************************************************************************************************************************************************************		
 		JPanel panelGeneros = new JPanel();
 		panelGeneros.setBounds(405, 11, 359, 307);
 		panel.add(panelGeneros);
 		panelGeneros.setLayout(new BorderLayout(0, 0));
+		
+		int[] cantidades = Empresa.getInstance().cantidadPersonasRegistradasPorGenero();
+		// Fuente de Datos
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Hombres", cantidades[0]);
+        data.setValue("Mujeres", cantidades[1]);
+ 
+        // Creando el Grafico
+        JFreeChart chart2 = ChartFactory.createPieChart(
+         "Personas registradas por género", 
+         data, 
+         true, 
+         true, 
+         false);
+        chart2.setBackgroundPaint(Color.gray);
+        chart2.getTitle().setPaint(Color.black); 
+        // Crear el Panel del Grafico con ChartPanel
+        ChartPanel chartPanel = new ChartPanel(chart2);
+        panelGeneros.add(chartPanel);
 //**********************************************************************************************************************************************************************************		
 		JPanel panelAreaYTrabajo = new JPanel();
 		panelAreaYTrabajo.setBounds(10, 390, 359, 307);
@@ -245,16 +289,17 @@ public class Principal extends JFrame {
         
  
         // Creando el Grafico
-        JFreeChart chart = ChartFactory.createPieChart3D("Trabajos por área de investigación", defaultpiedataset, true, true, false); 
-        PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot(); 
+        JFreeChart chart3 = ChartFactory.createPieChart3D("Trabajos por área de investigación", defaultpiedataset, true, true, false); 
+        PiePlot3D pieplot3d = (PiePlot3D)chart3.getPlot(); 
         pieplot3d.setDepthFactor(0.5); 
         pieplot3d.setStartAngle(290D); 
         pieplot3d.setDirection(Rotation.CLOCKWISE); 
         pieplot3d.setForegroundAlpha(0.5F); 
-        
+        chart3.setBackgroundPaint(Color.gray);
+        chart3.getTitle().setPaint(Color.black); 
         // Mostrar Grafico
-        ChartPanel chartPanel = new ChartPanel(chart);
-        panelAreaYTrabajo.add(chartPanel);
+        ChartPanel chartPanel3 = new ChartPanel(chart3);
+        panelAreaYTrabajo.add(chartPanel3);
 //**********************************************************************************************************************************************************************************		
 		JPanel panelJuecesPopulares = new JPanel();
 		panelJuecesPopulares.setBounds(405, 390, 359, 307);

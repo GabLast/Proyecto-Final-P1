@@ -128,6 +128,20 @@ public class Comision implements Serializable{
 		return job;
 
 	}
+	
+	public boolean participaComision(String id) {
+		boolean participa = false;
+
+		for (Jurado aux : miJurado) {
+			if (aux.getCedula().equalsIgnoreCase(id)) 
+			{
+				participa = true;
+				return participa;
+			}
+		}
+		return participa;
+
+	}
 
 	public void deleteTrabajo(Trabajo job) {
 

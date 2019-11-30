@@ -451,8 +451,80 @@ public class Empresa implements Serializable{
 	{
 		ArrayList<Evento> evePopulares = new ArrayList<>();
 		
+		int i = 4;
+		
+		for(Evento event : eventos)
+		{
+			if(event.totalTrabajos() > evePopulares.get(i).totalTrabajos())
+			{
+				evePopulares.add(i+1, event);
+				evePopulares.add(i, event);
+			}
+			i--;
+			if(i < 0)
+				i = 4;
+		}
 		
 		return evePopulares;
+	}
+	
+	public ArrayList<Jurado> juecesMasPopulares()
+	{
+		ArrayList<Jurado> juecesPop = new ArrayList<>();
+		ArrayList<Integer> cantidades = new ArrayList<>();
+		int i = 4;
+		int participaciones = 0;
+		
+		for(Persona juez : personasRegistradas)
+		{
+			if(juez instanceof Jurado)
+			{
+				for(Comision comiPertenece : comisiones)
+				{
+					if(comiPertenece.participaComision(juez.getCedula()))
+					{
+						participaciones++;
+					}
+				}
+				
+				if(cantidades.get(i) < participaciones)
+				{
+					cantidades.add(i+1, cantidades.get(i));
+					juecesPop.add(i+1, juecesPop.get(i));
+					cantidades.add(i, participaciones);
+					juecesPop.add(i, (Jurado) juez);
+				}
+				i--;
+				
+				if(i < 0)
+					i = 4;
+			}
+		}
+		
+		return juecesPop;
+	}
+	
+	public int[] cantidadPersonasRegistradasPorGenero()
+	{	
+		int hombres = 0;
+		int mujeres = 0;
+		
+		
+		for(Persona persona : personasRegistradas)
+		{
+			if(persona.getSexo().equalsIgnoreCase("Masculino"))
+			{
+				hombres++;
+			}
+			else
+			{
+				mujeres++;
+			}
+		}
+		
+		int[] totales = {hombres, mujeres};
+		
+		return totales;
 	}
 
 }
