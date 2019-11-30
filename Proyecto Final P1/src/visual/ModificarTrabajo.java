@@ -121,6 +121,7 @@ public class ModificarTrabajo extends JDialog {
 			comboBox = new JComboBox();
 			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
+			comboBox.setSelectedItem(miTrabajo.getArea());
 			comboBox.setBounds(124, 146, 235, 25);
 			panel.add(comboBox);
 		}
@@ -135,10 +136,6 @@ public class ModificarTrabajo extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						if(txtID.getText().length() >=1 && txtTema.getText().length() >= 1 && txtDescripcion.getText().length() >= 1 && comboBox.getSelectedIndex() > 1)
 						{
-							txtTema.setText(txtTema.getText());
-							
-							txtDescripcion.setText(txtDescripcion.getText());
-							txtID.setText(txtID.getText());
 							
 							miTrabajo.setId(txtID.getText());
 							miTrabajo.setTema(txtTema.getText());
