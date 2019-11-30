@@ -488,7 +488,7 @@ public class CreandoEvento extends JDialog {
 										txtLugar.getText(), txtID.getText(), calendar.getDate());
 								nuevoEvento.verificarFin();
 								Empresa.getInstance().insertarEvento(nuevoEvento);
-								JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.WARNING_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Evento Registrado", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 								dispose();
 								RegComision comi = new RegComision(nuevoEvento, false, null);
 								comi.setModal(true);
@@ -520,7 +520,7 @@ public class CreandoEvento extends JDialog {
 							}
 							else
 							{
-								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar el evento", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null, "Hubo un error al tratar de modificar el evento", "Notificación", JOptionPane.WARNING_MESSAGE);
 							}
 						}
 					}
