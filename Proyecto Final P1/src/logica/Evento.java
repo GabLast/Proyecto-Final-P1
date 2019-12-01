@@ -105,6 +105,10 @@ public class Evento implements Serializable{
 
 	public void insertarComision(Comision c1) {
 
+		for(Jurado juez : c1.getMiJurado())
+		{
+			juez.setParticipaciones(juez.getParticipaciones()+1);
+		}
 		misComisiones.add(c1);
 		Empresa.getInstance().getComisiones().add(c1);
 		Empresa.getInstance().setGenIDComision(Empresa.getInstance().getComisiones().size());
@@ -112,6 +116,10 @@ public class Evento implements Serializable{
 	
 	public void deleteComision(Comision c1) {
 
+		for(Jurado juez : c1.getMiJurado())
+		{
+			juez.setParticipaciones(juez.getParticipaciones()-1);
+		}
 		misComisiones.remove(c1);
 	}
 	

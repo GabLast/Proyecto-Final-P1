@@ -160,8 +160,8 @@ public class ListaTrabajosComi extends JDialog {
 		model.setRowCount(0);
 		//{"ID", "Nombre", "Área", "Descripción"};
 		row = new Object[model.getColumnCount()];
-		System.out.println("ListaTrabajosComi Trabajos: " + comi.getTrabajosParticipantes().size() 
-				+"\t\tJueces: " + comi.getMiJurado().size());
+//		System.out.println("ListaTrabajosComi Trabajos: " + comi.getTrabajosParticipantes().size() 
+//				+"\t\tJueces: " + comi.getMiJurado().size());
 //		for (int i = 0; i < comi.getTrabajosParticipantes().size(); i++) 
 //		{
 //			

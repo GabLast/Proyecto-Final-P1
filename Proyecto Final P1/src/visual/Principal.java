@@ -64,6 +64,7 @@ public class Principal extends JFrame {
 	JPanel panelEventosPopu;
 	JPanel panelGeneros;
 	JPanel panelAreaYTrabajo;
+	JPanel panelJuecesPopulares;
 	public static DefaultPieDataset data;
 	public static JFreeChart chart2;
 	public static ChartPanel chartPanel;
@@ -71,7 +72,6 @@ public class Principal extends JFrame {
 	public static DefaultPieDataset defaultpiedataset;
 	public ChartPanel chartPanel3;
 	PiePlot3D pieplot3d;
-	JPanel panelJuecesPopulares;
 	public static DefaultCategoryDataset grafico4;
 	public static JFreeChart chart4;
 
@@ -241,7 +241,7 @@ public class Principal extends JFrame {
 		line_chart_dataset = new DefaultCategoryDataset();
  
         // Creando el Grafico
-        chart1=ChartFactory.createLineChart("Eventos más populares",
+        chart1=ChartFactory.createLineChart("Eventos más populares de acuerdo a trabajos",
                 "Nombre","Trabajos",line_chart_dataset,PlotOrientation.VERTICAL,
                 true,true,false); 
         chart1.setBackgroundPaint(Color.gray);

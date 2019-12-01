@@ -29,16 +29,18 @@ public class HiloJuecesPopulares extends Thread {
 				
 				for(Jurado juez : juecesMasPopulares)
 				{
-					grafico4.setValue(juez.getParticipaciones(), null, juez.getNombre());
+					grafico4.setValue(juez.getParticipaciones(), "Jueces", juez.getNombre());
 					contador++;
 					
 					if(contador >= 5)
+					{
 						break;
+					}
+					
 				}
 
-
+				contador = 0;
 				Principal.chart4 = ChartFactory.createBarChart3D("Jueces más populáres en las comisiones","Jueces", "Participaciones", grafico4, PlotOrientation.VERTICAL, true,true, false);
-
 				Thread.sleep(1000);
 			}
 		} catch (InterruptedException e) {

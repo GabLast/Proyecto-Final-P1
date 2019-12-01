@@ -449,44 +449,39 @@ public class Empresa implements Serializable{
 	    }
 	}
 	
-
+	public  void insertionSortJueces(ArrayList<Jurado> juecesTodos) 
+	{
+	    for (int i = 1; i < juecesTodos.size(); i++) 
+	    {
+	        Jurado current = juecesTodos.get(i);
+	        
+	        int j = i - 1;
+	       
+	        while(j >= 0 && current.getParticipaciones() > juecesTodos.get(j).getParticipaciones()) 
+	        {
+	        	juecesTodos.set(j+1, juecesTodos.get(j));
+	            j--;
+	        }
+	        
+	        juecesTodos.set(j+1, current);
+	    }
+	}
 	
 	public ArrayList<Jurado> juecesMasPopulares()
 	{
 		ArrayList<Jurado> juecesPop = new ArrayList<>();
-		ArrayList<Integer> cantidades = new ArrayList<>();
-		int i = 4;
-		int participaciones = 0;
+		
 		
 		for(Persona juez : personasRegistradas)
 		{
 			if(juez instanceof Jurado)
 			{
-				for(Comision comiPertenece : comisiones)
-				{
-					if(comiPertenece.participaComision(juez.getCedula()))
-					{
-						participaciones++;
-					}
-				}
-				
-				((Jurado) juez).setParticipaciones(participaciones);
-				
-				if(cantidades.get(i) < participaciones)
-				{
-					cantidades.add(i+1, cantidades.get(i));
-					juecesPop.add(i+1, juecesPop.get(i));
-					cantidades.add(i, participaciones);
-					juecesPop.add(i, (Jurado) juez);
-				}
-				i--;
-				
-				if(i < 0)
-					i = 4;
+				juecesPop.add((Jurado) juez);
 			}
 		}
-		if(juecesPop.size() == 0)
-			return null;
+		
+		insertionSortJueces(juecesPop);
+		
 		return juecesPop;
 	}
 	
@@ -534,4 +529,43 @@ public class Empresa implements Serializable{
 //	}
 //	
 //	return evePopulares;
+//}
+
+//public ArrayList<Jurado> juecesMasPopulares()
+//{
+//	ArrayList<Jurado> juecesPop = new ArrayList<>();
+//	ArrayList<Integer> cantidades = new ArrayList<>();
+//	int i = 4;
+//	int participaciones = 0;
+//	
+//	for(Persona juez : personasRegistradas)
+//	{
+//		if(juez instanceof Jurado)
+//		{
+//			for(Comision comiPertenece : comisiones)
+//			{
+//				if(comiPertenece.participaComision(juez.getCedula()))
+//				{
+//					participaciones++;
+//				}
+//			}
+//			
+//			((Jurado) juez).setParticipaciones(participaciones);
+//			
+//			if(cantidades.get(i) < participaciones)
+//			{
+//				cantidades.add(i+1, cantidades.get(i));
+//				juecesPop.add(i+1, juecesPop.get(i));
+//				cantidades.add(i, participaciones);
+//				juecesPop.add(i, (Jurado) juez);
+//			}
+//			i--;
+//			
+//			if(i < 0)
+//				i = 4;
+//		}
+//	}
+//	if(juecesPop.size() == 0)
+//		return null;
+//	return juecesPop;
 //}

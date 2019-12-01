@@ -55,8 +55,8 @@ public class RegComision extends JDialog {
 	DefaultListModel modelJobDisp;
 	DefaultListModel modelJobSelect;
 	
-	private static ArrayList<Jurado> jueces = new ArrayList<>();
-	private static ArrayList<Trabajo> trabajos = new ArrayList<>();
+	private ArrayList<Jurado> jueces = new ArrayList<>();
+	private ArrayList<Trabajo> trabajos = new ArrayList<>();
 	
 	/**
 	 * Launch the application.
@@ -233,7 +233,7 @@ public class RegComision extends JDialog {
 							listJuecesSeleccionados.setModel(modelJuecesSelect);
 			
 							Jurado buscando = Empresa.getInstance().buscarJuezByName(string);
-							System.out.println("Print desde boton RightJueces:" + buscando.getNombre());
+							//System.out.println("Print desde boton RightJueces:" + buscando.getNombre());
 							jueces.add(buscando);
 							
 							cbxModel = new DefaultComboBoxModel(); 
@@ -284,7 +284,7 @@ public class RegComision extends JDialog {
 						listJuecesDisponibles.setModel(modelJuecesDisp);
 						
 						Jurado buscando = Empresa.getInstance().buscarJuezByName(string);
-						System.out.println("Print desde boton LeftJueces:" + buscando.getNombre());
+						//System.out.println("Print desde boton LeftJueces:" + buscando.getNombre());
 						jueces.remove(buscando);
 						
 						cbxModel = new DefaultComboBoxModel(); 
@@ -360,7 +360,7 @@ public class RegComision extends JDialog {
 						
 						
 						Trabajo buscando = miEvento.buscandoTrabajoEntreMisParticipantesByName(string);
-						System.out.println("Print desde boton rightTrabajos:" + buscando.getTema());
+						//System.out.println("Print desde boton rightTrabajos:" + buscando.getTema());
 						trabajos.add(buscando);
 						
 						//removiendo valor de la lista de la izquierda
@@ -484,12 +484,12 @@ public class RegComision extends JDialog {
 //									//System.out.println(juez.getSexo());
 //									//System.out.println(juez.getAreaEstudio());
 //								}
-								System.out.println("BEFORE INSERTING Reg Comision - Jueces/Trabajos: " + jueces.size() + "/" + trabajos.size());
+								//System.out.println("BEFORE INSERTING Reg Comision - Jueces/Trabajos: " + jueces.size() + "/" + trabajos.size());
 								Comision nuevaComision = new Comision(txtID.getText(), presidente, cbxArea.getSelectedItem().toString());
 								nuevaComision.setTrabajosParticipantes(trabajos);
 								nuevaComision.setMiJurado(jueces);
 								
-								System.out.println("AFTER INSERTING Reg Comision - Jueces/Trabajos: " + nuevaComision.getMiJurado().size() + "/" + nuevaComision.getTrabajosParticipantes().size());
+								//System.out.println("AFTER INSERTING Reg Comision - Jueces/Trabajos: " + nuevaComision.getMiJurado().size() + "/" + nuevaComision.getTrabajosParticipantes().size());
 //								System.out.println("AFTER INSERTING Reg Comision - Trabajos: " + nuevaComision.getTrabajosParticipantes().size());
 //								for(Trabajo job : nuevaComision.getTrabajosParticipantes())
 //								{
@@ -560,8 +560,8 @@ public class RegComision extends JDialog {
 									aModificar.setTrabajosParticipantes(trabajos);
 									aModificar.setArea(cbxArea.getSelectedItem().toString());
 									
-									System.out.println("Reg Comision MODIFICANDO: PostCreation: Trabajos: " + aModificar.getTrabajosParticipantes().get(0).getTema());
-									System.out.println("Reg Comision MODIFICANDO: jueces: " + aModificar.getMiJurado().get(0).getNombre());
+									//System.out.println("Reg Comision MODIFICANDO: PostCreation: Trabajos: " + aModificar.getTrabajosParticipantes().get(0).getTema());
+									//System.out.println("Reg Comision MODIFICANDO: jueces: " + aModificar.getMiJurado().get(0).getNombre());
 									
 									JOptionPane.showMessageDialog(null, "Modificación realizada", "Notificación", JOptionPane.INFORMATION_MESSAGE);
 									dispose();
