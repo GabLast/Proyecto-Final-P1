@@ -470,6 +470,8 @@ public class Empresa implements Serializable{
 					}
 				}
 				
+				((Jurado) juez).setParticipaciones(participaciones);
+				
 				if(cantidades.get(i) < participaciones)
 				{
 					cantidades.add(i+1, cantidades.get(i));
@@ -483,7 +485,8 @@ public class Empresa implements Serializable{
 					i = 4;
 			}
 		}
-		
+		if(juecesPop.size() == 0)
+			return null;
 		return juecesPop;
 	}
 	

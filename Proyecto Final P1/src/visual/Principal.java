@@ -18,6 +18,7 @@ import javax.swing.plaf.ColorUIResource;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -28,6 +29,7 @@ import logica.Empresa;
 import logica.Evento;
 import logica.HiloEventoPops;
 import logica.HiloGraficoGenero;
+import logica.HiloJuecesPopulares;
 import logica.HiloTrabajosPorArea;
 
 import javax.swing.JMenuBar;
@@ -69,19 +71,16 @@ public class Principal extends JFrame {
 	public static DefaultPieDataset defaultpiedataset;
 	public ChartPanel chartPanel3;
 	PiePlot3D pieplot3d;
+	JPanel panelJuecesPopulares;
+	public static DefaultCategoryDataset grafico4;
+	public static JFreeChart chart4;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		//UIDefaults uiDefaults = UIManager.getDefaults();
-		//UIManager.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.white));
-		//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.red, 4));
-		//JFrame.setDefaultLookAndFeelDecorated(true);
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				//UIManager.put("PopupMenu.border", BorderFactory.createLineBorder(Color.black, 1));
 				try {
 					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 				} catch (Throwable e) {
@@ -128,7 +127,7 @@ public class Principal extends JFrame {
 		dim = super.getToolkit().getScreenSize();
 		dim.width *= .92;
 		dim.height *= .92;
-		//super.setSize(dim.width, dim.height);
+		super.setSize(dim.width, dim.height);
 		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -230,25 +229,16 @@ public class Principal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		
 		contentPane.add(panel, BorderLayout.CENTER);
+		
 //**********************************************************************************************************************************************************************************		
 		
 		panelEventosPopu = new JPanel();
-		panelEventosPopu.setBounds(10, 11, 359, 307);
-		//.setBounds(10, 11, panel.getSize().width/4, panel.getSize().height/4);
-		panel.setLayout(null);
-		panel.add(panelEventosPopu);
 		panelEventosPopu.setLayout(new BorderLayout(0, 0));
 		
 		
 		// Fuente de Datos
 		line_chart_dataset = new DefaultCategoryDataset();
-//        line_chart_dataset.addValue(evePops.get(0).totalTrabajos(), "Trabajos", evePops.get(0).getNombre());
-//        line_chart_dataset.addValue(evePops.get(1).totalTrabajos(), "Trabajos", evePops.get(1).getNombre());
-//        line_chart_dataset.addValue(evePops.get(2).totalTrabajos(), "Trabajos", evePops.get(2).getNombre());
-//        line_chart_dataset.addValue(evePops.get(3).totalTrabajos(), "Trabajos", evePops.get(3).getNombre());
-//        line_chart_dataset.addValue(evePops.get(4).totalTrabajos(), "Trabajos", evePops.get(4).getNombre()); 
  
         // Creando el Grafico
         chart1=ChartFactory.createLineChart("Eventos más populares",
@@ -263,24 +253,16 @@ public class Principal extends JFrame {
         new HiloEventoPops().start();
 //**********************************************************************************************************************************************************************************		
 		panelGeneros = new JPanel();
-		panelGeneros.setBounds(405, 11, 359, 307);
-		panel.add(panelGeneros);
 		panelGeneros.setLayout(new BorderLayout(0, 0));
 		
 		// Fuente de Datos
         data = new DefaultPieDataset();
-//        data.setValue("Hombres", cantidades[0]);
-//        data.setValue("Mujeres", cantidades[1]);
  
         // Creando el Grafico
-        chart2 = ChartFactory.createPieChart(
-         "Personas registradas por género", 
-         data, 
-         true, 
-         true, 
-         false);
+        chart2 = ChartFactory.createPieChart("Personas registradas por género", data, true, true, false);
         chart2.setBackgroundPaint(Color.gray);
         chart2.getTitle().setPaint(Color.black); 
+        
         // Crear el Panel del Grafico con ChartPanel
         chartPanel = new ChartPanel(chart2);
         panelGeneros.add(chartPanel);
@@ -288,9 +270,6 @@ public class Principal extends JFrame {
         new HiloGraficoGenero().start();
 //**********************************************************************************************************************************************************************************		
 		panelAreaYTrabajo = new JPanel();
-		panelAreaYTrabajo.setBounds(10, 390, 359, 307);
-		//panelAreaYTrabajo.setBounds(10, 390, panel.getSize().width/4, panel.getSize().height/4);
-		panel.add(panelAreaYTrabajo);
 		panelAreaYTrabajo.setLayout(new BorderLayout(0, 0));
 		
 		
@@ -312,9 +291,49 @@ public class Principal extends JFrame {
         
         new HiloTrabajosPorArea().start();
 //**********************************************************************************************************************************************************************************		
-		JPanel panelJuecesPopulares = new JPanel();
-		panelJuecesPopulares.setBounds(405, 390, 359, 307);
-		panel.add(panelJuecesPopulares);
+		panelJuecesPopulares = new JPanel();
 		panelJuecesPopulares.setLayout(new BorderLayout(0, 0));
+
+		grafico4 = new DefaultCategoryDataset();
+
+		// Creando el Grafico
+		chart4 = ChartFactory.createBarChart3D("Jueces más populáres en las comisiones","Jueces", "Participaciones", grafico4, PlotOrientation.VERTICAL, true,true, false);
+		chart4.setBackgroundPaint(Color.gray);
+		chart4.getTitle().setPaint(Color.black); 
+		CategoryPlot p = chart4.getCategoryPlot(); 
+		p.setRangeGridlinePaint(Color.red); 
+		// Mostrar Grafico
+		ChartPanel chartPanel = new ChartPanel(chart4);
+		panelJuecesPopulares.add(chartPanel);
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelAreaYTrabajo, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(panelEventosPopu, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelJuecesPopulares, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+						.addComponent(panelGeneros, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+					.addGap(10))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(11)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelGeneros, 0, 0, Short.MAX_VALUE)
+						.addComponent(panelEventosPopu, GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelAreaYTrabajo, GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+						.addComponent(panelJuecesPopulares, GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		panel.setLayout(gl_panel);
+		
+		new HiloJuecesPopulares().start();
 	}
 }

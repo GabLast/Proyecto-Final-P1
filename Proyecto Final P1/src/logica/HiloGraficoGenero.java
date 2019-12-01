@@ -19,15 +19,16 @@ public class HiloGraficoGenero extends Thread {
 	public void run()
 	{
 
-		try {
+		try 
+		{
 			while(true) 
 			{
 				int[] cantidades = Empresa.getInstance().cantidadPersonasRegistradasPorGenero();
 
 				DefaultPieDataset data = Principal.data;
 
-		        data.setValue("Hombres", cantidades[0]);
 		        data.setValue("Mujeres", cantidades[1]);
+		        data.setValue("Hombres", cantidades[0]);
 
 				Principal.chart2 = ChartFactory.createPieChart("Personas registradas por género", data, true, true, false);
 

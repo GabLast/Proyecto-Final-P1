@@ -37,7 +37,7 @@ public class HiloTrabajosPorArea extends Thread {
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Sleep del hilo de GraficoGenero se detuvo con error: "+e.getMessage());
+			System.out.println("Sleep del hilo de Trabajo/Area se detuvo con error: "+e.getMessage());
 			e.printStackTrace();
 		}
 	}

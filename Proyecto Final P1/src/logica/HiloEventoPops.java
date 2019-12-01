@@ -19,7 +19,8 @@ public class HiloEventoPops extends Thread {
 	public void run()
 	{
 
-		try {
+		try 
+		{
 			while(true) 
 			{
 				
@@ -29,15 +30,23 @@ public class HiloEventoPops extends Thread {
 
 				DefaultCategoryDataset line_chart_dataset = Principal.line_chart_dataset;
 				
-				//for(Evento evento : evePops)
-				line_chart_dataset.addValue(evePops.get(0).totalTrabajos(), "Trabajos", evePops.get(0).getNombre());
-				line_chart_dataset.addValue(evePops.get(1).totalTrabajos(), "Trabajos", evePops.get(1).getNombre());
-				line_chart_dataset.addValue(evePops.get(2).totalTrabajos(), "Trabajos", evePops.get(2).getNombre());
-				line_chart_dataset.addValue(evePops.get(3).totalTrabajos(), "Trabajos", evePops.get(3).getNombre());
-				line_chart_dataset.addValue(evePops.get(4).totalTrabajos(), "Trabajos", evePops.get(4).getNombre()); 
+				for(Evento evento : evePops)
+				{
+					line_chart_dataset.addValue(evento.totalTrabajos(), "Trabajos", evento.getNombre());
+					contador++;
+					if(contador >= 5)
+					{
+						break;
+					}
+				}
+				
+				contador = 0;
+//				line_chart_dataset.addValue(evePops.get(1).totalTrabajos(), "Trabajos", evePops.get(1).getNombre());
+//				line_chart_dataset.addValue(evePops.get(2).totalTrabajos(), "Trabajos", evePops.get(2).getNombre());
+//				line_chart_dataset.addValue(evePops.get(3).totalTrabajos(), "Trabajos", evePops.get(3).getNombre());
+//				line_chart_dataset.addValue(evePops.get(4).totalTrabajos(), "Trabajos", evePops.get(4).getNombre()); 
 
-				Principal.chart1=ChartFactory.createLineChart("Eventos más populares",
-						"Nombre","Trabajos",line_chart_dataset,PlotOrientation.VERTICAL,
+				Principal.chart1=ChartFactory.createLineChart("Eventos más populares", "Nombre","Trabajos",line_chart_dataset,PlotOrientation.VERTICAL,
 						true,true,false);
 
 				Thread.sleep(1000);
