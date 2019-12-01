@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 
 public class Empresa implements Serializable{
 
@@ -437,7 +439,7 @@ public class Empresa implements Serializable{
 	        
 	        int j = i - 1;
 	       
-	        while(j >= 0 && current.totalTrabajos() < eventos.get(j).totalTrabajos()) 
+	        while(j >= 0 && current.totalTrabajos() > eventos.get(j).totalTrabajos()) 
 	        {
 	            eventos.set(j+1, eventos.get(j));
 	            j--;
@@ -447,26 +449,7 @@ public class Empresa implements Serializable{
 	    }
 	}
 	
-	public ArrayList<Evento> eventosMasPopularesRespectoTrabajos()
-	{
-		ArrayList<Evento> evePopulares = new ArrayList<>();
-		
-		int i = 4;
-		
-		for(Evento event : eventos)
-		{
-			if(event.totalTrabajos() > evePopulares.get(i).totalTrabajos())
-			{
-				evePopulares.add(i+1, event);
-				evePopulares.add(i, event);
-			}
-			i--;
-			if(i < 0)
-				i = 4;
-		}
-		
-		return evePopulares;
-	}
+
 	
 	public ArrayList<Jurado> juecesMasPopulares()
 	{
@@ -528,3 +511,24 @@ public class Empresa implements Serializable{
 	}
 
 }
+
+//public ArrayList<Evento> eventosMasPopularesRespectoTrabajos()
+//{
+//	ArrayList<Evento> evePopulares = new ArrayList<>();
+//	
+//	int i = 4;
+//	
+//	for(Evento event : eventos)
+//	{
+//		if(event.totalTrabajos() > evePopulares.get(i).totalTrabajos())
+//		{
+//			evePopulares.add(i+1, event);
+//			evePopulares.add(i, event);
+//		}
+//		i--;
+//		if(i < 0)
+//			i = 4;
+//	}
+//	
+//	return evePopulares;
+//}
