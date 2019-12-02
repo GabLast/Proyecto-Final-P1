@@ -67,6 +67,7 @@ public class Login extends JFrame {
 					temp.setGenIDEvento(cantidadesEventosTrabajosComisiones);
 					
 					Empresa.setMiEmpresa(temp);
+					
 					empresaIn.close();
 					empresaRead.close();
 				} catch (FileNotFoundException e) {

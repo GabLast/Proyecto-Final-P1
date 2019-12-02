@@ -46,6 +46,7 @@ public class HiloEventoPops extends Thread {
 						true,true,false);
 
 				Thread.sleep(1000);
+				Principal.line_chart_dataset.clear();
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

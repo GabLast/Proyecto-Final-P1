@@ -64,7 +64,7 @@ public class Principal extends JFrame {
 	JPanel panelEventosPopu;
 	JPanel panelGeneros;
 	JPanel panelAreaYTrabajo;
-	JPanel panelJuecesPopulares;
+	public static JPanel panelJuecesPopulares;
 	public static DefaultPieDataset data;
 	public static JFreeChart chart2;
 	public static ChartPanel chartPanel;
