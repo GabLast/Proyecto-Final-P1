@@ -99,7 +99,7 @@ public class CreandoEvento extends JDialog {
 			recBackUp = modiEvento.getRecursosUsados();
 			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
 		}
-		setBounds(100, 100, 1130, 693);
+		setBounds(100, 100, 1119, 693);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -306,7 +306,7 @@ public class CreandoEvento extends JDialog {
 			}
 			{
 				JPanel panelRecursos = new JPanel();
-				panelRecursos.setBounds(597, 21, 490, 582);
+				panelRecursos.setBounds(597, 21, 477, 582);
 				panelRecursos.setBorder(new TitledBorder(null, "Registro de Recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel.add(panelRecursos);
 				panelRecursos.setLayout(null);
