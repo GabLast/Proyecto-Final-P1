@@ -26,6 +26,7 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListPartiEvento extends JDialog {
 
@@ -60,6 +61,7 @@ public class ListPartiEvento extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListPartiEvento(Evento mievento) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListPartiEvento.class.getResource("/imagen/listPerson.png")));
 		setTitle("Lista de Participantes");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();

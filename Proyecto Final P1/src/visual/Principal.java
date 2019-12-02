@@ -53,6 +53,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.GridLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JLabel;
+import java.awt.Toolkit;
 
 public class Principal extends JFrame {
 
@@ -101,6 +102,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagen/mainIcono.png")));
 		setForeground(Color.LIGHT_GRAY);
 		addWindowListener(new WindowAdapter() {
 			@Override

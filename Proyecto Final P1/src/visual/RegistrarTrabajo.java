@@ -25,6 +25,7 @@ import javax.swing.DefaultListModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class RegistrarTrabajo extends JDialog {
 
@@ -61,6 +62,7 @@ public class RegistrarTrabajo extends JDialog {
 	 */
 	public RegistrarTrabajo(Participante duenio) 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTrabajo.class.getResource("/imagen/trabajoIcon.png")));
 		this.duenioGlobal = duenio;
 		setTitle("Registrar trabajo");
 		setBounds(100, 100, 404, 478);

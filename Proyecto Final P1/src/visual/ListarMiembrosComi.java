@@ -25,6 +25,7 @@ import logica.Jurado;
 import logica.Participante;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListarMiembrosComi extends JDialog {
 
@@ -59,6 +60,7 @@ public class ListarMiembrosComi extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarMiembrosComi(Comision comi) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarMiembrosComi.class.getResource("/imagen/listPerson.png")));
 		setTitle("Lista de miembros");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();

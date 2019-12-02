@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class ListaTrabajosComi extends JDialog {
 
@@ -58,6 +59,7 @@ public class ListaTrabajosComi extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaTrabajosComi(Comision comi) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaTrabajosComi.class.getResource("/imagen/titleredlist.png")));
 		setTitle("Lista de trabajos");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();

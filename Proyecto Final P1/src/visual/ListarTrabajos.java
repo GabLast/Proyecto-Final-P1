@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
+import java.awt.Toolkit;
 
 public class ListarTrabajos extends JDialog {
 
@@ -62,6 +63,7 @@ public class ListarTrabajos extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListarTrabajos(Participante duenio) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListarTrabajos.class.getResource("/imagen/redlist.png")));
 		setTitle("Listado de trabajos de:" + duenio.getNombre());
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();

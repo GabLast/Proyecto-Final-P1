@@ -26,6 +26,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.Toolkit;
 
 public class ListaComisiones extends JDialog {
 
@@ -62,6 +63,7 @@ public class ListaComisiones extends JDialog {
 	 * Create the dialog.
 	 */
 	public ListaComisiones(Evento miEvento) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaComisiones.class.getResource("/imagen/redlist.png")));
 		setTitle("Lista de comisiones");
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();

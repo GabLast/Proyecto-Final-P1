@@ -25,6 +25,7 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class RecEvento extends JDialog {
 
@@ -59,6 +60,7 @@ public class RecEvento extends JDialog {
 	 * Create the dialog.
 	 */
 	public RecEvento(Evento evento) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RecEvento.class.getResource("/imagen/recursos.png")));
 		setTitle("Recursos del evento" + evento.getNombre());
 		setBounds(100, 100, 450, 300);
 		dim = super.getToolkit().getScreenSize();

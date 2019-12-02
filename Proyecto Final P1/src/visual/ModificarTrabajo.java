@@ -22,6 +22,7 @@ import logica.Trabajo;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class ModificarTrabajo extends JDialog {
 
@@ -54,6 +55,7 @@ public class ModificarTrabajo extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarTrabajo (Trabajo miTrabajo) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarTrabajo.class.getResource("/imagen/trabajoIcon.png")));
 		this.miTrabajo = miTrabajo;
 		setTitle("Modificando un trabajo");
 		setResizable(false);

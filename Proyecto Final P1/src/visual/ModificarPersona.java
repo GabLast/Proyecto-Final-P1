@@ -27,6 +27,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.CardLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 
 public class ModificarPersona extends JDialog {
@@ -74,6 +75,7 @@ public class ModificarPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public ModificarPersona(Persona miPersona) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ModificarPersona.class.getResource("/imagen/Person.png")));
 		this.miPersona = miPersona;
 		
 		

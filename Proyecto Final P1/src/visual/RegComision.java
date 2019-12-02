@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class RegComision extends JDialog {
 
@@ -82,6 +83,7 @@ public class RegComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegComision(Evento miEvento, boolean modificar, Comision aModificar) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegComision.class.getResource("/imagen/RegCom.png")));
 		if(!modificar)
 			setTitle("Formando una comisi\u00F3n");
 		else
