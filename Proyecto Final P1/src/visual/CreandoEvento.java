@@ -378,13 +378,12 @@ public class CreandoEvento extends JDialog {
 								//agregar valor a la lista derecha
 								
 								valorRecurso = (Integer) spnCantidad.getValue();
-//								buscando.setCantUsadaEvento(valorRecurso);
 								modelRecElegidos.addElement(string);
 								listRecursosElegidos.setModel(modelRecElegidos);
 								
 								buscando.verificarDisponibilidad(valorRecurso);
-								RecursoEvento nuevo = new RecursoEvento(buscando.getTipo(), valorRecurso);
-								recursos.add(nuevo);
+//								RecursoEvento nuevo =
+								recursos.add(new RecursoEvento(buscando.getTipo(), valorRecurso));
 								
 								cbxModel = new DefaultComboBoxModel(); 
 								for(Recurso recurso : Empresa.getInstance().getRecursos())
@@ -402,7 +401,7 @@ public class CreandoEvento extends JDialog {
 
 						
 					});
-					btnAgregarRec.setBounds(123, 494, 81, 31);
+					btnAgregarRec.setBounds(123, 494, 91, 31);
 					panelRecursos.add(btnAgregarRec);
 				}
 				{
@@ -413,7 +412,7 @@ public class CreandoEvento extends JDialog {
 							
 							String string = (String) listRecursosElegidos.getSelectedValue();
 							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
-							System.out.println(buscando.getCantidad());
+//							System.out.println(buscando.getCantidad());
 //							System.out.println(buscando.getCantUsadaEvento());
 						
 							if(listRecursosElegidos.getSelectedIndex() == -1)
@@ -424,11 +423,12 @@ public class CreandoEvento extends JDialog {
 							{
 								int value = listRecursosElegidos.getSelectedIndex();
 								
-								for(RecursoEvento rec: recursos)
+								for(RecursoEvento rec : recursos)
 								{
-									if(buscando.getTipo().equalsIgnoreCase(rec.getTipo()))
+									if(rec.getTipo().equalsIgnoreCase(buscando.getTipo()))
 									{
 										buscando.devolverRecursoTomado(rec.getCantidadUsadaEvento());
+										recursos.remove(rec);
 									}
 								}
 								
@@ -440,7 +440,6 @@ public class CreandoEvento extends JDialog {
 								}
 								cbxRecurso.setModel(cbxModel);
 								
-								recursos.remove(buscando);
 								
 								//removiendo valor de la lista
 								if(modelRecElegidos.getSize() != 0)
@@ -488,7 +487,7 @@ public class CreandoEvento extends JDialog {
 					txtCant.setFont(new Font("Roboto", Font.PLAIN, 12));
 					txtCant.setEditable(false);
 					txtCant.setColumns(10);
-					txtCant.setBounds(154, 410, 50, 29);
+					txtCant.setBounds(154, 410, 60, 29);
 					panelRecursos.add(txtCant);
 				}
 				

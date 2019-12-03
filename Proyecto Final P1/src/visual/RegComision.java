@@ -521,8 +521,8 @@ public class RegComision extends JDialog {
 								//new ListaTrabajosComi(miEvento.getMisComisiones().get(0)).setVisible(true);
 								//new ListarMiembrosComi(miEvento.getMisComisiones().get(0)).setVisible(true);
 								JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-								dispose();
-								//clean();
+								//dispose();
+								clean();
 								
 							}
 							else
