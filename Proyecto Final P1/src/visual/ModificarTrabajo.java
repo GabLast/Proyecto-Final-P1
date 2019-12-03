@@ -63,41 +63,43 @@ public class ModificarTrabajo extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBackground(new Color(204, 255, 255));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(204, 255, 255));
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n del trabajo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			{
 				JLabel lblCdigo = new JLabel("C\u00F3digo:");
-				lblCdigo.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblCdigo.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblCdigo.setBounds(17, 32, 73, 23);
 				panel.add(lblCdigo);
 			}
 			{
 				JLabel lblTema = new JLabel("Tema:");
-				lblTema.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblTema.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblTema.setBounds(17, 87, 88, 23);
 				panel.add(lblTema);
 			}
 			{
 				JLabel lblArea = new JLabel("\u00C1rea:");
-				lblArea.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblArea.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblArea.setBounds(17, 142, 88, 23);
 				panel.add(lblArea);
 			}
 			{
 				JLabel lblDescripcin = new JLabel("Descripci\u00F3n:");
-				lblDescripcin.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblDescripcin.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblDescripcin.setBounds(17, 197, 109, 23);
 				panel.add(lblDescripcin);
 			}
 			{
 				txtID = new JTextField();
 				txtID.setEditable(false);
-				txtID.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtID.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtID.setColumns(10);
 				txtID.setBounds(124, 29, 235, 29);
 				txtID.setText(miTrabajo.getId());
@@ -105,7 +107,7 @@ public class ModificarTrabajo extends JDialog {
 			}
 			{
 				txtTema = new JTextField();
-				txtTema.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtTema.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtTema.setColumns(10);
 				txtTema.setBounds(124, 84, 235, 29);
 				txtTema.setText(miTrabajo.getTema());
@@ -113,7 +115,7 @@ public class ModificarTrabajo extends JDialog {
 			}
 			{
 				txtDescripcion = new JTextField();
-				txtDescripcion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtDescripcion.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtDescripcion.setColumns(10);
 				txtDescripcion.setBounds(124, 194, 235, 29);
 				txtDescripcion.setText(miTrabajo.getDescripcion());
@@ -121,7 +123,7 @@ public class ModificarTrabajo extends JDialog {
 			}
 			
 			comboBox = new JComboBox();
-			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+			comboBox.setFont(new Font("Roboto", Font.PLAIN, 12));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Matem\u00E1ticas", "Qu\u00EDmica", "Biolog\u00EDa", "Historia", "F\u00EDsica", "Ingenier\u00EDa"}));
 			comboBox.setSelectedItem(miTrabajo.getArea());
 			comboBox.setBounds(124, 146, 235, 25);
@@ -129,11 +131,12 @@ public class ModificarTrabajo extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(224, 255, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnModi = new JButton("Modificar");
-				btnModi.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				btnModi.setFont(new Font("Roboto", Font.PLAIN, 12));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(!txtTema.getText().isEmpty() && !txtDescripcion.getText().isEmpty() && comboBox.getSelectedIndex() > 0)
@@ -159,7 +162,7 @@ public class ModificarTrabajo extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

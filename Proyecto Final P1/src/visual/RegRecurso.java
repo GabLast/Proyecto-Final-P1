@@ -23,6 +23,8 @@ import javax.swing.UIManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class RegRecurso extends JDialog {
 
@@ -58,31 +60,37 @@ public class RegRecurso extends JDialog {
 		setBounds(100, 100, 402, 253);
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
+		contentPanel.setBackground(new Color(255, 218, 185));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegRecurso.class.getResource("/imagen/titleagregarrecurso.png")));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(255, 218, 185));
 			panel.setBorder(new TitledBorder(null, "Informaci\u00F3n del recurso", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
 			JLabel label = new JLabel("Nombre:");
+			label.setFont(new Font("Roboto", Font.PLAIN, 12));
 			label.setBounds(10, 49, 83, 17);
 			panel.add(label);
 			
 			JLabel label_1 = new JLabel("Cantidad:");
+			label_1.setFont(new Font("Roboto", Font.PLAIN, 12));
 			label_1.setBounds(10, 115, 83, 17);
 			panel.add(label_1);
 			
 			txtNombre = new JTextField();
+			txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 			txtNombre.setText("");
 			txtNombre.setColumns(10);
 			txtNombre.setBounds(85, 46, 137, 20);
 			panel.add(txtNombre);
 			
 			spnCantidad = new JSpinner();
+			spnCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
 			spnCantidad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 			spnCantidad.setBounds(85, 112, 137, 23);
 			panel.add(spnCantidad);
@@ -94,10 +102,12 @@ public class RegRecurso extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(255, 255, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.setFont(new Font("Roboto", Font.PLAIN, 12));
 				btnRegistrar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						if(!txtNombre.getText().isEmpty())
@@ -126,7 +136,8 @@ public class RegRecurso extends JDialog {
 				getRootPane().setDefaultButton(btnRegistrar);
 			}
 			{
-				JButton cancelButton = new JButton("Canelar");
+				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

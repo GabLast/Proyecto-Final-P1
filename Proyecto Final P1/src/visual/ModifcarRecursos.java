@@ -59,30 +59,32 @@ public class ModifcarRecursos extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBackground(new Color(255, 218, 185));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegRecurso.class.getResource("/imagen/titleagregarrecurso.png")));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(255, 218, 185));
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Recurso", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			{
 				JLabel lblNombre = new JLabel("Nombre:");
-				lblNombre.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblNombre.setBounds(17, 42, 73, 23);
 				panel.add(lblNombre);
 			}
 			{
 				JLabel lblCantidad = new JLabel("Cantidad:");
-				lblCantidad.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				lblCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblCantidad.setBounds(17, 107, 88, 23);
 				panel.add(lblCantidad);
 			}
 			
 			{
 				txNombre = new JTextField();
-				txNombre.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txNombre.setColumns(10);
 				txNombre.setBounds(107, 39, 130, 29);
 				txNombre.setText(miRecurso.getTipo());
@@ -104,11 +106,12 @@ public class ModifcarRecursos extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(255, 255, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnModi = new JButton("Modificar");
-				btnModi.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				btnModi.setFont(new Font("Roboto", Font.PLAIN, 12));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(txNombre.getText().length() >=1 && (int)txCantidad.getValue() >= 1 )
@@ -129,7 +132,7 @@ public class ModifcarRecursos extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

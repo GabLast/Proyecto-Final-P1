@@ -84,15 +84,18 @@ public class RegPersona extends JDialog {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBackground(new Color(153, 255, 153));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Informaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
+			panel.setBackground(new Color(153, 255, 153));
 			panel.setLayout(null);
 			
 			rdbtnParticipante = new JRadioButton("Participante");
+			rdbtnParticipante.setBackground(new Color(153, 255, 153));
 			rdbtnParticipante.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdbtnParticipante.setSelected(true);
 			rdbtnParticipante.addActionListener(new ActionListener() {
@@ -110,6 +113,7 @@ public class RegPersona extends JDialog {
 			
 			rdbtnJuez = new JRadioButton("Juez");
 			rdbtnJuez.setFont(new Font("Roboto", Font.PLAIN, 12));
+			rdbtnJuez.setBackground(new Color(153, 255, 153));
 			rdbtnJuez.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnJuez.setSelected(true);
@@ -123,6 +127,7 @@ public class RegPersona extends JDialog {
 			panel.add(rdbtnJuez);
 			
 			panelJuez = new JPanel();
+			panelJuez.setBackground(new Color(153, 255, 153));
 			panelJuez.setVisible(false);
 			panelJuez.setBorder(new TitledBorder(null, "Datos del juez", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelJuez.setBounds(12, 85, 395, 356);
@@ -160,6 +165,7 @@ public class RegPersona extends JDialog {
 			panelJuez.add(lblGradoAcadmico);
 			
 			rdbtnMasculin = new JRadioButton("Masculino");
+			rdbtnMasculin.setBackground(new Color(153, 255, 153));
 			rdbtnMasculin.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdbtnMasculin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -171,6 +177,7 @@ public class RegPersona extends JDialog {
 			panelJuez.add(rdbtnMasculin);
 			
 			rdbtnFemenino = new JRadioButton("Femenino");
+			rdbtnFemenino.setBackground(new Color(153, 255, 153));
 			rdbtnFemenino.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdbtnFemenino.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -225,6 +232,7 @@ public class RegPersona extends JDialog {
 			
 			panelParticipante = new JPanel();
 			panelParticipante.setVisible(true);
+			panelParticipante.setBackground(new Color(153, 255, 153));
 			panelParticipante.setBorder(new TitledBorder(null, "Datos del participante", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelParticipante.setBounds(12, 85, 395, 356);
 			panel.add(panelParticipante);
@@ -261,6 +269,7 @@ public class RegPersona extends JDialog {
 			panelParticipante.add(label_5);
 			
 			rdbtnMascParti = new JRadioButton("Masculino");
+			rdbtnMascParti.setBackground(new Color(153, 255, 153));
 			rdbtnMascParti.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdbtnMascParti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -272,6 +281,7 @@ public class RegPersona extends JDialog {
 			panelParticipante.add(rdbtnMascParti);
 			
 			rdnbtnFemParti = new JRadioButton("Femenino");
+			rdnbtnFemParti.setBackground(new Color(153, 255, 153));
 			rdnbtnFemParti.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdnbtnFemParti.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -315,6 +325,7 @@ public class RegPersona extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setBackground(new Color(204, 255, 204));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnRegistrar = new JButton("Registrar");

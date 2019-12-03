@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
@@ -73,11 +74,13 @@ public class ListaEventos extends JDialog {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBackground(new Color(204, 255, 255));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaEventos.class.getResource("/imagen/titleagregar.png")));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(204, 255, 255));
 			panel.setBorder(new TitledBorder(null, "Listado de eventos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));

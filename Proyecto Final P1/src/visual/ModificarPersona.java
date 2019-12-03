@@ -86,40 +86,42 @@ public class ModificarPersona extends JDialog {
 		getContentPane().setLayout(new BorderLayout());
 		setLocationRelativeTo(null);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPanel.setBackground(new Color(153, 255, 153));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new CardLayout(0, 0));
 		{
 			panel = new JPanel();
+			panel.setBackground(new Color(153, 255, 153));
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Participante", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, "name_174943819359200");
 			{
 				JLabel label = new JLabel("C\u00E9dula:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				label.setFont(new Font("Roboto", Font.PLAIN, 12));
 				label.setBounds(17, 39, 73, 23);
 				panel.add(label);
 			}
 			{
 				JLabel label = new JLabel("Nombre:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				label.setFont(new Font("Roboto", Font.PLAIN, 12));
 				label.setBounds(17, 101, 88, 23);
 				panel.add(label);
 			}
 			{
 				JLabel label = new JLabel("Direcci\u00F3n:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				label.setFont(new Font("Roboto", Font.PLAIN, 12));
 				label.setBounds(17, 163, 88, 23);
 				panel.add(label);
 			}
 			{
 				JLabel label = new JLabel("Tel\u00E9fono:");
-				label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				label.setFont(new Font("Roboto", Font.PLAIN, 12));
 				label.setBounds(17, 225, 88, 23);
 				panel.add(label);
 			}
 			{
 				txtCedula = new JTextField();
-				txtCedula.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtCedula.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtCedula.setColumns(10);
 				txtCedula.setBounds(196, 34, 293, 29);
 				txtCedula.setText(miPersona.getCedula());
@@ -127,7 +129,7 @@ public class ModificarPersona extends JDialog {
 			}
 			{
 				txtNombre = new JTextField();
-				txtNombre.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtNombre.setColumns(10);
 				txtNombre.setBounds(196, 98, 293, 29);
 				txtNombre.setText(miPersona.getNombre());
@@ -135,7 +137,7 @@ public class ModificarPersona extends JDialog {
 			}
 			{
 				txtDireccion = new JTextField();
-				txtDireccion.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtDireccion.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtDireccion.setColumns(10);
 				txtDireccion.setBounds(196, 160, 293, 29);
 				txtDireccion.setText(miPersona.getDireccion());
@@ -143,7 +145,7 @@ public class ModificarPersona extends JDialog {
 			}
 			{
 				txtTelefono = new JTextField();
-				txtTelefono.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+				txtTelefono.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtTelefono.setColumns(10);
 				txtTelefono.setBounds(196, 222, 293, 29);
 				txtTelefono.setText(miPersona.getTelefono());
@@ -151,12 +153,13 @@ public class ModificarPersona extends JDialog {
 			}
 			
 			JLabel label = new JLabel("Sexo:");
-			label.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+			label.setFont(new Font("Roboto", Font.PLAIN, 12));
 			label.setBounds(17, 287, 72, 16);
 			panel.add(label);
 			
 			rdbtnMasculin = new JRadioButton("Masculino");
-			rdbtnMasculin.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+			rdbtnMasculin.setBackground(new Color(153, 255, 153));
+			rdbtnMasculin.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdbtnMasculin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnMasculin.setSelected(true);
@@ -167,7 +170,8 @@ public class ModificarPersona extends JDialog {
 			panel.add(rdbtnMasculin);
 			
 			rdbtnFemenino = new JRadioButton("Femenino");
-			rdbtnFemenino.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+			rdbtnFemenino.setBackground(new Color(153, 255, 153));
+			rdbtnFemenino.setFont(new Font("Roboto", Font.PLAIN, 12));
 			rdbtnFemenino.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnMasculin.setSelected(false);
@@ -178,7 +182,7 @@ public class ModificarPersona extends JDialog {
 			panel.add(rdbtnFemenino);
 			
 			JLabel label_1 = new JLabel("Grado Acad\u00E9mico:");
-			label_1.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+			label_1.setFont(new Font("Roboto", Font.PLAIN, 12));
 			label_1.setBounds(17, 342, 142, 16);
 			panel.add(label_1);
 			
@@ -190,7 +194,7 @@ public class ModificarPersona extends JDialog {
 				
 			});
 			
-			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 19));
+			comboBox.setFont(new Font("Roboto", Font.PLAIN, 12));
 			comboBox.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Bachiller", "Licenciado", "Mag\u00EDster", "Profesional", "Doctorado"}));
 			comboBox.setSelectedItem(miPersona.getGradoAcademico());
 			comboBox.setBounds(196, 339, 293, 22);
@@ -198,6 +202,7 @@ public class ModificarPersona extends JDialog {
 		}
 		{
 			panelJuez = new JPanel();
+			panelJuez.setBackground(new Color(153, 255, 153));
 			panelJuez.setLayout(null);
 			panelJuez.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Juez", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panelJuez, "name_174943835546300");
@@ -264,6 +269,7 @@ public class ModificarPersona extends JDialog {
 			panelJuez.add(label);
 			
 			rdbtnMasculin_1 = new JRadioButton("Masculino");
+			rdbtnMasculin_1.setBackground(new Color(153, 255, 153));
 			rdbtnMasculin_1.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			rdbtnMasculin_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -275,6 +281,7 @@ public class ModificarPersona extends JDialog {
 			panelJuez.add(rdbtnMasculin_1);
 			
 			rdbtnFemenino_1 = new JRadioButton("Femenino");
+			rdbtnFemenino_1.setBackground(new Color(153, 255, 153));
 			rdbtnFemenino_1.setFont(new Font("Times New Roman", Font.PLAIN, 19));
 			rdbtnFemenino_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -349,12 +356,13 @@ public class ModificarPersona extends JDialog {
 		
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(204, 255, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton btnModi = new JButton("Modificar");
 				
-				btnModi.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				btnModi.setFont(new Font("Roboto", Font.PLAIN, 12));
 				btnModi.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -530,7 +538,7 @@ public class ModificarPersona extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
-				cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

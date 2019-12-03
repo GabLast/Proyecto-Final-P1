@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -71,12 +72,14 @@ public class ListaRecursos extends JDialog {
 		setLocationRelativeTo(null);
 		super.setSize(dim.width, dim.height);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(255, 218, 185));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ListaRecursos.class.getResource("/imagen/titleredlist.png")));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(255, 218, 185));
 			panel.setBorder(new TitledBorder(null, "Listado de recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(new BorderLayout(0, 0));
@@ -119,6 +122,7 @@ public class ListaRecursos extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(255, 255, 204));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

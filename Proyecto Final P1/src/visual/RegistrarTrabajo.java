@@ -26,6 +26,7 @@ import javax.swing.DefaultListModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class RegistrarTrabajo extends JDialog {
 
@@ -68,11 +69,13 @@ public class RegistrarTrabajo extends JDialog {
 		setBounds(100, 100, 404, 478);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(204, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
 			JPanel panelParticipante = new JPanel();
+			panelParticipante.setBackground(new Color(204, 255, 255));
 			panelParticipante.setBorder(new TitledBorder(null, "Datos del autor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelParticipante.setBounds(12, 13, 365, 126);
 			contentPanel.add(panelParticipante);
@@ -108,6 +111,7 @@ public class RegistrarTrabajo extends JDialog {
 		}
 		
 		JPanel panelTrabajo = new JPanel();
+		panelTrabajo.setBackground(new Color(204, 255, 255));
 		panelTrabajo.setBorder(new TitledBorder(null, "Datos del trabajo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelTrabajo.setBounds(12, 152, 365, 238);
 		contentPanel.add(panelTrabajo);
@@ -156,6 +160,7 @@ public class RegistrarTrabajo extends JDialog {
 		txtDescripcion.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(224, 255, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{

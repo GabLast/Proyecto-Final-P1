@@ -34,6 +34,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 public class RegComision extends JDialog {
 
@@ -94,11 +95,13 @@ public class RegComision extends JDialog {
 		setBounds(100, 100, 559, 735);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(204, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(204, 255, 255));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setBorder(new TitledBorder(null, "Información", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel.setLayout(null);
@@ -196,6 +199,7 @@ public class RegComision extends JDialog {
 			panel.add(txtFechaCreacion);
 			
 			JPanel panelJurado = new JPanel();
+			panelJurado.setBackground(new Color(204, 255, 255));
 			panelJurado.setBorder(new TitledBorder(null, "Selección del jurado", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panelJurado.setBounds(12, 157, 508, 255);
 			panel.add(panelJurado);
@@ -331,6 +335,7 @@ public class RegComision extends JDialog {
 			panelJurado.add(lblJuecesSeleccionados);
 			
 			JPanel panel_1 = new JPanel();
+			panel_1.setBackground(new Color(204, 255, 255));
 			panel_1.setLayout(null);
 			panel_1.setBorder(new TitledBorder(null, "Selección de trabajos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_1.setBounds(12, 431, 508, 211);
@@ -442,6 +447,7 @@ public class RegComision extends JDialog {
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setBackground(new Color(224, 255, 255));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnRegistrar = new JButton("Registrar");

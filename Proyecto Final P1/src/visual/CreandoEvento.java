@@ -35,6 +35,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.UIManager;
 import java.awt.Color;
+import java.awt.Font;
 
 public class CreandoEvento extends JDialog {
 
@@ -101,33 +102,39 @@ public class CreandoEvento extends JDialog {
 		}
 		setBounds(100, 100, 1119, 693);
 		setLocationRelativeTo(null);
+		contentPanel.setBackground(new Color(204, 255, 255));
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
+			panel.setBackground(new Color(204, 255, 255));
 			panel.setBorder(new TitledBorder(null, "Información del Evento", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			{
 				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(new Color(204, 255, 255));
 				panel_1.setBounds(17, 21, 570, 316);
 				panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Datos b\u00E1sicos", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 				panel.add(panel_1);
 				panel_1.setLayout(null);
 				{
 					JLabel lblNewLabel = new JLabel("Nombre:");
+					lblNewLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblNewLabel.setBounds(20, 59, 74, 23);
 					panel_1.add(lblNewLabel);
 				}
 				{
 					JLabel lblId = new JLabel("ID:");
+					lblId.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblId.setBounds(20, 19, 82, 23);
 					panel_1.add(lblId);
 				}
 				{
 					JLabel lblFecha = new JLabel("Fecha:");
+					lblFecha.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblFecha.setBounds(20, 99, 82, 23);
 					panel_1.add(lblFecha);
 				}
@@ -139,6 +146,7 @@ public class CreandoEvento extends JDialog {
 				panel_1.add(calendar);
 				
 				txtID = new JTextField();
+				txtID.setFont(new Font("Roboto", Font.PLAIN, 12));
 				txtID.setEditable(false);
 				if(modificar)
 				{
@@ -150,6 +158,7 @@ public class CreandoEvento extends JDialog {
 				txtID.setColumns(10);
 				
 				txtNombre = new JTextField();
+				txtNombre.setFont(new Font("Roboto", Font.PLAIN, 12));
 				if(modificar)
 				{
 					txtNombre.setText(modiEvento.getNombre());
@@ -159,11 +168,13 @@ public class CreandoEvento extends JDialog {
 				panel_1.add(txtNombre);
 				{
 					JLabel lblTipo = new JLabel("Tipo:");
+					lblTipo.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblTipo.setBounds(305, 19, 74, 23);
 					panel_1.add(lblTipo);
 				}
 				{
 					cbxTipo = new JComboBox();	
+					cbxTipo.setFont(new Font("Roboto", Font.PLAIN, 12));
 					cbxTipo.setModel(new DefaultComboBoxModel(new String[] {"<Seleccione>", "Panel", "Ponencia", "Conferencia", "Jornada", "Mesa Redonda"}));
 					cbxTipo.setBounds(357, 16, 203, 29);
 					if(modificar)
@@ -174,10 +185,12 @@ public class CreandoEvento extends JDialog {
 				}
 				
 				JLabel lblLugar = new JLabel("Lugar:");
+				lblLugar.setFont(new Font("Roboto", Font.PLAIN, 12));
 				lblLugar.setBounds(305, 59, 56, 23);
 				panel_1.add(lblLugar);
 				
 				txtLugar = new JTextField();
+				txtLugar.setFont(new Font("Roboto", Font.PLAIN, 12));
 				if(modificar)
 					txtLugar.setText(modiEvento.getLugar());
 				txtLugar.setColumns(10);
@@ -186,6 +199,7 @@ public class CreandoEvento extends JDialog {
 			}
 			{
 				JPanel panelParticipantes = new JPanel();
+				panelParticipantes.setBackground(new Color(204, 255, 255));
 				panelParticipantes.setBorder(new TitledBorder(null, "Registro de Participantes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panelParticipantes.setBounds(17, 356, 570, 247);
 				panel.add(panelParticipantes);
@@ -196,6 +210,7 @@ public class CreandoEvento extends JDialog {
 					panelParticipantes.add(scrollPane);
 					{
 						listParticipantes = new JList();
+						listParticipantes.setFont(new Font("Roboto", Font.PLAIN, 12));
 						scrollPane.setViewportView(listParticipantes);
 						
 						modelPartis = new DefaultListModel();
@@ -213,6 +228,7 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					JLabel lblPosiblesParticipantes = new JLabel("Posibles participantes:");
+					lblPosiblesParticipantes.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblPosiblesParticipantes.setBounds(17, 31, 219, 23);
 					panelParticipantes.add(lblPosiblesParticipantes);
 				}
@@ -222,6 +238,7 @@ public class CreandoEvento extends JDialog {
 					panelParticipantes.add(scrollPane);
 					{
 						listPartiElegidos = new JList();
+						listPartiElegidos.setFont(new Font("Roboto", Font.PLAIN, 12));
 						scrollPane.setViewportView(listPartiElegidos);
 					}
 				}
@@ -300,18 +317,21 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					JLabel lblParticipantesSeleccionados = new JLabel("Participantes seleccionados:");
+					lblParticipantesSeleccionados.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblParticipantesSeleccionados.setBounds(319, 31, 175, 23);
 					panelParticipantes.add(lblParticipantesSeleccionados);
 				}
 			}
 			{
 				JPanel panelRecursos = new JPanel();
+				panelRecursos.setBackground(new Color(204, 255, 255));
 				panelRecursos.setBounds(597, 21, 477, 582);
 				panelRecursos.setBorder(new TitledBorder(null, "Registro de Recursos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 				panel.add(panelRecursos);
 				panelRecursos.setLayout(null);
 				{
 					JLabel lblRecursosDisponibles = new JLabel("Recursos disponibles:");
+					lblRecursosDisponibles.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblRecursosDisponibles.setBounds(14, 376, 219, 23);
 					panelRecursos.add(lblRecursosDisponibles);
 				}
@@ -321,6 +341,7 @@ public class CreandoEvento extends JDialog {
 					panelRecursos.add(scrollPane);
 					{
 						listRecursosElegidos = new JList();
+						listRecursosElegidos.setFont(new Font("Roboto", Font.PLAIN, 12));
 						modelRecElegidos = new DefaultListModel();
 						scrollPane.setViewportView(listRecursosElegidos);
 					}
@@ -332,6 +353,7 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					btnAgregarRec = new JButton("Agregar");						
+					btnAgregarRec.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnAgregarRec.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) 
 						{
@@ -383,6 +405,7 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					btnRemover = new JButton("Remover recurso seleccionado");
+					btnRemover.setFont(new Font("Roboto", Font.PLAIN, 12));
 					btnRemover.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							
@@ -427,6 +450,7 @@ public class CreandoEvento extends JDialog {
 				}
 				{
 					cbxRecurso = new JComboBox();
+					cbxRecurso.setFont(new Font("Roboto", Font.PLAIN, 12));
 					cbxRecurso.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							string = cbxRecurso.getSelectedItem().toString();
@@ -445,11 +469,13 @@ public class CreandoEvento extends JDialog {
 				}
 				
 				spnCantidad = new JSpinner();
+				spnCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
 				spnCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 				spnCantidad.setBounds(14, 494, 99, 30);
 				panelRecursos.add(spnCantidad);
 				{
 					txtCant = new JTextField();
+					txtCant.setFont(new Font("Roboto", Font.PLAIN, 12));
 					txtCant.setEditable(false);
 					txtCant.setColumns(10);
 					txtCant.setBounds(154, 410, 50, 29);
@@ -462,6 +488,7 @@ public class CreandoEvento extends JDialog {
 				panelRecursos.add(lblNewLabel_1);
 				{
 					JLabel lblCantidadAUsar = new JLabel("Cantidad a usar:");
+					lblCantidadAUsar.setFont(new Font("Roboto", Font.PLAIN, 12));
 					lblCantidadAUsar.setBounds(14, 462, 170, 23);
 					panelRecursos.add(lblCantidadAUsar);
 				}
@@ -469,10 +496,12 @@ public class CreandoEvento extends JDialog {
 		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(224, 255, 255));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnCrear = new JButton("Crear");
+				btnCrear.setFont(new Font("Roboto", Font.PLAIN, 12));
 				if(modificar)
 				{
 					btnCrear.setText("Modificar");
@@ -537,6 +566,7 @@ public class CreandoEvento extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("Cancelar");
+				cancelButton.setFont(new Font("Roboto", Font.PLAIN, 12));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if(modificar)
