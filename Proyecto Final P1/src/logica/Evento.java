@@ -8,7 +8,7 @@ public class Evento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Comision> misComisiones;
-	private ArrayList<Recurso> recursosUsados;
+	private ArrayList<RecursoEvento> recursosUsados;
 	private ArrayList<Participante> participantes;
 	private String nombre;
 	private String id;
@@ -17,7 +17,7 @@ public class Evento implements Serializable{
 	private Date fecha;
 	private boolean estado;
 	
-	public Evento(ArrayList<Recurso> recursosUsados, ArrayList<Participante> participantes, String nombre, String id, String tipo, String lugar, Date fecha) {
+	public Evento(ArrayList<RecursoEvento> recursosUsados, ArrayList<Participante> participantes, String nombre, String id, String tipo, String lugar, Date fecha) {
 		super();
 		
 		this.recursosUsados = recursosUsados;
@@ -39,11 +39,11 @@ public class Evento implements Serializable{
 		this.misComisiones = misComisiones;
 	}
 
-	public ArrayList<Recurso> getRecursosUsados() {
+	public ArrayList<RecursoEvento> getRecursosUsados() {
 		return recursosUsados;
 	}
 
-	public void setRecursosUsados(ArrayList<Recurso> recursosUsados) {
+	public void setRecursosUsados(ArrayList<RecursoEvento> recursosUsados) {
 		this.recursosUsados = recursosUsados;
 	}
 
@@ -147,10 +147,10 @@ public class Evento implements Serializable{
 		return comi;
 	}
 	
-	public Recurso searchRecursoByTipo (String tipo) {
-		Recurso resource = null;
+	public RecursoEvento searchRecursoByTipo (String tipo) {
+		RecursoEvento resource = null;
 		
-		for (Recurso aux : recursosUsados) {
+		for (RecursoEvento aux : recursosUsados) {
 			if (aux.getTipo().equalsIgnoreCase(tipo)) {
 				resource = aux;
 				

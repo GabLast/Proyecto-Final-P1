@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import logica.Empresa;
 import logica.Evento;
 import logica.Recurso;
+import logica.RecursoEvento;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -124,7 +125,8 @@ public class RecEvento extends JDialog {
 				btnDevolver = new JButton("Devolver recurso");
 				btnDevolver.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Recurso rec = evento.searchRecursoByTipo(tipo);
+						RecursoEvento rec = evento.searchRecursoByTipo(tipo);
+						
 						Empresa.getInstance().retornoRecursosDesdeEvento(rec);
 						evento.getRecursosUsados().remove(rec);
 						JOptionPane.showMessageDialog(null, "Recurso retornado"
@@ -159,7 +161,7 @@ public class RecEvento extends JDialog {
 		for (int i = 0; i < miEve.getRecursosUsados().size(); i++) 
 		{
 			row[0] = miEve.getRecursosUsados().get(i).getTipo();
-			row[1] = miEve.getRecursosUsados().get(i).getCantUsadaEvento();
+			row[1] = miEve.getRecursosUsados().get(i).getCantidadUsadaEvento();
 			
 			model.addRow(row);
 		}

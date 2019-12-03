@@ -22,6 +22,7 @@ import logica.Jurado;
 import logica.Participante;
 import logica.Persona;
 import logica.Recurso;
+import logica.RecursoEvento;
 
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -61,9 +62,9 @@ public class CreandoEvento extends JDialog {
 	JButton btnAgregarRec;
 	JButton btnRemover;
 	
-	ArrayList<Recurso> recursos = new ArrayList<>();
+	ArrayList<RecursoEvento> recursos = new ArrayList<>();
 	ArrayList<Participante> participantes = new ArrayList<>();
-	ArrayList<Recurso> recBackUp = new ArrayList<>();
+	ArrayList<RecursoEvento> recBackUp = new ArrayList<>();
 	int valorRecurso;
 	String string;
 	private JTextField txtCant;
@@ -377,12 +378,13 @@ public class CreandoEvento extends JDialog {
 								//agregar valor a la lista derecha
 								
 								valorRecurso = (Integer) spnCantidad.getValue();
-								buscando.setCantUsadaEvento(valorRecurso);
+//								buscando.setCantUsadaEvento(valorRecurso);
 								modelRecElegidos.addElement(string);
 								listRecursosElegidos.setModel(modelRecElegidos);
 								
 								buscando.verificarDisponibilidad(valorRecurso);
-								recursos.add(buscando);
+								RecursoEvento nuevo = new RecursoEvento(buscando.getTipo(), valorRecurso);
+								recursos.add(nuevo);
 								
 								cbxModel = new DefaultComboBoxModel(); 
 								for(Recurso recurso : Empresa.getInstance().getRecursos())
@@ -412,7 +414,7 @@ public class CreandoEvento extends JDialog {
 							String string = (String) listRecursosElegidos.getSelectedValue();
 							Recurso buscando = Empresa.getInstance().searchRecursoByTipo(string);
 							System.out.println(buscando.getCantidad());
-							System.out.println(buscando.getCantUsadaEvento());
+//							System.out.println(buscando.getCantUsadaEvento());
 						
 							if(listRecursosElegidos.getSelectedIndex() == -1)
 							{
@@ -421,7 +423,15 @@ public class CreandoEvento extends JDialog {
 							else
 							{
 								int value = listRecursosElegidos.getSelectedIndex();
-								buscando.devolverRecursoTomado(buscando.getCantUsadaEvento());
+								
+								for(RecursoEvento rec: recursos)
+								{
+									if(buscando.getTipo().equalsIgnoreCase(rec.getTipo()))
+									{
+										buscando.devolverRecursoTomado(rec.getCantidadUsadaEvento());
+									}
+								}
+								
 								
 								cbxModel = new DefaultComboBoxModel(); 
 								for(Recurso recurso : Empresa.getInstance().getRecursos())
@@ -606,7 +616,7 @@ public class CreandoEvento extends JDialog {
 	{
 		boolean yaEsta = false;
 		
-		for(Recurso rec : recursos)
+		for(RecursoEvento rec : recursos)
 		{
 			if(rec.getTipo().equalsIgnoreCase(buscando.getTipo()))
 			{

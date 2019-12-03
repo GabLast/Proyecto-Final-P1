@@ -253,8 +253,7 @@ public class Empresa implements Serializable{
 			}
 		}
 		return resource;
-	}
-	
+	}	
 	
 	public ArrayList<Jurado> buscarJuecesPorArea(String area)
 	{
@@ -275,13 +274,13 @@ public class Empresa implements Serializable{
 		return personas;
 	}
 	
-	public void retornoRecursosDesdeEvento(Recurso eventRec)
+	public void retornoRecursosDesdeEvento(RecursoEvento eventRec)
 	{
 		for(Recurso recs : recursos)
 		{
 			if(recs.getTipo().equalsIgnoreCase(eventRec.getTipo()))
 			{
-				recs.devolverRecursoTomado(eventRec.getCantUsadaEvento());
+				recs.devolverRecursoTomado(eventRec.getCantidadUsadaEvento());
 			}
 		}
 	}
@@ -297,11 +296,11 @@ public class Empresa implements Serializable{
 
 		for(Recurso recs : recursos)
 		{
-			for(Recurso recEvento : event.getRecursosUsados())
+			for(RecursoEvento recEvento : event.getRecursosUsados())
 			{
 				if(recs.getTipo().equalsIgnoreCase(recEvento.getTipo()))
 				{
-					recs.devolverRecursoTomado(recEvento.getCantUsadaEvento());
+					recs.devolverRecursoTomado(recEvento.getCantidadUsadaEvento());
 				}
 			}
 		}
@@ -311,11 +310,11 @@ public class Empresa implements Serializable{
 
 		for(Recurso recs : recursos)
 		{
-			for(Recurso recEvento : event.getRecursosUsados())
+			for(RecursoEvento recEvento : event.getRecursosUsados())
 			{
 				if(recs.getTipo().equalsIgnoreCase(recEvento.getTipo()))
 				{
-					recs.devolverRecursoTomadoCANCEL(recEvento.getCantUsadaEvento());
+					recs.devolverRecursoTomadoCANCEL(recEvento.getCantidadUsadaEvento());
 				}
 			}
 		}
