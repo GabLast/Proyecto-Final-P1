@@ -92,7 +92,7 @@ public class Comision implements Serializable{
 	public void deleteJuez(Jurado juez) {
 
 		juez.setParticipaciones(juez.getParticipaciones()-1);
-		if(juez.isPresidente())
+		if(juez.isPresidente() && miJurado.size() > 0)
 		{
 			miJurado.get(1).setPresidente(true);
 			presidente = miJurado.get(1);

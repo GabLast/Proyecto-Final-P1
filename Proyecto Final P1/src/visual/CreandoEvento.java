@@ -401,7 +401,7 @@ public class CreandoEvento extends JDialog {
 
 						
 					});
-					btnAgregarRec.setBounds(123, 494, 91, 31);
+					btnAgregarRec.setBounds(123, 494, 93, 31);
 					panelRecursos.add(btnAgregarRec);
 				}
 				{
@@ -423,16 +423,24 @@ public class CreandoEvento extends JDialog {
 							{
 								int value = listRecursosElegidos.getSelectedIndex();
 								
-								for(RecursoEvento rec : recursos)
-								{
-									if(rec.getTipo().equalsIgnoreCase(buscando.getTipo()))
-									{
-										buscando.devolverRecursoTomado(rec.getCantidadUsadaEvento());
-										recursos.remove(rec);
-									}
-								}
+//								System.out.println(recursos.size());
+//								System.out.println(recursos.get(0).getTipo());
 								
+								//Error en java “java.util.ConcurrentModificationException”
+//								for(RecursoEvento rec : recursos)
+//								{
+//									if(rec.getTipo().equalsIgnoreCase(buscando.getTipo()))
+//									{
+//										buscando.devolverRecursoTomado(rec.getCantidadUsadaEvento());
+//										recursos.remove(rec);
+//									}
+//								}
 								
+								//solucion:
+								RecursoEvento rec = searchRecurso(string);
+								buscando.devolverRecursoTomado(rec.getCantidadUsadaEvento());
+								recursos.remove(rec);
+								///////////////////////////
 								cbxModel = new DefaultComboBoxModel(); 
 								for(Recurso recurso : Empresa.getInstance().getRecursos())
 								{
@@ -480,7 +488,7 @@ public class CreandoEvento extends JDialog {
 				spnCantidad = new JSpinner();
 				spnCantidad.setFont(new Font("Roboto", Font.PLAIN, 12));
 				spnCantidad.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
-				spnCantidad.setBounds(14, 494, 99, 30);
+				spnCantidad.setBounds(10, 494, 103, 30);
 				panelRecursos.add(spnCantidad);
 				{
 					txtCant = new JTextField();
@@ -625,5 +633,16 @@ public class CreandoEvento extends JDialog {
 		}
 		
 		return yaEsta;
+	}
+	public RecursoEvento searchRecurso(String tipo) {
+		RecursoEvento resource = null;
+		
+		for (RecursoEvento aux : recursos) {
+			if (aux.getTipo().equalsIgnoreCase(tipo)) {
+				resource = aux;
+				
+			}
+		}
+		return resource;
 	}
 }

@@ -57,8 +57,8 @@ public class RegComision extends JDialog {
 	DefaultListModel modelJobDisp;
 	DefaultListModel modelJobSelect;
 	
-	private ArrayList<Jurado> jueces = new ArrayList<>();
-	private ArrayList<Trabajo> trabajos = new ArrayList<>();
+	ArrayList<Jurado> jueces = new ArrayList<>();
+	ArrayList<Trabajo> trabajos = new ArrayList<>();
 	
 	/**
 	 * Launch the application.
@@ -521,8 +521,12 @@ public class RegComision extends JDialog {
 								//new ListaTrabajosComi(miEvento.getMisComisiones().get(0)).setVisible(true);
 								//new ListarMiembrosComi(miEvento.getMisComisiones().get(0)).setVisible(true);
 								JOptionPane.showMessageDialog(null, "Comisión Registrada Satisfactoriamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
-								//dispose();
-								clean();
+								dispose();
+								
+								
+								//EL CLEAN NO FUNCIONA ADECUADAMENTE. PROVOCA QUE LOS JUECES Y LOS TRABAJOS DE PIERDAN DE MEMORIA
+								//PROVOCANDO QUE TENGA 0 TRABAJOS Y JUECES.a
+								//clean();
 								
 							}
 							else
@@ -604,6 +608,7 @@ public class RegComision extends JDialog {
 	
 	private void clean()
 	{	
+		
 		txtID.setText("COM"+Empresa.getInstance().getGenIDComision());
 		cbxArea.setSelectedIndex(0);
 		jueces = new ArrayList<>();
