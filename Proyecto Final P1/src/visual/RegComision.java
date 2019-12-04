@@ -84,6 +84,7 @@ public class RegComision extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegComision(Evento miEvento, boolean modificar, Comision aModificar) {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegComision.class.getResource("/imagen/RegCom.png")));
 		if(!modificar)
 			setTitle("Formando una comisi\u00F3n");
@@ -92,7 +93,7 @@ public class RegComision extends JDialog {
 			setTitle("Modificando la comisión: " + aModificar.getId());
 		}
 			
-		setBounds(100, 100, 559, 735);
+		setBounds(100, 100, 559, 728);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(204, 255, 255));

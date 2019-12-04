@@ -63,10 +63,11 @@ public class RegistrarTrabajo extends JDialog {
 	 */
 	public RegistrarTrabajo(Participante duenio) 
 	{
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegistrarTrabajo.class.getResource("/imagen/trabajoIcon.png")));
 		this.duenioGlobal = duenio;
 		setTitle("Registrar trabajo");
-		setBounds(100, 100, 404, 478);
+		setBounds(100, 100, 404, 467);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(204, 255, 255));

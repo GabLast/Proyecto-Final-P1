@@ -102,6 +102,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Principal.class.getResource("/imagen/mainIcono.png")));
 		setForeground(Color.LIGHT_GRAY);
 		addWindowListener(new WindowAdapter() {

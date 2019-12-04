@@ -92,6 +92,7 @@ public class CreandoEvento extends JDialog {
 	 * Create the dialog.
 	 */
 	public CreandoEvento(Evento modiEvento, boolean modificar) {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CreandoEvento.class.getResource("/imagen/titleadd.png")));
 		if(!modificar)
 			setTitle("Organizaci\u00F3n de un evento");
@@ -101,7 +102,7 @@ public class CreandoEvento extends JDialog {
 			recBackUp = modiEvento.getRecursosUsados();
 			Empresa.getInstance().returnAllResourcesBeforeModifyingEvent(modiEvento);
 		}
-		setBounds(100, 100, 1119, 693);
+		setBounds(100, 100, 1105, 693);
 		setLocationRelativeTo(null);
 		contentPanel.setBackground(new Color(204, 255, 255));
 		getContentPane().setLayout(new BorderLayout());

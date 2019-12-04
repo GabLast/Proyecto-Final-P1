@@ -77,10 +77,11 @@ public class RegPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPersona() {
+		setResizable(false);
 		setForeground(Color.WHITE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RegPersona.class.getResource("/Imagen/addPerson.png")));
 		setTitle("Registrar Persona");
-		setBounds(100, 100, 446, 538);
+		setBounds(100, 100, 437, 527);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
